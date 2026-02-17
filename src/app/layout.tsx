@@ -1,6 +1,7 @@
 import type { Metadata, Viewport } from "next";
 import { Inter, JetBrains_Mono } from "next/font/google";
 import "./globals.css";
+import { Analytics } from "@vercel/analytics/react";
 import { Navigation } from "@/components/layout/Navigation";
 import { Footer } from "@/components/layout/Footer";
 
@@ -85,6 +86,7 @@ export default function RootLayout({
           </div>
         </main>
         <Footer />
+        <Analytics />
       </body>
     </html>
   );
