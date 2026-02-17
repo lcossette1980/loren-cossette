@@ -16,15 +16,48 @@ const jetbrainsMono = JetBrains_Mono({
   display: "swap",
 });
 
+const siteUrl = process.env.NEXT_PUBLIC_SITE_URL ?? "https://lorencossette.com";
+
 export const metadata: Metadata = {
-  title: "Loren Cossette | AI Automation Architect",
+  metadataBase: new URL(siteUrl),
+  title: {
+    default: "Loren Cossette | AI Automation Architect",
+    template: "%s | Loren Cossette",
+  },
   description:
     "I define the AI strategy, then write the code. Portfolio of Loren Cossette — AI Automation Architect, building production agentic systems, RAG pipelines, and serverless infrastructure.",
+  keywords: [
+    "AI Automation",
+    "AI Engineer",
+    "Agentic Systems",
+    "RAG Pipelines",
+    "NLP",
+    "Deep Learning",
+    "Full-Stack Developer",
+    "Loren Cossette",
+  ],
+  authors: [{ name: "Loren Cossette" }],
+  creator: "Loren Cossette",
   openGraph: {
     title: "Loren Cossette | AI Automation Architect",
     description:
       "Strategy to Production. Building production-grade agentic systems, RAG pipelines, and serverless infrastructure.",
+    url: siteUrl,
+    siteName: "Loren Cossette",
+    locale: "en_US",
     type: "website",
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Loren Cossette | AI Automation Architect",
+    description:
+      "Strategy to Production. Building production-grade agentic systems, RAG pipelines, and serverless infrastructure.",
+    creator: "@lorencossette",
+  },
+  robots: {
+    index: true,
+    follow: true,
+    googleBot: { index: true, follow: true },
   },
 };
 
