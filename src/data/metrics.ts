@@ -1,0 +1,58 @@
+import type { ImpactMetric } from "@/types";
+
+export const impactMetrics: ImpactMetric[] = [
+  {
+    label: "Cost Saved",
+    value: "$2.7M+",
+    numericValue: 2.7,
+    suffix: "M+",
+    prefix: "$",
+    sub: "USAA Q1 Impact",
+    icon: "TrendingUp",
+  },
+  {
+    label: "Files Automated",
+    value: "56,567",
+    numericValue: 56567,
+    suffix: "",
+    prefix: "",
+    sub: "WCAG Compliance",
+    icon: "FileText",
+  },
+  {
+    label: "Scope Reduction",
+    value: "90%",
+    numericValue: 90,
+    suffix: "%",
+    prefix: "",
+    sub: "Triage Pipeline",
+    icon: "Zap",
+  },
+  {
+    label: "Speed Increase",
+    value: "26\u00D7",
+    numericValue: 26,
+    suffix: "\u00D7",
+    prefix: "",
+    sub: "Content Platform",
+    icon: "Activity",
+  },
+  {
+    label: "Cost Reduction",
+    value: "89%",
+    numericValue: 89,
+    suffix: "%",
+    prefix: "",
+    sub: "$35K Saved",
+    icon: "Star",
+  },
+  {
+    label: "Cycle Time Cut",
+    value: "64%",
+    numericValue: 64,
+    suffix: "%",
+    prefix: "",
+    sub: "Decision Time",
+    icon: "ArrowRight",
+  },
+];

@@ -1,0 +1,153 @@
+import type { Project } from "@/types";
+
+export const projects: Project[] = [
+  {
+    slug: "wcag-triage",
+    title: "WCAG Compliance Engine",
+    subtitle: "Automated Triage & Scope Reduction",
+    tech: ["Python", "PyMySQL", "BeautifulSoup", "Web Crawling", "PDF Analysis"],
+    stats: [
+      { label: "Files Processed", value: "56,567" },
+      { label: "Scope Reduction", value: "90%" },
+      { label: "Hours Saved", value: "12,000" },
+    ],
+    shortDescription:
+      "Six-stage automated triage pipeline replacing $150K\u2013$450K in manual classification with a 6-hour unattended process. Uncovered 4,265 \u2018false orphans\u2019 \u2014 live content invisible to the CMS.",
+    fullDescription:
+      "Automated six-stage triage data pipeline replacing 4,000\u201312,000 hours of manual classification ($150K\u2013$450K equivalent) with a 6-hour unattended process for 56,567 government files. Web crawl validation uncovered 4,265 \u201Cfalse orphans\u201D live on site but invisible to CMS. Deduplication across 2,481 groups eliminated redundant remediation. Priority scoring by traffic, content type, and effort; lane routing into PDF fix, OCR, HTML conversion, or rebuild. 30-minute weekly delta updates replaced monthly re-audits.",
+    keyFeatures: [
+      "Six-stage automated triage pipeline processing 56,567 files",
+      "Web crawl validation uncovering 4,265 false orphans invisible to CMS",
+      "Deduplication across 2,481 groups eliminating redundant remediation",
+      "Priority scoring by traffic, content type, and effort",
+      "Lane routing into PDF fix, OCR, HTML conversion, or rebuild",
+      "30-minute weekly delta updates replacing monthly re-audits",
+      "Enabled site averaging 400+ new files/month to stay current",
+    ],
+    icon: "Eye",
+    featured: true,
+    category: "compliance",
+    image: "/images/projects/project-wcag-triage.png",
+    dashboardImage: "/images/projects/project-wcag-triage-dashboard.png",
+    architectureImage: "/images/projects/project-wcag-triage-architecture.png",
+  },
+  {
+    slug: "wcag-remediation",
+    title: "WCAG Remediation Platform",
+    subtitle: "End-to-End Compliance Pipeline",
+    tech: ["LangGraph", "Gemini 2.5", "Claude", "Document AI", "Vertex AI", "Drupal 10"],
+    stats: [
+      { label: "Diagnostic Modules", value: "9" },
+      { label: "Remediation Agents", value: "6" },
+      { label: "Dept Coverage", value: "84%" },
+    ],
+    shortDescription:
+      "Production platform for WCAG 2.1 AA compliance. 9-module diagnostic layer feeding six remediation agents. Outputs accessible HTML, PDF/UA, and Drupal Webforms.",
+    fullDescription:
+      "End-to-end production platform for WCAG 2.1 AA compliance across 56,567 files under April 2026 ADA deadline. 9-module diagnostic layer (Flesch-Kincaid readability, heading validation, PII detection, SHA-256 deduplication, AcroForm/XFA detection). Six-agent remediation layer handling vision extraction, form detection, axe-core validation. Schema-first output: accessible HTML, PDF/UA, Drupal Webforms. Department ownership attribution validated 84% content concentration in 6 departments.",
+    keyFeatures: [
+      "9-module diagnostic layer with Flesch-Kincaid readability scoring",
+      "Heading validation and PII detection",
+      "SHA-256 deduplication and AcroForm/XFA detection",
+      "Six remediation agents handling vision extraction and form detection",
+      "axe-core validation for accessibility compliance",
+      "Schema-first output: accessible HTML, PDF/UA, Drupal Webforms",
+      "Department ownership attribution across 84% of content",
+    ],
+    icon: "Shield",
+    featured: false,
+    category: "ai-agents",
+    image: "/images/projects/project-wcag-remediation.png",
+    dashboardImage: "/images/projects/project-wcag-remediation-dashboard.png",
+    architectureImage: "/images/projects/project-wcag-remediation-architecture.png",
+  },
+  {
+    slug: "linkit",
+    title: "Content Automation (Linkit)",
+    subtitle: "Multilingual Translation Pipeline",
+    tech: ["PHP", "Drupal 10", "Vertex AI", "Gemini", "Multi-Agent"],
+    stats: [
+      { label: "Pages Processed", value: "20,000+" },
+      { label: "Speed", value: "26\u00D7" },
+      { label: "Cost Saved", value: "$34,946" },
+    ],
+    shortDescription:
+      "Four specialized PHP agents making government pages translation-ready in 24 hours vs. 79-day manual effort. Protected 32K internal links from translation corruption.",
+    fullDescription:
+      "Production NLP system making 20,000+ government pages translation-ready. Four specialized PHP agents: link conversion (32K internal links to Linkit UUID), address protection, phone/email shielding, orchestration with checkpoint/resume fault tolerance. Vertex AI designed agent logic and regex patterns; human-in-the-loop validation. 633-hour manual effort reduced to 24-hour deployment \u2014 26\u00D7 faster, $34,946 saved (89% cost reduction).",
+    keyFeatures: [
+      "Four specialized PHP agents with checkpoint/resume fault tolerance",
+      "Link conversion protecting 32K internal links via Linkit UUID",
+      "Address protection and phone/email shielding",
+      "Vertex AI-designed agent logic and regex patterns",
+      "Human-in-the-loop validation workflow",
+      "633 hours reduced to 24 hours \u2014 26\u00D7 faster",
+      "89% cost reduction ($34,946 saved)",
+    ],
+    icon: "Globe",
+    featured: true,
+    category: "nlp",
+    image: "/images/projects/project-linkit.png",
+    dashboardImage: "/images/projects/project-linkit-dashboard.png",
+    architectureImage: "/images/projects/project-linkit-architecture.png",
+  },
+  {
+    slug: "ai-commander",
+    title: "AI Commander",
+    subtitle: "Agentic RAG Orchestration",
+    tech: ["Python", "Vertex AI", "Gemini", "RAG", "Streamlit", "Multi-Agent"],
+    stats: [
+      { label: "Specialized Agents", value: "5" },
+      { label: "Documents", value: "56K+" },
+      { label: "Architecture", value: "Hub-Spoke" },
+    ],
+    shortDescription:
+      "Production hub-and-spoke orchestration with Commander router, Data Analyst, RAG-powered WCAG Expert, Operations agent with human-in-the-loop, and Data Dictionary.",
+    fullDescription:
+      "Production hub-and-spoke orchestration with 5 specialized agents: Commander router with sticky routing, conversational Data Analyst, RAG-powered WCAG Expert via Vertex AI Vector Search, Operations agent with human-in-the-loop approval, and Data Dictionary. Function-calling pipelines with exponential backoff, audit logging, and dynamic visualizations.",
+    keyFeatures: [
+      "Commander router with sticky routing for context preservation",
+      "Conversational Data Analyst agent for real-time queries",
+      "RAG-powered WCAG Expert via Vertex AI Vector Search",
+      "Operations agent with human-in-the-loop approval workflows",
+      "Data Dictionary agent for schema exploration",
+      "Function-calling pipelines with exponential backoff",
+      "Comprehensive audit logging and dynamic visualizations",
+    ],
+    icon: "Bot",
+    featured: true,
+    category: "ai-agents",
+    image: "/images/projects/project-ai-commander.png",
+    dashboardImage: "/images/projects/project-ai-commander-dashboard.png",
+    architectureImage: "/images/projects/project-ai-commander-architecture.png",
+  },
+  {
+    slug: "airs",
+    title: "AIRS",
+    subtitle: "Academic Reading Intelligence System",
+    tech: ["React", "Azure OpenAI", "FastAPI", "PyTorch", "scikit-learn", "REST API"],
+    stats: [
+      { label: "Students Served", value: "500+" },
+      { label: "Stack", value: "Full" },
+      { label: "LLM", value: "Fine-tuned" },
+    ],
+    shortDescription:
+      "Production LLM-powered academic reading coach with fine-tuning pipeline, synthetic training datasets, and real-time chat integration.",
+    fullDescription:
+      "Production LLM-powered academic reading coach serving 500+ students. Fine-tuning pipeline with synthetic training datasets using PyTorch and scikit-learn for model evaluation. React frontend with real-time chat and Azure OpenAI integration.",
+    keyFeatures: [
+      "Fine-tuning pipeline with synthetic training datasets",
+      "PyTorch and scikit-learn for model evaluation",
+      "React frontend with real-time chat interface",
+      "Azure OpenAI integration for LLM backbone",
+      "Serving 500+ university students in production",
+      "Custom training pipeline for domain-specific comprehension",
+    ],
+    icon: "BookOpen",
+    featured: false,
+    category: "full-stack",
+    image: "/images/projects/project-airs.png",
+    dashboardImage: "/images/projects/project-airs-dashboard.png",
+    architectureImage: "/images/projects/project-airs-architecture.png",
+  },
+];
