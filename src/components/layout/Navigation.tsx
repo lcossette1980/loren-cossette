@@ -53,7 +53,7 @@ export function Navigation() {
           <LayoutGroup>
             <div className="hidden md:flex items-center gap-1">
               {navItems.map((item) => {
-                const isActive = pathname === item.href;
+                const isActive = item.href === "/" ? pathname === "/" : pathname.startsWith(item.href);
                 return (
                   <Link
                     key={item.href}
@@ -99,7 +99,7 @@ export function Navigation() {
             transition={{ duration: 0.3 }}
           >
             {navItems.map((item, i) => {
-              const isActive = pathname === item.href;
+              const isActive = item.href === "/" ? pathname === "/" : pathname.startsWith(item.href);
               return (
                 <motion.div
                   key={item.href}

@@ -117,3 +117,39 @@ export interface NavItem {
   label: string;
   href: string;
 }
+
+/* ── Override Book Types ── */
+
+export interface OverrideTemplate {
+  number: number;
+  name: string;
+  slug: string;
+  category: "keystone" | "digital";
+  chapter?: string;
+  description: string;
+  pdfPath: string;
+}
+
+export interface OverridePersona {
+  title: string;
+  icon: string;
+  description: string;
+}
+
+export interface OverrideStat {
+  value: number;
+  suffix: string;
+  label: string;
+}
+
+export interface OverrideFramework {
+  part: string;
+  title: string;
+  description: string;
+}
+
+export interface OverrideFeature {
+  icon: string;
+  heading: string;
+  description: string;
+}

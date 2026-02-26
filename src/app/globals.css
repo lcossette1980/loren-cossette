@@ -19,6 +19,13 @@
   --border-accent: rgba(0, 255, 255, 0.2);
   --glass-bg: rgba(13, 17, 23, 0.7);
   --glass-border: rgba(0, 255, 255, 0.08);
+  /* Override book brand */
+  --override-gold: #C4993B;
+  --override-dark: #1A1A1A;
+  --override-dark-card: #2D2D2D;
+  --override-light: #F8F7F4;
+  --override-muted: #666666;
+  --override-teal: #6B8E9B;
 }
 
 @theme inline {
@@ -40,6 +47,13 @@
   --color-glass-border: var(--glass-border);
   --font-sans: var(--font-inter);
   --font-mono: var(--font-jetbrains-mono);
+  --font-serif: var(--font-eb-garamond);
+  --color-override-gold: var(--override-gold);
+  --color-override-dark: var(--override-dark);
+  --color-override-dark-card: var(--override-dark-card);
+  --color-override-light: var(--override-light);
+  --color-override-muted: var(--override-muted);
+  --color-override-teal: var(--override-teal);
 }
 
 /* Tailwind preflight already applies a sensible reset. Avoid universal

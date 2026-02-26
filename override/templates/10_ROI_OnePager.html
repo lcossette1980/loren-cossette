@@ -1,0 +1,325 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>OVERRIDE — The ROI One-Pager</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400;0,600;0,700;1,400&family=Inter:wght@400;500;600;700&display=swap');
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    font-family: 'EB Garamond', 'Georgia', serif;
+    background: #F8F7F4;
+    color: #1A1A1A;
+    line-height: 1.6;
+  }
+
+  /* Dark branded header */
+  .header {
+    background: linear-gradient(135deg, #1A1A1A 0%, #2D2D2D 100%);
+    color: #FFFFFF;
+    padding: 40px 48px 32px;
+    position: relative;
+    overflow: hidden;
+  }
+  .header::before {
+    content: '';
+    position: absolute;
+    top: 0; right: 0;
+    width: 200px; height: 200px;
+    background: radial-gradient(circle, rgba(196,153,59,0.15) 0%, transparent 70%);
+  }
+  .header-brand {
+    font-family: 'Inter', sans-serif;
+    font-size: 12px;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    color: #C4993B;
+    margin-bottom: 8px;
+  }
+  .header-title {
+    font-family: 'Inter', sans-serif;
+    font-size: 28px;
+    font-weight: 700;
+    letter-spacing: -0.5px;
+    margin-bottom: 4px;
+  }
+  .header-subtitle {
+    font-family: 'EB Garamond', serif;
+    font-size: 16px;
+    font-style: italic;
+    color: #AAAAAA;
+    margin-bottom: 16px;
+  }
+  .header-category {
+    display: inline-block;
+    font-family: 'Inter', sans-serif;
+    font-size: 10px;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+    padding: 4px 12px;
+    border: 1px solid #6B8E9B;
+    color: #6B8E9B;
+    border-radius: 2px;
+  }
+
+  /* Clean white working area */
+  .content {
+    max-width: 780px;
+    margin: 0 auto;
+    padding: 40px 48px;
+    background: #FFFFFF;
+    min-height: calc(100vh - 200px);
+  }
+
+  .section-title {
+    font-family: 'Inter', sans-serif;
+    font-size: 14px;
+    font-weight: 700;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    color: #1A1A1A;
+    border-bottom: 2px solid #C4993B;
+    padding-bottom: 6px;
+    margin: 32px 0 16px;
+  }
+  .section-title:first-child { margin-top: 0; }
+
+  .intro {
+    font-size: 15px;
+    color: #444;
+    margin-bottom: 24px;
+    line-height: 1.7;
+    font-style: italic;
+  }
+
+  .field-group {
+    margin-bottom: 20px;
+  }
+  .field-label {
+    font-family: 'Inter', sans-serif;
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: 0.5px;
+    text-transform: uppercase;
+    color: #666;
+    margin-bottom: 4px;
+  }
+  .field-input {
+    width: 100%;
+    border: none;
+    border-bottom: 1px solid #CCC;
+    padding: 8px 0;
+    font-family: 'EB Garamond', serif;
+    font-size: 14px;
+    color: #1A1A1A;
+    background: transparent;
+  }
+  .field-input.tall {
+    min-height: 60px;
+    border: 1px solid #DDD;
+    padding: 8px 12px;
+    border-radius: 2px;
+  }
+
+  /* Template table */
+  .template-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 16px 0 24px;
+    font-size: 13px;
+  }
+  .template-table th {
+    font-family: 'Inter', sans-serif;
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: 0.5px;
+    text-transform: uppercase;
+    background: #1A1A1A;
+    color: #FFFFFF;
+    padding: 10px 12px;
+    text-align: left;
+    border: 1px solid #1A1A1A;
+  }
+  .template-table td {
+    padding: 12px;
+    border: 1px solid #DDD;
+    vertical-align: top;
+    min-height: 40px;
+  }
+  .template-table tr:nth-child(even) td {
+    background: #FAFAF8;
+  }
+  .template-table .row-num {
+    width: 30px;
+    text-align: center;
+    font-family: 'Inter', sans-serif;
+    font-weight: 600;
+    color: #999;
+    font-size: 11px;
+  }
+
+  /* Checklist */
+  .checklist-item {
+    display: flex;
+    align-items: flex-start;
+    gap: 12px;
+    margin-bottom: 12px;
+    padding: 8px 0;
+    border-bottom: 1px solid #F0F0F0;
+  }
+  .check-box {
+    width: 18px;
+    height: 18px;
+    border: 2px solid #999;
+    border-radius: 2px;
+    flex-shrink: 0;
+    margin-top: 2px;
+  }
+  .checklist-text {
+    font-size: 14px;
+    line-height: 1.5;
+  }
+  .checklist-section {
+    font-family: 'Inter', sans-serif;
+    font-size: 12px;
+    font-weight: 700;
+    letter-spacing: 0.5px;
+    text-transform: uppercase;
+    color: #C4993B;
+    margin: 24px 0 8px;
+  }
+
+  /* Callout box */
+  .callout {
+    background: #F8F7F4;
+    border-left: 3px solid #C4993B;
+    padding: 16px 20px;
+    margin: 20px 0;
+    font-size: 14px;
+    line-height: 1.6;
+  }
+  .callout strong {
+    font-family: 'Inter', sans-serif;
+    font-size: 11px;
+    letter-spacing: 0.5px;
+    text-transform: uppercase;
+    display: block;
+    margin-bottom: 4px;
+    color: #C4993B;
+  }
+
+  /* Scale items */
+  .scale-item {
+    margin-bottom: 12px;
+    padding: 12px 16px;
+    border-radius: 4px;
+    border: 1px solid #EEE;
+  }
+  .scale-num {
+    font-family: 'Inter', sans-serif;
+    font-weight: 700;
+    font-size: 14px;
+    color: #C4993B;
+    margin-right: 8px;
+  }
+
+  /* Question blocks */
+  .question-block {
+    margin-bottom: 28px;
+    padding-bottom: 20px;
+    border-bottom: 1px solid #EEE;
+  }
+  .question-num {
+    font-family: 'Inter', sans-serif;
+    font-weight: 700;
+    font-size: 20px;
+    color: #C4993B;
+    float: left;
+    margin-right: 16px;
+    line-height: 1;
+  }
+  .question-text {
+    font-size: 16px;
+    font-weight: 600;
+    margin-bottom: 8px;
+    overflow: hidden;
+  }
+  .question-guide {
+    font-size: 13px;
+    color: #666;
+    line-height: 1.6;
+    margin-bottom: 8px;
+    clear: both;
+  }
+
+  /* Dark branded footer */
+  .footer {
+    background: #1A1A1A;
+    color: #888;
+    padding: 20px 48px;
+    font-family: 'Inter', sans-serif;
+    font-size: 10px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  .footer-brand { color: #C4993B; font-weight: 600; }
+  .footer-tagline { font-style: italic; font-family: 'EB Garamond', serif; font-size: 12px; color: #666; }
+
+  @media print {
+    body { background: #FFF; }
+    .header { padding: 24px 32px 20px; }
+    .content { padding: 24px 32px; box-shadow: none; }
+    .footer { padding: 12px 32px; }
+    .field-input { border-bottom: 1px solid #CCC !important; }
+  }
+</style>
+</head>
+<body>
+
+<div class="header">
+  <div class="header-brand">OVERRIDE</div>
+  <div class="header-title">The ROI One-Pager</div>
+  <div class="header-subtitle">Making the Unsolicited Business Case — Appendix C Framework</div>
+  <div class="header-category">DIGITAL DOWNLOAD — Exclusive Companion Resource</div>
+</div>
+
+<div class="content">
+
+<p class="intro">One page. Sixty seconds. This document connects your AI initiative to an executive priority and makes the financial case in a format that requires no meeting to deliver. Nobody asked for it—that’s the point.</p>
+
+<div class="section-title">Header</div>
+<div class="field-group"><div class="field-label">Initiative Name</div><div class="field-input" contenteditable="true">&nbsp;</div></div>
+<div class="field-group"><div class="field-label">One-Sentence Connection to Executive Priority</div><div class="field-input" contenteditable="true">&nbsp;</div></div>
+
+<div class="section-title">The Problem (2–3 sentences)</div>
+<div class="field-group"><div class="field-label">What pain point does this address? Quantify the current cost.</div><div class="field-input tall" contenteditable="true">&nbsp;</div></div>
+
+<div class="section-title">The Solution (2–3 sentences)</div>
+<div class="field-group"><div class="field-label">What you built or propose. No jargon. Focus on what it does, not how.</div><div class="field-input tall" contenteditable="true">&nbsp;</div></div>
+
+<div class="section-title">The Evidence</div>
+<div class="field-group"><div class="field-label">Internal Metric (your pilot/prototype result)</div><div class="field-input" contenteditable="true">&nbsp;</div></div>
+<div class="field-group"><div class="field-label">External Benchmark (industry/competitor data)</div><div class="field-input" contenteditable="true">&nbsp;</div></div>
+<div class="field-group"><div class="field-label">Research Anchor (cost of inaction or industry statistic)</div><div class="field-input" contenteditable="true">&nbsp;</div></div>
+
+<div class="section-title">The Ask (1–2 sentences)</div>
+<div class="field-group"><div class="field-label">What you need to move forward. Be specific: approval, budget, access, data, time.</div><div class="field-input tall" contenteditable="true">&nbsp;</div></div>
+
+<div class="section-title">Footer</div>
+<div class="field-group"><div class="field-label">Prepared by</div><div class="field-input" contenteditable="true">&nbsp;</div></div>
+<div class="field-group"><div class="field-label">Date</div><div class="field-input" contenteditable="true">&nbsp;</div></div>
+<div class="field-group"><div class="field-label">Alignment Source (e.g., “Aligned with [priority] per [strategic plan, p.X]”)</div><div class="field-input" contenteditable="true">&nbsp;</div></div>
+
+</div>
+
+<div class="footer">
+  <div><span class="footer-brand">OVERRIDE</span> &nbsp;•&nbsp; The AI Transformation Playbook for Hostile Territory</div>
+  <div class="footer-tagline">“Change management assumes good faith. This book doesn’t.”</div>
+</div>
+
+</body>
+</html>
