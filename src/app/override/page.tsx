@@ -65,21 +65,14 @@ export default function OverrideLandingPage() {
                   animate={{ y: [0, -8, 0] }}
                   transition={{ duration: 3, repeat: Infinity, ease: "easeInOut" }}
                 >
-                  {/* Placeholder book cover — swap with real image */}
-                  <div className="absolute inset-0 bg-gradient-to-br from-[#2D2D2D] to-[#1A1A1A] border border-[rgba(196,153,59,0.3)] rounded-lg flex flex-col items-center justify-center p-8">
-                    <span className="font-sans text-[40px] md:text-[48px] font-black tracking-[-1px] text-[#C4993B] leading-none mb-4">
-                      OVERRIDE
-                    </span>
-                    <div className="w-12 h-px bg-[#C4993B]/40 mb-4" />
-                    <span className="font-serif text-[11px] text-[#999] text-center leading-relaxed italic">
-                      The AI Transformation Playbook<br />for Hostile Territory
-                    </span>
-                    <div className="mt-auto">
-                      <span className="font-sans text-[10px] tracking-[2px] uppercase text-[#666]">
-                        Loren T. Cossette
-                      </span>
-                    </div>
-                  </div>
+                  <Image
+                    src="/images/override-cover.jpg"
+                    alt="OVERRIDE — The AI Transformation Playbook for Hostile Territory by Loren T. Cossette"
+                    fill
+                    className="object-cover rounded-lg"
+                    sizes="(max-width: 768px) 280px, 320px"
+                    priority
+                  />
                 </motion.div>
               </div>
             </Reveal>
