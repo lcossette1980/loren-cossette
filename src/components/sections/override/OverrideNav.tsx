@@ -3,7 +3,7 @@
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { cn } from "@/lib/utils";
-import { overrideNavItems } from "@/data/override";
+import { overrideNavItems, bookInfo } from "@/data/override";
 
 export function OverrideNav() {
   const pathname = usePathname();
@@ -33,7 +33,9 @@ export function OverrideNav() {
           })}
         </div>
         <Link
-          href="#"
+          href={bookInfo.buyUrl}
+          target="_blank"
+          rel="noopener noreferrer"
           className="hidden sm:inline-flex items-center px-4 py-1.5 bg-[#C4993B] text-[#1A1A1A] text-xs font-bold tracking-wide rounded hover:bg-[#d4a940] transition-colors"
         >
           Buy Now
