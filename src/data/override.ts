@@ -13,7 +13,7 @@ export const bookInfo = {
   heroLine: "You weren't hired to ask permission. You were hired to deliver results.",
   traditions: "Machiavelli. Sun Tzu. Alinsky. Now You.",
   pageCount: 312,
-  buyUrl: "#", // TODO: Add actual buy link
+  buyUrl: "https://www.amazon.com/OVERRIDE-Transformation-Playbook-Hostile-Territory-ebook/dp/B0GHMZVGQH",
 };
 
 export const stats: OverrideStat[] = [
