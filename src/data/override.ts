@@ -46,12 +46,12 @@ export const frameworks: OverrideFramework[] = [
 ];
 
 export const features: OverrideFeature[] = [
-  { icon: "BookOpen", heading: "15 Chapters", description: "Four-part strategic methodology from reconnaissance to institutionalization" },
-  { icon: "FileText", heading: "17 Templates", description: "Field-ready worksheets for every phase of your transformation campaign" },
-  { icon: "MessageSquare", heading: "11 Scripts", description: "Word-for-word scripts for the conversations nobody wants to have" },
-  { icon: "Clock", heading: "72-Hour Framework", description: "Rapid deployment playbook for time-critical transformation windows" },
+  { icon: "Layers", heading: "15 Chapters", description: "Four-part strategic methodology from reconnaissance to institutionalization" },
+  { icon: "ScrollText", heading: "17 Templates", description: "Field-ready worksheets for every phase of your transformation campaign" },
+  { icon: "MessageCircleWarning", heading: "11 Scripts", description: "Word-for-word scripts for the conversations nobody wants to have" },
+  { icon: "Timer", heading: "72-Hour Framework", description: "Rapid deployment playbook for time-critical transformation windows" },
   { icon: "Swords", heading: "4 Strategic Traditions", description: "Machiavelli, Sun Tzu, Alinsky, and Gramsci — operationalized" },
-  { icon: "Target", heading: "Real-World Playbooks", description: "Battle-tested scenarios from organizations that actively resisted change" },
+  { icon: "Crosshair", heading: "Real-World Playbooks", description: "Battle-tested scenarios from organizations that actively resisted change" },
 ];
 
 export const personas: OverridePersona[] = [
