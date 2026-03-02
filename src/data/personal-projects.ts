@@ -65,10 +65,31 @@ export const personalProjects: PersonalProject[] = [
     status: "live",
   },
   {
+    slug: "chingona-clarity",
+    title: "Chingona Clarity",
+    subtitle: "AI-Powered Local News Platform",
+    url: "https://chingonaclarity.com",
+    tech: ["Python 3.12", "FastAPI", "PostgreSQL 17", "pgvector", "GPT-4o-mini", "HTMX", "Tailwind CSS", "Redis", "Railway"],
+    description:
+      "AI-powered news platform built for women in San Antonio. Ingests 11+ RSS feeds daily, clusters related coverage using semantic embeddings, synthesizes multi-source narratives via GPT-4o-mini, and runs automated bias audits before publication — delivering clear, balanced news every morning.",
+    highlights: [
+      "6-step AI pipeline: fetch → classify → embed → cluster → synthesize → bias audit",
+      "11+ news sources with automated bias scoring per source",
+      "Semantic clustering via pgvector embeddings and agglomerative clustering",
+      "Federal and Texas state legislation tracking via Congress.gov and OpenStates APIs",
+      "Daily newsletter delivery at 7 AM CT via Resend",
+      "Community events integration via Eventbrite API",
+    ],
+    icon: "Newspaper",
+    image: "/images/apps/app-chingona-clarity.png",
+    category: "ai-tools",
+    status: "live",
+  },
+  {
     slug: "scholarly-ai",
     title: "ScholarlyAI",
     subtitle: "Academic Research & Writing Assistant",
-    url: "https://www.scholarlyai.com",
+    url: "https://scholarlyaiapp.com",
     tech: ["AI/LLM", "PDF Processing", "Citation Management", "NLP", "APA/MLA/Chicago"],
     description:
       "AI-powered research assistant for students and academics. Generates annotated bibliographies from uploaded PDFs in ~90 seconds, creates research topics and outlines, and produces complete academic papers from 500 to 10,000 words — all with proper citation formatting across APA, MLA, Chicago, and Harvard styles.",

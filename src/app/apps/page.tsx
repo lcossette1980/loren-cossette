@@ -13,6 +13,7 @@ import {
   Brain,
   GraduationCap,
   FileSearch,
+  Newspaper,
   ExternalLink,
   CheckCircle,
   ArrowUpRight,
@@ -28,6 +29,7 @@ const iconMap: Record<
   Brain,
   GraduationCap,
   FileSearch,
+  Newspaper,
 };
 
 const filters: { label: string; value: PersonalProjectCategory | "all" }[] = [
