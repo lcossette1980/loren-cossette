@@ -47,11 +47,11 @@ export default function AboutPage() {
 
             <Reveal delay={0.2}>
               <p className="text-text-secondary text-lg leading-relaxed mb-4">
-                As the{" "}
+                As a{" "}
                 <strong className="text-text-primary font-semibold">
-                  sole AI automation engineer
+                  sole AI automation engineer,
                 </strong>{" "}
-                for Multnomah County, I own the full lifecycle &mdash; problem
+                I own the full lifecycle &mdash; problem
                 discovery, stakeholder alignment, architecture, code, deployment,
                 and change management.
               </p>
