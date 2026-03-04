@@ -5,7 +5,7 @@ import Image from "next/image";
 import { Reveal } from "@/components/animations/Reveal";
 import { Button } from "@/components/ui/Button";
 import { personal } from "@/data/personal";
-import { MapPin, Mail, ChevronDown, Linkedin, Github, ExternalLink } from "lucide-react";
+import { MapPin, Mail, ChevronDown, Linkedin, Github, ExternalLink, Download } from "lucide-react";
 
 const ParticleBackground = lazy(() =>
   import("@/components/particles/ParticleBackground").then((mod) => ({
@@ -126,6 +126,15 @@ export function HeroSection() {
               Get in Touch
             </Button>
           </div>
+          <a
+            href="/Loren_Cossette_Resume.pdf"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="inline-flex items-center gap-2 mt-5 text-text-muted text-[12px] font-mono hover:text-accent-cyan transition-colors"
+          >
+            <Download size={13} />
+            Download Resume (PDF)
+          </a>
         </Reveal>
       </div>
 

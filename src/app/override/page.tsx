@@ -357,56 +357,6 @@ export default function OverrideLandingPage() {
         </div>
       </section>
 
-      {/* ── Section 5: Social Proof ── */}
-      <section className="bg-[#1A1A1A] py-28 relative overflow-hidden">
-        <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_50%_0%,rgba(196,153,59,0.05),transparent_60%)]" />
-        <div className="site-container relative z-10">
-          <Reveal>
-            <p className="font-sans text-[11px] tracking-[3px] uppercase text-[#C4993B] font-semibold mb-3 text-center">
-              What Readers Are Saying
-            </p>
-          </Reveal>
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mt-10">
-            {[
-              { quote: "Finally, a methodology that doesn't pretend everyone wants to change.", name: "Coming Soon", title: "Reader Review" },
-              { quote: "OVERRIDE gave me the language and frameworks to survive my own success.", name: "Coming Soon", title: "Reader Review" },
-              { quote: "The templates alone are worth ten times the price of the book.", name: "Coming Soon", title: "Reader Review" },
-            ].map((t, i) => (
-              <Reveal key={i} delay={i * 0.1}>
-                <motion.div
-                  className="bg-[#2D2D2D] rounded-2xl p-7 h-full border border-[rgba(196,153,59,0.06)] relative overflow-hidden group"
-                  whileHover={{ y: -4 }}
-                  transition={{ type: "spring", stiffness: 300, damping: 20 }}
-                >
-                  <div className="absolute top-6 right-6 text-[48px] leading-none text-[#C4993B] opacity-[0.08] font-serif">
-                    &ldquo;
-                  </div>
-                  <div className="flex gap-0.5 mb-5">
-                    {[...Array(5)].map((_, j) => (
-                      <span key={j} className="text-[#C4993B] text-base">&#9733;</span>
-                    ))}
-                  </div>
-                  <p className="font-serif text-[15px] text-[#ccc] leading-relaxed italic mb-8">
-                    &ldquo;{t.quote}&rdquo;
-                  </p>
-                  <div className="flex items-center gap-3">
-                    <div className="w-8 h-8 rounded-full bg-[#C4993B]/10 flex items-center justify-center">
-                      <span className="text-[#C4993B] text-xs font-bold">
-                        {t.name.charAt(0)}
-                      </span>
-                    </div>
-                    <div>
-                      <p className="font-sans text-xs font-bold text-white">{t.name}</p>
-                      <p className="font-sans text-[10px] text-[#666]">{t.title}</p>
-                    </div>
-                  </div>
-                </motion.div>
-              </Reveal>
-            ))}
-          </div>
-        </div>
-      </section>
-
       {/* ── Gold divider ── */}
       <div className="h-px bg-gradient-to-r from-transparent via-[#C4993B]/30 to-transparent" />
 

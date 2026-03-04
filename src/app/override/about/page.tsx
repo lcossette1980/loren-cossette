@@ -41,10 +41,10 @@ const credentials = [
   {
     label: "Academic",
     items: [
-      "PhD Candidate — AI & Organizational Change",
-      "MS Strategic Communication",
-      "MBA",
-      "Adjunct Instructor, UT Austin & Johns Hopkins",
+      "Ph.D. — Leadership & Program Evaluation (In Progress)",
+      "M.S. — Organizational Development",
+      "M.A. — Psychology",
+      "AI for Leaders Program Mentor, UT Austin & Johns Hopkins",
     ],
   },
   {

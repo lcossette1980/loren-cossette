@@ -95,13 +95,10 @@ export default async function ProjectDetailPage({ params }: Props) {
 
         {/* Hero image */}
         <div className="mb-12">
-          <h2 className="font-mono text-[11px] tracking-[2px] uppercase text-accent-warm mb-4">
-            Overview
-          </h2>
           <div className="relative aspect-video w-full overflow-hidden rounded-xl border border-glass-border">
             <Image
               src={project.image}
-              alt={`${project.title} — Overview`}
+              alt={`${project.title} — Screenshot`}
               fill
               className="object-cover"
               sizes="100vw"
