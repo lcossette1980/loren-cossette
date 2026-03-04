@@ -20,14 +20,21 @@ export function AnimatedCounter({
   decimals = 0,
   className,
 }: AnimatedCounterProps) {
-  const [count, setCount] = useState(0);
+  // Initialize to end value so SSR/crawlers see real numbers, then animate on client
+  const [count, setCount] = useState(end);
+  const [hasMounted, setHasMounted] = useState(false);
   const ref = useRef<HTMLSpanElement>(null);
-  const inView = useInView(ref, { once: true, margin: "-100px" });
+  const inView = useInView(ref, { once: true, margin: "-60px" });
+
+  // Reset to 0 on mount so animation can play
+  useEffect(() => {
+    setHasMounted(true);
+    setCount(0);
+  }, []);
 
   useEffect(() => {
-    if (!inView) return;
+    if (!hasMounted || !inView) return;
 
-    let start = 0;
     const totalFrames = Math.round(duration / 16);
     let frame = 0;
 
@@ -46,7 +53,7 @@ export function AnimatedCounter({
     }, 16);
 
     return () => clearInterval(timer);
-  }, [inView, end, duration]);
+  }, [hasMounted, inView, end, duration]);
 
   const formatted =
     decimals > 0

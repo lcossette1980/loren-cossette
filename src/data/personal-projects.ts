@@ -110,7 +110,7 @@ export const personalProjects: PersonalProject[] = [
     slug: "dissertation-analyzer",
     title: "Dissertation Analyzer",
     subtitle: "Multi-Agent Doctoral Research Coach",
-    url: "https://dissertation-analyzer-9crvcmsxtxyv3ykafpjys4.streamlit.app",
+    url: "https://www.dissertationai.app",
     tech: ["Streamlit", "GPT-5", "Claude Sonnet 4.5", "spaCy", "NetworkX", "Plotly", "PyPDF2", "pandas"],
     description:
       "AI-powered multi-agent system providing comprehensive, multi-perspective analysis of doctoral dissertations. 11 specialized AI agents — from Literature Auditor to Synthesis Writer — run a 6-phase pipeline with dual LLM orchestration (GPT-5 + Claude), chapter-aware analysis, issue deduplication, and severity-classified feedback.",
