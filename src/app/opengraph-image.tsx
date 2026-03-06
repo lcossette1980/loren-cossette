@@ -1,10 +1,17 @@
 import { ImageResponse } from "next/og";
+import { readFile } from "node:fs/promises";
+import { join } from "node:path";
 
 export const alt = "Loren Cossette — AI Automation Architect";
 export const size = { width: 1200, height: 630 };
 export const contentType = "image/png";
 
-export default function OGImage() {
+export default async function OGImage() {
+  const logoBuffer = await readFile(
+    join(process.cwd(), "public/images/logo.png")
+  );
+  const logoSrc = `data:image/png;base64,${logoBuffer.toString("base64")}`;
+
   return new ImageResponse(
     (
       <div
@@ -141,7 +148,7 @@ export default function OGImage() {
           systems, RAG pipelines, and serverless infrastructure.
         </p>
 
-        {/* Bottom bar with tech */}
+        {/* Bottom bar with tech + logo */}
         <div
           style={{
             position: "absolute",
@@ -180,18 +187,12 @@ export default function OGImage() {
             )}
           </div>
 
-          {/* LC monogram */}
-          <span
-            style={{
-              fontSize: "20px",
-              fontWeight: 700,
-              color: "#e2b854",
-              fontFamily: "monospace",
-              letterSpacing: "3px",
-            }}
-          >
-            LC
-          </span>
+          {/* Logo */}
+          <img
+            src={logoSrc}
+            alt="LC"
+            style={{ width: "48px", height: "48px" }}
+          />
         </div>
       </div>
     ),
