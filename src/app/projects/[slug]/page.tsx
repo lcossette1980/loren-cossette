@@ -1,6 +1,7 @@
 import Link from "next/link";
 import Image from "next/image";
 import { notFound } from "next/navigation";
+import type { Metadata } from "next";
 import { projects } from "@/data/projects";
 import { Badge } from "@/components/ui/Badge";
 import {
@@ -34,6 +35,40 @@ export function generateStaticParams() {
 
 interface Props {
   params: Promise<{ slug: string }>;
+}
+
+export async function generateMetadata({ params }: Props): Promise<Metadata> {
+  const { slug } = await params;
+  const project = projects.find((p) => p.slug === slug);
+  if (!project) return {};
+
+  const title = `${project.title} — Loren Cossette`;
+  const description = project.shortDescription;
+  const statsLine = project.stats.map((s) => `${s.value} ${s.label}`).join(" · ");
+
+  return {
+    title,
+    description,
+    keywords: [
+      ...project.tech,
+      "AI project",
+      "portfolio",
+      "Loren Cossette",
+      project.category,
+    ],
+    openGraph: {
+      title,
+      description: `${description} — ${statsLine}`,
+      url: `https://www.lorencossette.com/projects/${slug}`,
+      siteName: "Loren Cossette",
+      type: "article",
+    },
+    twitter: {
+      card: "summary_large_image",
+      title,
+      description: `${description} — ${statsLine}`,
+    },
+  };
 }
 
 export default async function ProjectDetailPage({ params }: Props) {
