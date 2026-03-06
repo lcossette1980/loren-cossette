@@ -248,7 +248,7 @@ export default function ConsultingPage() {
                       decimals={s.decimals ?? 0}
                     />
                   </div>
-                  <p className="font-mono text-[10px] tracking-[1px] uppercase text-text-muted mt-1">
+                  <p className="font-mono text-xs tracking-[1px] uppercase text-text-muted mt-2">
                     {s.label}
                   </p>
                 </div>
@@ -317,7 +317,7 @@ export default function ConsultingPage() {
                     <div className="p-7">
                       {/* Number + Icon */}
                       <div className="flex items-center justify-between mb-5">
-                        <span className="font-mono text-[56px] font-extrabold leading-none text-transparent [-webkit-text-stroke:1px_rgba(34,231,240,0.2)]">
+                        <span className="font-mono text-[56px] font-extrabold leading-none text-transparent [-webkit-text-stroke:1.5px_rgba(34,231,240,0.45)]">
                           {p.num}
                         </span>
                         <div className="w-10 h-10 rounded-lg bg-accent-cyan/10 border border-accent-cyan/20 flex items-center justify-center">
@@ -332,14 +332,14 @@ export default function ConsultingPage() {
                         {p.description}
                       </p>
 
-                      <div className="space-y-2.5">
+                      <div className="space-y-3">
                         {p.items.map((item) => (
                           <div key={item} className="flex items-start gap-2.5">
                             <ArrowRight
-                              size={12}
-                              className="text-accent-warm shrink-0 mt-1"
+                              size={13}
+                              className="text-accent-warm shrink-0 mt-0.5"
                             />
-                            <span className="text-xs text-text-secondary leading-relaxed">
+                            <span className="text-sm text-text-secondary leading-relaxed">
                               {item}
                             </span>
                           </div>
