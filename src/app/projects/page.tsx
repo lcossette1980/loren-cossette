@@ -76,10 +76,12 @@ export default function ProjectsPage() {
                     src={featuredProject.dashboardImage}
                     alt={featuredProject.title}
                     fill
-                    className="object-cover transition-transform duration-700 group-hover:scale-105"
+                    className="object-cover transition-transform duration-700 group-hover:scale-105 brightness-[0.85] contrast-[1.1] saturate-[0.85]"
                     sizes="(max-width: 768px) 100vw, 50vw"
                     priority
                   />
+                  {/* Dark tint overlay */}
+                  <div className="absolute inset-0 bg-[#0a0a0f]/20 mix-blend-multiply pointer-events-none" />
                   {/* Gradient overlay for text legibility on mobile */}
                   <div className="absolute inset-0 bg-gradient-to-t from-[#0a0a0f]/80 via-transparent to-transparent md:bg-gradient-to-r md:from-transparent md:to-[#0a0a0f]/60" />
                   {/* Featured badge */}
