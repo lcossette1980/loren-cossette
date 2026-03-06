@@ -1,5 +1,39 @@
 import type { Project } from "@/types";
 
+/* ── WCAG Remediation Platform Screenshots ── */
+const wcagScreenshots = [
+  {
+    src: "/images/projects/wcag-remediation/wcag-screenshot-1.jpeg",
+    alt: "PDF Accessibility Conversion — Upload Interface",
+    caption:
+      "Drag-and-drop upload supporting PDFs and Excel files up to 50 MB with automatic document type detection",
+  },
+  {
+    src: "/images/projects/wcag-remediation/wcag-screenshot-3.jpeg",
+    alt: "System Dashboard — Real-Time Metrics",
+    caption:
+      "Live dashboard tracking documents converted, success rate, average quality score, processing time, and estimated cost savings",
+  },
+  {
+    src: "/images/projects/wcag-remediation/wcag-screenshot-7.jpeg",
+    alt: "Conversion Results — Quality Scoring",
+    caption:
+      "Per-document quality breakdown: WCAG compliance, content confidence, structural accuracy — with validation checks and processing time",
+  },
+  {
+    src: "/images/projects/wcag-remediation/wcag-screenshot-6.jpeg",
+    alt: "Side-by-Side Review Interface",
+    caption:
+      "Human review workflow: original PDF and accessible HTML displayed side by side with approve, flag, and request-fix actions",
+  },
+  {
+    src: "/images/projects/wcag-remediation/wcag-screenshot-4.jpeg",
+    alt: "Batch Processing Console",
+    caption:
+      "Bulk conversion mode scanning upload folders with automatic skip of already-processed files",
+  },
+];
+
 export const projects: Project[] = [
   {
     slug: "wcag-triage",
@@ -34,32 +68,121 @@ export const projects: Project[] = [
   {
     slug: "wcag-remediation",
     title: "WCAG Remediation Platform",
-    subtitle: "End-to-End Compliance Pipeline",
-    tech: ["LangGraph", "Gemini 2.5", "Claude", "Document AI", "Vertex AI", "Drupal 10"],
+    subtitle: "AI-Powered Document Accessibility at Scale",
+    tech: [
+      "LangGraph",
+      "Gemini 2.5",
+      "Claude",
+      "Document AI",
+      "Vertex AI",
+      "axe-core",
+      "Google Cloud",
+      "Python",
+    ],
     stats: [
-      { label: "Diagnostic Modules", value: "9" },
-      { label: "Remediation Agents", value: "6" },
-      { label: "Dept Coverage", value: "84%" },
+      { label: "WCAG Compliance", value: "95%+" },
+      { label: "Avg Processing", value: "36s" },
+      { label: "Quality Score", value: "96" },
     ],
     shortDescription:
-      "Production platform for WCAG 2.1 AA compliance. 9-module diagnostic layer feeding six remediation agents. Outputs accessible HTML, PDF/UA, and Drupal Webforms.",
+      "Production platform converting government PDFs and Excel files to WCAG 2.1 AA-compliant HTML in 30\u201390 seconds. Five-layer validation pipeline with axe-core, numeric integrity checks, and human review — deployed for Multnomah County under federal ADA deadline.",
     fullDescription:
-      "End-to-end production platform for WCAG 2.1 AA compliance across 56,567 files under April 2026 ADA deadline. 9-module diagnostic layer (Flesch-Kincaid readability, heading validation, PII detection, SHA-256 deduplication, AcroForm/XFA detection). Six-agent remediation layer handling vision extraction, form detection, axe-core validation. Schema-first output: accessible HTML, PDF/UA, Drupal Webforms. Department ownership attribution validated 84% content concentration in 6 departments.",
+      "End-to-end production platform making government documents accessible for residents who use screen readers and assistive technology. Converts PDFs to WCAG 2.1 AA-compliant HTML in 30\u201390 seconds (vs. 1\u20134 hours of manual specialist work). Excel budget exports process in under 1 second with perfect accuracy. Five-layer validation pipeline: axe-core accessibility checks (80+ WCAG rules), numeric integrity verification (every dollar amount and date cross-checked), completeness validation (every section and heading confirmed), quality scoring (0\u2013100, below 90 flagged), and mandatory human review with side-by-side comparison. All processing runs within county Google Cloud infrastructure \u2014 zero data leaves the environment. Deployed for Multnomah County to meet the April 2026 federal ADA compliance deadline across thousands of public documents.",
     keyFeatures: [
-      "9-module diagnostic layer with Flesch-Kincaid readability scoring",
-      "Heading validation and PII detection",
-      "SHA-256 deduplication and AcroForm/XFA detection",
-      "Six remediation agents handling vision extraction and form detection",
-      "axe-core validation for accessibility compliance",
-      "Schema-first output: accessible HTML, PDF/UA, Drupal Webforms",
-      "Department ownership attribution across 84% of content",
+      "30\u201390 second PDF conversion vs. 1\u20134 hours manual remediation",
+      "Five-layer validation: axe-core, numeric integrity, completeness, quality scoring, human review",
+      "80+ automated WCAG 2.1 AA checks via industry-standard axe-core engine",
+      "Side-by-side review interface: original PDF vs. accessible HTML with approve/reject/fix workflow",
+      "Batch processing mode for bulk document conversion with auto-skip of processed files",
+      "Real-time dashboard tracking documents converted, success rate, quality scores, and cost savings",
+      "Excel budget exports: deterministic conversion in seconds at near-zero cost",
+      "Reviewer feedback loop: approvals and corrections improve future conversions",
+      "Enterprise security: all data stays within county Google Cloud project, zero external sharing",
     ],
     icon: "Shield",
-    featured: false,
-    category: "ai-agents",
-    image: "/images/projects/project-wcag-remediation.png",
-    dashboardImage: "/images/projects/project-wcag-remediation-dashboard.png",
-    architectureImage: "/images/projects/project-wcag-remediation-architecture.png",
+    featured: true,
+    category: "compliance",
+    image: "/images/projects/wcag-remediation/wcag-screenshot-7.jpeg",
+    dashboardImage: "/images/projects/wcag-remediation/wcag-screenshot-3.jpeg",
+    architectureImage: "/images/projects/wcag-remediation/wcag-screenshot-6.jpeg",
+    screenshots: wcagScreenshots,
+    validationPipeline: [
+      "Accessibility compliance \u2014 axe-core runs 80+ WCAG 2.1 AA checks (heading structure, color contrast, table markup, image descriptions, screen reader compatibility)",
+      "Numeric integrity \u2014 every number, dollar amount, percentage, and date cross-checked against the original document",
+      "Completeness \u2014 every section, heading, and content block verified to exist in the output",
+      "Quality scoring \u2014 overall score 0\u2013100 based on WCAG compliance, content integrity, and structural accuracy; below 90 gets flagged",
+      "Human review \u2014 reviewer compares original and output side by side, then approves or rejects; feedback improves future conversions",
+    ],
+    deliverables: [
+      {
+        title: "Leadership Explainer",
+        description:
+          "Plain-language guide for champions to explain the system to non-technical stakeholders, including objection handling and demo scripts",
+        icon: "Presentation",
+      },
+      {
+        title: "Operations Security Handbook",
+        description:
+          "Security architecture documentation covering data isolation, access controls, and compliance posture",
+        icon: "ShieldCheck",
+      },
+      {
+        title: "Champion Quick Reference",
+        description:
+          "One-page reference card with key stats, validation steps, and ready-to-use talking points",
+        icon: "FileText",
+      },
+      {
+        title: "Validation Pipeline Infographic",
+        description:
+          "Visual walkthrough of the five-checkpoint validation pipeline for stakeholder presentations",
+        icon: "GitBranch",
+      },
+      {
+        title: "Reviewer Onboarding Guide",
+        description:
+          "Step-by-step onboarding for human reviewers covering the side-by-side review workflow and quality standards",
+        icon: "UserCheck",
+      },
+      {
+        title: "Technical Turnover Binder",
+        description:
+          "Complete system documentation for long-term maintenance and knowledge transfer",
+        icon: "BookOpen",
+      },
+    ],
+    impactMetrics: [
+      {
+        label: "Processing Time",
+        value: "30\u201390s",
+        detail: "per PDF document vs. 1\u20134 hours manual",
+      },
+      {
+        label: "Cost per Document",
+        value: "$0.50\u2013$2",
+        detail: "PDF conversion; Excel at ~$0",
+      },
+      {
+        label: "WCAG Compliance",
+        value: "95%+",
+        detail: "automated compliance rate",
+      },
+      {
+        label: "Validation Layers",
+        value: "5",
+        detail: "independent checks before human review",
+      },
+      {
+        label: "Data Exposure",
+        value: "Zero",
+        detail: "all processing within county cloud",
+      },
+      {
+        label: "Jobs Eliminated",
+        value: "Zero",
+        detail: "staff shift from tagging to quality review",
+      },
+    ],
   },
   {
     slug: "linkit",

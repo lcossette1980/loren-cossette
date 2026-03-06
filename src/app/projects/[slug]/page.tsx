@@ -3,11 +3,29 @@ import Image from "next/image";
 import { notFound } from "next/navigation";
 import { projects } from "@/data/projects";
 import { Badge } from "@/components/ui/Badge";
-import { ArrowLeft, ArrowRight, Eye, Globe, Bot, Shield, BookOpen } from "lucide-react";
+import {
+  ArrowLeft,
+  ArrowRight,
+  Eye,
+  Globe,
+  Bot,
+  Shield,
+  BookOpen,
+  CheckCircle2,
+  FileText,
+  ShieldCheck,
+  GitBranch,
+  UserCheck,
+  Presentation,
+} from "lucide-react";
 import { ProjectDetailClient } from "./ProjectDetailClient";
 
 const iconMap: Record<string, React.ComponentType<{ size?: number; className?: string }>> = {
   Eye, Globe, Bot, Shield, BookOpen,
+};
+
+const deliverableIconMap: Record<string, React.ComponentType<{ size?: number; className?: string }>> = {
+  FileText, ShieldCheck, GitBranch, UserCheck, BookOpen, Presentation,
 };
 
 export function generateStaticParams() {
@@ -27,13 +45,19 @@ export default async function ProjectDetailPage({ params }: Props) {
   const nextProject = projects[(projectIndex + 1) % projects.length];
   const Icon = iconMap[project.icon] || Eye;
 
+  const hasExtendedContent =
+    project.screenshots ||
+    project.validationPipeline ||
+    project.impactMetrics ||
+    project.deliverables;
+
   return (
     <div className="pt-32 pb-32">
-      <div className="max-w-3xl mx-auto px-6 md:px-8">
+      <div className={`mx-auto px-6 md:px-8 ${hasExtendedContent ? "max-w-5xl" : "max-w-3xl"}`}>
         {/* Back link */}
-          <Link
-            href="/projects"
-            className="inline-flex items-center gap-2 text-accent-cyan/80 hover:text-accent-cyan text-sm font-mono transition-colors mb-10"
+        <Link
+          href="/projects"
+          className="inline-flex items-center gap-2 text-accent-cyan/80 hover:text-accent-cyan text-sm font-mono transition-colors mb-10"
         >
           <ArrowLeft size={14} /> All Projects
         </Link>
@@ -61,27 +85,63 @@ export default async function ProjectDetailPage({ params }: Props) {
         {/* Stats */}
         <ProjectDetailClient stats={project.stats} />
 
-        {/* Screenshots */}
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mb-12">
-          <div className="relative aspect-video w-full overflow-hidden rounded-xl border border-glass-border">
-            <Image
-              src={project.dashboardImage}
-              alt={`${project.title} — Dashboard View`}
-              fill
-              className="object-cover"
-              sizes="(max-width: 768px) 100vw, 50vw"
-            />
+        {/* Screenshots — enhanced gallery for projects with screenshots array */}
+        {project.screenshots && project.screenshots.length > 0 ? (
+          <div className="mb-12">
+            <h2 className="font-mono text-[11px] tracking-[2px] uppercase text-accent-warm mb-6">
+              Platform Screenshots
+            </h2>
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
+              {project.screenshots.map((ss, i) => (
+                <div
+                  key={i}
+                  className={`group relative overflow-hidden rounded-xl border border-glass-border bg-[rgba(13,17,23,0.4)] ${
+                    i === 0 ? "md:col-span-2" : ""
+                  }`}
+                >
+                  <div className={`relative w-full overflow-hidden ${i === 0 ? "aspect-[16/8]" : "aspect-video"}`}>
+                    <Image
+                      src={ss.src}
+                      alt={ss.alt}
+                      fill
+                      className="object-cover object-top transition-transform duration-500 group-hover:scale-[1.02]"
+                      sizes={i === 0 ? "100vw" : "(max-width: 768px) 100vw, 50vw"}
+                    />
+                    {/* Gradient overlay at bottom for caption */}
+                    <div className="absolute inset-x-0 bottom-0 h-24 bg-gradient-to-t from-[#0a0a0f]/90 to-transparent" />
+                  </div>
+                  <div className="absolute bottom-0 inset-x-0 p-4">
+                    <p className="text-xs text-text-secondary leading-relaxed">
+                      {ss.caption}
+                    </p>
+                  </div>
+                </div>
+              ))}
+            </div>
           </div>
-          <div className="relative aspect-video w-full overflow-hidden rounded-xl border border-glass-border">
-            <Image
-              src={project.architectureImage}
-              alt={`${project.title} — Architecture`}
-              fill
-              className="object-cover"
-              sizes="(max-width: 768px) 100vw, 50vw"
-            />
+        ) : (
+          /* Default two-image layout for projects without screenshots array */
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mb-12">
+            <div className="relative aspect-video w-full overflow-hidden rounded-xl border border-glass-border">
+              <Image
+                src={project.dashboardImage}
+                alt={`${project.title} — Dashboard View`}
+                fill
+                className="object-cover"
+                sizes="(max-width: 768px) 100vw, 50vw"
+              />
+            </div>
+            <div className="relative aspect-video w-full overflow-hidden rounded-xl border border-glass-border">
+              <Image
+                src={project.architectureImage}
+                alt={`${project.title} — Architecture`}
+                fill
+                className="object-cover"
+                sizes="(max-width: 768px) 100vw, 50vw"
+              />
+            </div>
           </div>
-        </div>
+        )}
 
         {/* Description */}
         <div className="mb-12">
@@ -93,18 +153,83 @@ export default async function ProjectDetailPage({ params }: Props) {
           </p>
         </div>
 
-        {/* Hero image */}
-        <div className="mb-12">
-          <div className="relative aspect-video w-full overflow-hidden rounded-xl border border-glass-border">
-            <Image
-              src={project.image}
-              alt={`${project.title} — Screenshot`}
-              fill
-              className="object-cover"
-              sizes="100vw"
-            />
+        {/* Validation Pipeline */}
+        {project.validationPipeline && (
+          <div className="mb-12">
+            <h2 className="font-mono text-[11px] tracking-[2px] uppercase text-accent-warm mb-6">
+              Validation Pipeline
+            </h2>
+            <div className="space-y-0">
+              {project.validationPipeline.map((step, i) => {
+                const [title, ...descParts] = step.split(" \u2014 ");
+                const desc = descParts.join(" — ");
+                return (
+                  <div key={i} className="relative flex gap-5">
+                    {/* Vertical connector line */}
+                    {i < project.validationPipeline!.length - 1 && (
+                      <div className="absolute left-[19px] top-10 bottom-0 w-px bg-accent-cyan/20" />
+                    )}
+                    {/* Step number */}
+                    <div className="shrink-0 w-10 h-10 rounded-full bg-accent-cyan/10 border border-accent-cyan/30 flex items-center justify-center font-mono text-sm font-bold text-accent-cyan z-10">
+                      {i + 1}
+                    </div>
+                    {/* Content */}
+                    <div className="pb-8">
+                      <h3 className="text-sm font-bold text-text-primary mb-1">
+                        {title}
+                      </h3>
+                      {desc && (
+                        <p className="text-sm text-text-secondary leading-relaxed">
+                          {desc}
+                        </p>
+                      )}
+                    </div>
+                  </div>
+                );
+              })}
+            </div>
           </div>
-        </div>
+        )}
+
+        {/* Impact Metrics */}
+        {project.impactMetrics && (
+          <div className="mb-12">
+            <h2 className="font-mono text-[11px] tracking-[2px] uppercase text-accent-warm mb-6">
+              Impact & Results
+            </h2>
+            <div className="grid grid-cols-2 md:grid-cols-3 gap-4">
+              {project.impactMetrics.map((m) => (
+                <div
+                  key={m.label}
+                  className="p-5 rounded-xl bg-[rgba(13,17,23,0.6)] border border-border-subtle text-center"
+                >
+                  <div className="font-mono text-xl font-bold text-accent-cyan mb-1">
+                    {m.value}
+                  </div>
+                  <div className="text-xs font-semibold text-text-primary mb-1">
+                    {m.label}
+                  </div>
+                  <div className="text-[10px] text-text-muted">{m.detail}</div>
+                </div>
+              ))}
+            </div>
+          </div>
+        )}
+
+        {/* Hero image (only for projects without screenshots) */}
+        {!project.screenshots && (
+          <div className="mb-12">
+            <div className="relative aspect-video w-full overflow-hidden rounded-xl border border-glass-border">
+              <Image
+                src={project.image}
+                alt={`${project.title} — Screenshot`}
+                fill
+                className="object-cover"
+                sizes="100vw"
+              />
+            </div>
+          </div>
+        )}
 
         {/* Key Features */}
         <div className="mb-16">
@@ -117,7 +242,7 @@ export default async function ProjectDetailPage({ params }: Props) {
                 key={i}
                 className="flex gap-3 text-text-secondary text-sm leading-relaxed"
               >
-                <ArrowRight
+                <CheckCircle2
                   size={14}
                   className="text-accent-cyan shrink-0 mt-1"
                 />
@@ -126,6 +251,38 @@ export default async function ProjectDetailPage({ params }: Props) {
             ))}
           </div>
         </div>
+
+        {/* Deliverables */}
+        {project.deliverables && (
+          <div className="mb-16">
+            <h2 className="font-mono text-[11px] tracking-[2px] uppercase text-accent-warm mb-6">
+              Deliverables & Documentation
+            </h2>
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+              {project.deliverables.map((d, i) => {
+                const DIcon = deliverableIconMap[d.icon] || FileText;
+                return (
+                  <div
+                    key={i}
+                    className="flex gap-4 p-5 rounded-xl bg-[rgba(13,17,23,0.6)] border border-border-subtle"
+                  >
+                    <div className="shrink-0 w-10 h-10 rounded-lg bg-accent-warm/10 border border-accent-warm/20 flex items-center justify-center">
+                      <DIcon size={18} className="text-accent-warm" />
+                    </div>
+                    <div>
+                      <h3 className="text-sm font-bold text-text-primary mb-1">
+                        {d.title}
+                      </h3>
+                      <p className="text-xs text-text-secondary leading-relaxed">
+                        {d.description}
+                      </p>
+                    </div>
+                  </div>
+                );
+              })}
+            </div>
+          </div>
+        )}
 
         {/* Next Project */}
         <div className="border-t border-border-default pt-8">

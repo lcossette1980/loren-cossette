@@ -27,6 +27,18 @@ export interface ImpactMetric {
   icon: string;
 }
 
+export interface ProjectScreenshot {
+  src: string;
+  alt: string;
+  caption: string;
+}
+
+export interface ProjectDeliverable {
+  title: string;
+  description: string;
+  icon: string;
+}
+
 export interface Project {
   slug: string;
   title: string;
@@ -42,6 +54,11 @@ export interface Project {
   image: string;
   dashboardImage: string;
   architectureImage: string;
+  /** Optional extended content for detail pages */
+  screenshots?: ProjectScreenshot[];
+  deliverables?: ProjectDeliverable[];
+  validationPipeline?: string[];
+  impactMetrics?: { label: string; value: string; detail: string }[];
 }
 
 export type ProjectCategory = "ai-agents" | "nlp" | "full-stack" | "compliance";
