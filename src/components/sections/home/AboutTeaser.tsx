@@ -27,20 +27,26 @@ export function AboutTeaser() {
 
         <Reveal delay={0.1}>
           <p className="text-base md:text-lg text-text-secondary leading-relaxed">
-            As the{" "}
+            As a{" "}
             <strong className="text-text-primary font-semibold">
-              sole AI automation engineer
+              full-lifecycle AI engineer
+            </strong>
+            , I own every phase &mdash; problem discovery, stakeholder alignment,
+            architecture, code, deployment, and change management. Recent work
+            includes automated WCAG compliance replacing{" "}
+            <strong className="text-text-primary font-semibold">
+              $150K&ndash;$450K in manual labor
             </strong>{" "}
-            for Multnomah County, I own the full lifecycle &mdash; problem
-            discovery, stakeholder alignment, architecture, code, deployment,
-            and change management.
+            and an enterprise AI &amp; Data strategy across a{" "}
+            <strong className="text-text-primary font-semibold">$126B portfolio</strong>
+            .
           </p>
         </Reveal>
 
         <Reveal delay={0.2}>
           <p className="text-base md:text-lg text-text-secondary leading-relaxed mt-6">
             I build production agentic systems, RAG pipelines, and serverless
-            infrastructure &mdash; while also standing up governance frameworks,
+            infrastructure &mdash; while standing up governance frameworks,
             training executives at{" "}
             <strong className="text-text-primary font-semibold">UT Austin</strong>{" "}
             and{" "}

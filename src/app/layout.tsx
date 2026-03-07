@@ -29,27 +29,30 @@ const siteUrl =
 export const metadata: Metadata = {
   metadataBase: new URL(siteUrl),
   title: {
-    default: "Loren Cossette | AI Automation Architect",
+    default: "Loren Cossette | AI Engineer & AI Transformation",
     template: "%s | Loren Cossette",
   },
   description:
-    "I define the AI strategy, then write the code. Portfolio of Loren Cossette — AI Automation Architect, building production agentic systems, RAG pipelines, and serverless infrastructure.",
+    "I define the AI strategy, then write the code. Portfolio of Loren Cossette — AI Engineer building production agentic systems, RAG pipelines, and serverless infrastructure for public sector and enterprise GenAI.",
   keywords: [
-    "AI Automation",
     "AI Engineer",
+    "AI Transformation",
+    "AI Automation",
     "Agentic Systems",
     "RAG Pipelines",
     "NLP",
     "Deep Learning",
     "Full-Stack Developer",
+    "Public Sector AI",
+    "Enterprise GenAI",
     "Loren Cossette",
   ],
   authors: [{ name: "Loren Cossette" }],
   creator: "Loren Cossette",
   openGraph: {
-    title: "Loren Cossette | AI Automation Architect",
+    title: "Loren Cossette | AI Engineer & AI Transformation",
     description:
-      "Strategy to Production. Building production-grade agentic systems, RAG pipelines, and serverless infrastructure.",
+      "I define the AI strategy, then write the code. Production agentic systems, RAG pipelines, and serverless infrastructure for public sector and enterprise GenAI.",
     url: siteUrl,
     siteName: "Loren Cossette",
     locale: "en_US",
@@ -57,9 +60,9 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: "summary_large_image",
-    title: "Loren Cossette | AI Automation Architect",
+    title: "Loren Cossette | AI Engineer & AI Transformation",
     description:
-      "Strategy to Production. Building production-grade agentic systems, RAG pipelines, and serverless infrastructure.",
+      "I define the AI strategy, then write the code. Production agentic systems, RAG pipelines, and serverless infrastructure for public sector and enterprise GenAI.",
     creator: "@lorencossette",
   },
   robots: {
