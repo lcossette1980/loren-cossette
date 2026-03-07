@@ -5,7 +5,7 @@ import Image from "next/image";
 import { Reveal } from "@/components/animations/Reveal";
 import { Button } from "@/components/ui/Button";
 import { personal } from "@/data/personal";
-import { MapPin, Mail, ChevronDown, Linkedin, Github, ExternalLink, Download } from "lucide-react";
+import { MapPin, Mail, ChevronDown, Linkedin, Github, ExternalLink, Download, Calendar } from "lucide-react";
 
 const ParticleBackground = lazy(() =>
   import("@/components/particles/ParticleBackground").then((mod) => ({
@@ -121,20 +121,32 @@ export function HeroSection() {
 
         <Reveal delay={0.6}>
           <div className="flex gap-4 flex-wrap justify-center">
-            <Button href="/projects">View Projects</Button>
-            <Button variant="secondary" href="/contact">
-              Get in Touch
+            <Button href="/consulting">
+              <Calendar size={16} /> Book a Strategy Call
+            </Button>
+            <Button variant="secondary" href="/projects">
+              Explore Case Studies
             </Button>
           </div>
-          <a
-            href="/Loren_Cossette_Resume.pdf"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="inline-flex items-center gap-2 mt-5 text-text-muted text-[12px] font-mono hover:text-accent-cyan transition-colors"
-          >
-            <Download size={13} />
-            Download Resume (PDF)
-          </a>
+          <div className="flex gap-5 items-center justify-center mt-5">
+            <a
+              href="/Loren_Cossette_Resume.pdf"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="inline-flex items-center gap-2 text-text-muted text-[12px] font-mono hover:text-accent-cyan transition-colors"
+            >
+              <Download size={13} />
+              Resume
+            </a>
+            <span className="text-border-default text-[10px]">|</span>
+            <a
+              href={`mailto:${personal.email}`}
+              className="inline-flex items-center gap-2 text-text-muted text-[12px] font-mono hover:text-accent-cyan transition-colors"
+            >
+              <Mail size={13} />
+              {personal.email}
+            </a>
+          </div>
         </Reveal>
       </div>
 

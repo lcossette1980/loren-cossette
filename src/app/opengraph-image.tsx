@@ -2,7 +2,7 @@ import { ImageResponse } from "next/og";
 import { readFile } from "node:fs/promises";
 import { join } from "node:path";
 
-export const alt = "Loren Cossette — AI Engineer & AI Transformation";
+export const alt = "Loren Cossette — AI Systems Architect & Automation Consultant";
 export const size = { width: 1200, height: 630 };
 export const contentType = "image/png";
 
@@ -130,7 +130,7 @@ export default async function OGImage() {
             letterSpacing: "1px",
           }}
         >
-          AI Engineer & AI Transformation
+          AI Systems Architect & Automation Consultant
         </p>
 
         {/* Tagline */}
@@ -144,8 +144,8 @@ export default async function OGImage() {
             lineHeight: 1.5,
           }}
         >
-          I define the AI strategy, then write the code. Production agentic
-          systems, RAG pipelines, and serverless infrastructure.
+          I design and deploy production AI systems that automate operations,
+          reduce cost, and scale decision-making.
         </p>
 
         {/* Bottom bar with tech + logo */}

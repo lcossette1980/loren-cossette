@@ -3,33 +3,43 @@
 import { Reveal } from "@/components/animations/Reveal";
 import { Button } from "@/components/ui/Button";
 import { personal } from "@/data/personal";
-import { Mail, Linkedin, ExternalLink } from "lucide-react";
+import { Calendar, Mail, Linkedin, ExternalLink } from "lucide-react";
 
 export function FooterCTA() {
   return (
     <section className="py-32 lg:py-40 text-center px-6 md:px-8 bg-bg-elevated">
       <Reveal>
         <div className="h-px bg-gradient-to-r from-transparent via-accent-warm/30 to-transparent max-w-[200px] mx-auto mb-10" />
+        <p className="font-mono text-[11px] tracking-[2px] uppercase text-accent-warm mb-4">
+          Work With Me
+        </p>
         <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold mb-6 text-text-primary">
-          Let&apos;s build something{" "}
-          <span className="text-accent-cyan">extraordinary</span>
+          Ready to deploy{" "}
+          <span className="text-accent-cyan">real AI systems</span>?
         </h2>
         <p className="text-text-secondary max-w-lg mx-auto mb-10 text-base md:text-lg leading-relaxed">
-          Open to senior AI engineering, principal architect, and strategic AI
-          leadership roles.
+          Organizations hire me to design and deploy production AI systems that
+          move from concept to operational reality. Let&apos;s talk about your
+          challenge.
         </p>
         <div className="flex gap-4 justify-center flex-wrap">
-          <Button href={`mailto:${personal.email}`}>
-            <Mail size={16} /> Get in Touch
+          <Button href="/consulting">
+            <Calendar size={16} /> Book a Strategy Call
           </Button>
-          <Button
-            variant="secondary"
+          <Button href={`mailto:${personal.email}`} variant="secondary">
+            <Mail size={16} /> Email Me Directly
+          </Button>
+        </div>
+        <div className="flex gap-4 justify-center mt-5">
+          <a
             href={personal.social[0].url}
-            external
+            target="_blank"
+            rel="noopener noreferrer"
+            className="inline-flex items-center gap-2 text-text-muted text-[12px] font-mono hover:text-accent-cyan transition-colors"
           >
-            <Linkedin size={16} /> Connect on LinkedIn{" "}
-            <ExternalLink size={12} className="opacity-40" />
-          </Button>
+            <Linkedin size={13} /> LinkedIn{" "}
+            <ExternalLink size={10} className="opacity-40" />
+          </a>
         </div>
       </Reveal>
     </section>
