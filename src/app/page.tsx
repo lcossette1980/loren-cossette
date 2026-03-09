@@ -12,9 +12,9 @@ export default function Home() {
     <>
       <HeroSection />
       <RoutingLanes />
+      <FeaturedProjects />
       <ImpactMetrics />
       <EngagementModes />
-      <FeaturedProjects />
       <AboutTeaser />
       <TechShowcase />
       <FooterCTA />

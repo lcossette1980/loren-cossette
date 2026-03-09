@@ -4,6 +4,7 @@ import "./globals.css";
 import { Analytics } from "@vercel/analytics/react";
 import { Navigation } from "@/components/layout/Navigation";
 import { Footer } from "@/components/layout/Footer";
+import { FloatingContact } from "@/components/layout/FloatingContact";
 
 const inter = Inter({
   variable: "--font-inter",
@@ -173,6 +174,7 @@ export default function RootLayout({
           </div>
         </main>
         <Footer />
+        <FloatingContact />
         <Analytics />
       </body>
     </html>
