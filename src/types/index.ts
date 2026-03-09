@@ -157,6 +157,7 @@ export interface OverrideStat {
   value: number;
   suffix: string;
   label: string;
+  source?: string;
 }
 
 export interface OverrideFramework {

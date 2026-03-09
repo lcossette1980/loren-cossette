@@ -4,6 +4,7 @@ import { Reveal } from "@/components/animations/Reveal";
 import { Button } from "@/components/ui/Button";
 import { personal } from "@/data/personal";
 import { Calendar, Mail, Linkedin, ExternalLink } from "lucide-react";
+import { analytics } from "@/lib/analytics";
 
 export function FooterCTA() {
   return (
@@ -23,10 +24,17 @@ export function FooterCTA() {
           challenge.
         </p>
         <div className="flex gap-4 justify-center flex-wrap">
-          <Button href="/consulting">
+          <Button
+            href="/consulting"
+            onClick={() => analytics.ctaClick("Book a Strategy Call", "footer")}
+          >
             <Calendar size={16} /> Book a Strategy Call
           </Button>
-          <Button href={`mailto:${personal.email}`} variant="secondary">
+          <Button
+            href={`mailto:${personal.email}`}
+            variant="secondary"
+            onClick={() => analytics.ctaClick("Email Me Directly", "footer")}
+          >
             <Mail size={16} /> Email Me Directly
           </Button>
         </div>
@@ -35,6 +43,7 @@ export function FooterCTA() {
             href={personal.social[0].url}
             target="_blank"
             rel="noopener noreferrer"
+            onClick={() => analytics.externalLink("LinkedIn", personal.social[0].url)}
             className="inline-flex items-center gap-2 text-text-muted text-[12px] font-mono hover:text-accent-cyan transition-colors"
           >
             <Linkedin size={13} /> LinkedIn{" "}

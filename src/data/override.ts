@@ -9,6 +9,8 @@ import type {
 export const bookInfo = {
   title: "OVERRIDE",
   subtitle: "The AI Transformation Playbook for Hostile Territory",
+  searchSubtitle:
+    "An AI transformation and organizational resistance playbook for leaders, practitioners, and change agents.",
   tagline: "Change management assumes good faith. This book doesn't.",
   heroLine: "You weren't hired to ask permission. You were hired to deliver results.",
   traditions: "Machiavelli. Sun Tzu. Alinsky. Now You.",
@@ -17,9 +19,9 @@ export const bookInfo = {
 };
 
 export const stats: OverrideStat[] = [
-  { value: 80, suffix: "%", label: "of AI transformation projects fail to deliver expected value" },
-  { value: 31, suffix: "%", label: "of workers actively resist new technology adoption" },
-  { value: 88, suffix: "%", label: "of transformations fail without structured methodology" },
+  { value: 80, suffix: "%", label: "of AI transformation projects fail to deliver expected value", source: "MIT Sloan / BCG, 2024" },
+  { value: 31, suffix: "%", label: "of workers actively resist new technology adoption", source: "Gartner, 2023" },
+  { value: 88, suffix: "%", label: "of transformations fail without structured methodology", source: "McKinsey, 2023" },
 ];
 
 export const frameworks: OverrideFramework[] = [
@@ -224,6 +226,78 @@ export const templates: OverrideTemplate[] = [
     chapter: "Chapter 10",
     description: "A one-page governance document covering approved tools, data categories, red lines, and human review process to pre-empt governance objections.",
     pdfPath: "/templates/17_Governance_MiniKit.pdf",
+  },
+];
+
+export const outcomes = [
+  "Diagnose resistance patterns — confused, threatened, or hostile — and respond to each",
+  "Map the real power structure behind the org chart",
+  "Build stealth coalitions that create momentum before opposition mobilizes",
+  "Navigate political attacks on AI initiatives without losing credibility",
+  "Deploy the 72-hour rapid framework for time-critical transformation windows",
+  "Create proof-of-value that silences skeptics with results, not arguments",
+  "Institutionalize gains so change becomes irreversible",
+];
+
+export const authorBio = {
+  name: "Loren T. Cossette",
+  title: "AI Systems Architect & Change Strategist",
+  credentials: [
+    "20-year military career — E-9 (top 1% of enlisted leadership)",
+    "Ph.D. candidate in Leadership & Program Evaluation",
+    "M.S. in Organizational Development · M.A. in Psychology",
+    "Prosci Change Management Certified · SHRM-SCP",
+    "AI program mentor at UT Austin & Johns Hopkins",
+  ],
+  bio: "Loren has led AI strategy and implementation across complex, resistant organizations — from government agencies to enterprise environments. OVERRIDE is built from field experience deploying AI systems where nobody asked for them, doctoral research in AI-augmented organizational change, and two decades of strategic military leadership. He builds the systems, navigates the politics, and writes about what actually works.",
+};
+
+export const faqItems = [
+  {
+    question: "Who is this book for?",
+    answer:
+      "OVERRIDE is for mid-level leaders, AI practitioners, and change agents who are trying to drive AI adoption in organizations that actively resist it. If you have the mandate or the vision but the organization won't move, this book gives you the tactics.",
+  },
+  {
+    question: "Is this book for executives or practitioners?",
+    answer:
+      "Both. Executives get a strategic framework for understanding why AI transformation stalls and how to unblock it. Practitioners get operational templates, scripts, and playbooks they can use immediately. The methodology works whether you have executive support or not.",
+  },
+  {
+    question: "How is this different from typical change management books?",
+    answer:
+      "Traditional change management assumes rational actors and good faith. OVERRIDE assumes neither. It draws on Machiavelli, Sun Tzu, Alinsky, and Gramsci to give you a methodology built for organizations where resistance is political, personal, and structural — not just a communication problem.",
+  },
+  {
+    question: "Does this book focus on AI strategy, adoption, or politics?",
+    answer:
+      "All three. OVERRIDE treats AI transformation as an organizational power problem, not a technology problem. You get strategy for reading the terrain, tactics for building coalitions and navigating opposition, and operational templates for deploying and institutionalizing AI systems.",
+  },
+  {
+    question: "Is OVERRIDE useful if I don't have executive support?",
+    answer:
+      "Yes — that's exactly the scenario it was built for. The book's four-part methodology starts from the assumption that you may be operating without top-down buy-in. It shows you how to build proof, recruit allies, and create momentum from the middle of the organization.",
+  },
+  {
+    question: "What formats is the book available in?",
+    answer:
+      "OVERRIDE is currently available as an ebook on Amazon and other digital retailers. The hardcover edition is in production and will be available soon through major retailers.",
+  },
+];
+
+export const purchaseOptions = [
+  {
+    label: "Ebook on Amazon",
+    href: "https://www.amazon.com/OVERRIDE-Transformation-Playbook-Hostile-Territory-ebook/dp/B0GHMZVGQH",
+    format: "Kindle",
+    available: true,
+  },
+  {
+    label: "Hardcover",
+    href: "#",
+    format: "Hardcover",
+    available: false,
+    comingSoon: true,
   },
 ];
 

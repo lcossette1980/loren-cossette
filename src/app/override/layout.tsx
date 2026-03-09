@@ -2,20 +2,23 @@ import type { Metadata } from "next";
 import { OverrideNav } from "@/components/sections/override/OverrideNav";
 
 export const metadata: Metadata = {
-  title: "OVERRIDE — The AI Transformation Playbook",
+  title:
+    "OVERRIDE: The AI Transformation Playbook for Organizational Resistance | Loren Cossette",
   description:
-    "The first AI transformation methodology built for organizations that actively resist change. 312 pages, 17 templates, 11 scripts.",
+    "A practical AI transformation book for leaders and practitioners facing resistance, bureaucracy, and stalled adoption. Learn how to drive AI change management when organizations fight back. 312 pages, 17 templates, 11 scripts.",
   openGraph: {
-    title: "OVERRIDE: The AI Transformation Playbook for Hostile Territory",
+    title:
+      "OVERRIDE: The AI Transformation Playbook for Organizational Resistance",
     description:
-      "Change management assumes good faith. This book doesn't. The first AI transformation methodology built for organizations that actively resist change.",
+      "A practical AI adoption and change management book for leaders facing resistance. 312 pages of operational strategy, 17 field-ready templates, and a proven methodology for driving AI transformation in hostile organizations.",
     type: "website",
   },
   twitter: {
     card: "summary_large_image",
-    title: "OVERRIDE: The AI Transformation Playbook for Hostile Territory",
+    title:
+      "OVERRIDE: The AI Transformation Playbook for Organizational Resistance",
     description:
-      "Change management assumes good faith. This book doesn't. 312 pages, 17 templates, 11 scripts.",
+      "A practical AI transformation book for leaders and practitioners facing resistance, bureaucracy, and stalled adoption. 312 pages, 17 templates, 11 scripts.",
   },
 };
 

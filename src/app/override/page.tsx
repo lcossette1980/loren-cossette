@@ -3,7 +3,7 @@
 import { motion, useScroll, useTransform } from "framer-motion";
 import Image from "next/image";
 import Link from "next/link";
-import { useRef } from "react";
+import { useRef, useState } from "react";
 import {
   Layers,
   ScrollText,
@@ -18,10 +18,26 @@ import {
   ChevronDown,
   ArrowRight,
   Sparkles,
+  CheckCircle2,
+  User,
+  BookOpen,
+  ChevronRight,
+  ExternalLink,
 } from "lucide-react";
 import { AnimatedCounter } from "@/components/ui/AnimatedCounter";
 import { Reveal } from "@/components/animations/Reveal";
-import { bookInfo, stats, frameworks, features, personas } from "@/data/override";
+import {
+  bookInfo,
+  stats,
+  frameworks,
+  features,
+  personas,
+  outcomes,
+  authorBio,
+  faqItems,
+  purchaseOptions,
+} from "@/data/override";
+import { analytics } from "@/lib/analytics";
 
 /* ── Icon map for "What's Inside" feature cards ── */
 const featureIcons: Record<string, React.ComponentType<{ size?: number; className?: string }>> = {
@@ -86,6 +102,41 @@ const chessPieces: Record<string, React.ComponentType<{ className?: string }>> =
   rook: ChessRook,
 };
 
+/* ── FAQ accordion item ── */
+function FAQItem({ question, answer }: { question: string; answer: string }) {
+  const [open, setOpen] = useState(false);
+  return (
+    <motion.div
+      className="bg-white rounded-xl border border-[#e5e3de] overflow-hidden"
+      whileHover={{ boxShadow: "0 4px 20px rgba(0,0,0,0.04)" }}
+    >
+      <button
+        onClick={() => setOpen(!open)}
+        className="w-full flex items-center justify-between p-6 text-left gap-4"
+      >
+        <h3 className="font-sans text-base font-semibold text-[#1A1A1A]">{question}</h3>
+        <motion.div
+          animate={{ rotate: open ? 90 : 0 }}
+          transition={{ duration: 0.2 }}
+          className="shrink-0"
+        >
+          <ChevronRight size={18} className="text-[#C4993B]" />
+        </motion.div>
+      </button>
+      <motion.div
+        initial={false}
+        animate={{ height: open ? "auto" : 0, opacity: open ? 1 : 0 }}
+        transition={{ duration: 0.25, ease: "easeInOut" }}
+        className="overflow-hidden"
+      >
+        <p className="px-6 pb-6 font-serif text-sm text-[#666] leading-relaxed">
+          {answer}
+        </p>
+      </motion.div>
+    </motion.div>
+  );
+}
+
 export default function OverrideLandingPage() {
   const heroRef = useRef<HTMLDivElement>(null);
   const { scrollYProgress } = useScroll({ target: heroRef, offset: ["start start", "end start"] });
@@ -147,8 +198,13 @@ export default function OverrideLandingPage() {
                 </p>
               </Reveal>
               <Reveal delay={0.25}>
-                <p className="font-serif text-base text-[#999]/80 leading-relaxed mb-8">
+                <p className="font-serif text-base text-[#999]/80 leading-relaxed mb-3">
                   {bookInfo.tagline}
+                </p>
+              </Reveal>
+              <Reveal delay={0.27}>
+                <p className="font-sans text-sm text-[#888]/60 leading-relaxed mb-8">
+                  {bookInfo.searchSubtitle}
                 </p>
               </Reveal>
               <Reveal delay={0.3}>
@@ -222,6 +278,9 @@ export default function OverrideLandingPage() {
                     <p className="font-serif text-sm text-[#888] leading-relaxed max-w-[200px] mx-auto">
                       {stat.label}
                     </p>
+                    {stat.source && (
+                      <p className="font-sans text-[10px] text-[#555] mt-2">{stat.source}</p>
+                    )}
                   </div>
                 </motion.div>
               </Reveal>
@@ -409,9 +468,116 @@ export default function OverrideLandingPage() {
         </div>
       </section>
 
-      {/* ── Section 7: Final CTA ── */}
+      {/* ── Section 7: What You'll Be Able To Do (Outcomes) ── */}
+      <section className="bg-[#1A1A1A] py-28 relative overflow-hidden">
+        <div className="absolute inset-0 opacity-[0.02]" style={{ backgroundImage: "radial-gradient(rgba(196,153,59,0.5) 1px, transparent 1px)", backgroundSize: "24px 24px" }} />
+        <div className="site-container relative z-10">
+          <Reveal>
+            <p className="font-sans text-[11px] tracking-[3px] uppercase text-[#C4993B] font-semibold mb-3">
+              What You&apos;ll Walk Away With
+            </p>
+            <h2 className="font-sans text-3xl md:text-4xl font-bold text-white mb-14 max-w-2xl">
+              After Reading OVERRIDE, You&apos;ll Be Able To
+            </h2>
+          </Reveal>
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+            {outcomes.map((outcome, i) => (
+              <Reveal key={i} delay={i * 0.06}>
+                <motion.div
+                  className="flex items-start gap-4 bg-[#2D2D2D] rounded-xl p-5 group"
+                  whileHover={{ x: 4 }}
+                  transition={{ type: "spring", stiffness: 300, damping: 20 }}
+                >
+                  <CheckCircle2 size={20} className="text-[#C4993B] shrink-0 mt-0.5" />
+                  <p className="font-serif text-sm text-[#ccc] leading-relaxed">{outcome}</p>
+                </motion.div>
+              </Reveal>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* ── Gold divider ── */}
+      <div className="h-px bg-gradient-to-r from-transparent via-[#C4993B]/30 to-transparent" />
+
+      {/* ── Section 8: About the Author ── */}
+      <section className="bg-[#F8F7F4] py-28">
+        <div className="site-container">
+          <div className="grid grid-cols-1 md:grid-cols-[1fr_1fr] gap-14 items-start">
+            <div>
+              <Reveal>
+                <div className="flex items-center gap-3 mb-4">
+                  <div className="w-10 h-10 rounded-xl bg-[#1A1A1A] flex items-center justify-center">
+                    <User size={18} className="text-[#C4993B]" />
+                  </div>
+                  <p className="font-sans text-[11px] tracking-[3px] uppercase text-[#C4993B] font-semibold">
+                    About the Author
+                  </p>
+                </div>
+                <h2 className="font-sans text-2xl md:text-3xl font-bold text-[#1A1A1A] mb-2">
+                  {authorBio.name}
+                </h2>
+                <p className="font-sans text-sm text-[#C4993B] font-medium mb-6">
+                  {authorBio.title}
+                </p>
+              </Reveal>
+              <Reveal delay={0.1}>
+                <p className="font-serif text-base text-[#1A1A1A]/75 leading-relaxed">
+                  {authorBio.bio}
+                </p>
+              </Reveal>
+            </div>
+            <div>
+              <Reveal delay={0.15}>
+                <div className="bg-white rounded-2xl border border-[#e5e3de] p-7">
+                  <h3 className="font-sans text-xs tracking-[2px] uppercase text-[#C4993B] font-semibold mb-5">
+                    Credentials
+                  </h3>
+                  <ul className="space-y-3">
+                    {authorBio.credentials.map((cred) => (
+                      <li key={cred} className="flex items-start gap-3">
+                        <span className="w-1.5 h-1.5 rounded-full bg-[#C4993B] shrink-0 mt-2" />
+                        <span className="font-serif text-sm text-[#1A1A1A]/75 leading-relaxed">
+                          {cred}
+                        </span>
+                      </li>
+                    ))}
+                  </ul>
+                </div>
+              </Reveal>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* ── Gold divider ── */}
+      <div className="h-px bg-gradient-to-r from-transparent via-[#C4993B]/30 to-transparent" />
+
+      {/* ── Section 9: FAQ ── */}
+      <section className="bg-[#F8F7F4] py-28">
+        <div className="site-container">
+          <div className="max-w-3xl mx-auto">
+            <Reveal>
+              <p className="font-sans text-[11px] tracking-[3px] uppercase text-[#C4993B] font-semibold mb-3 text-center">
+                Frequently Asked Questions
+              </p>
+              <h2 className="font-sans text-2xl md:text-3xl font-bold text-[#1A1A1A] mb-12 text-center">
+                Everything You Need to Know About OVERRIDE
+              </h2>
+            </Reveal>
+            <div className="space-y-3">
+              {faqItems.map((item, i) => (
+                <Reveal key={i} delay={i * 0.06}>
+                  <FAQItem question={item.question} answer={item.answer} />
+                </Reveal>
+              ))}
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* ── Section 10: Final CTA with Purchase Options ── */}
       <section className="relative bg-[#1A1A1A] py-32 overflow-hidden">
-        {/* Background effects */}
         <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_50%_50%,rgba(196,153,59,0.06),transparent_60%)]" />
         <div className="absolute right-12 bottom-12 opacity-[0.03]">
           <ChessKnight className="text-[#C4993B] w-[160px] h-[160px]" />
@@ -423,24 +589,44 @@ export default function OverrideLandingPage() {
             <h2 className="font-sans text-4xl md:text-6xl font-black text-white mb-5 tracking-[-1px]">
               Stop Asking for Permission.
             </h2>
-            <p className="font-serif text-lg text-[#888] mb-12 max-w-md mx-auto">
-              OVERRIDE is available now in paperback and ebook.
+            <p className="font-serif text-lg text-[#888] mb-12 max-w-lg mx-auto">
+              Get the AI transformation playbook built for leaders and practitioners
+              who are done waiting for buy-in.
             </p>
           </Reveal>
-          <Reveal delay={0.2}>
-            <div className="flex flex-wrap justify-center gap-4">
-              <Link
-                href={bookInfo.buyUrl}
-                className="group inline-flex items-center gap-2 px-12 py-5 bg-[#C4993B] text-[#1A1A1A] font-bold text-base tracking-wide rounded-lg hover:bg-[#d4a940] hover:shadow-[0_0_60px_rgba(196,153,59,0.3)] transition-all duration-300"
-              >
-                Get the Book
-                <ArrowRight size={18} className="group-hover:translate-x-1 transition-transform" />
-              </Link>
+
+          <Reveal delay={0.15}>
+            <div className="flex flex-wrap justify-center gap-4 mb-8">
+              {purchaseOptions.map((opt) => (
+                <div key={opt.label}>
+                  {opt.available ? (
+                    <Link
+                      href={opt.href}
+                      className="group inline-flex items-center gap-3 px-10 py-5 bg-[#C4993B] text-[#1A1A1A] font-bold text-base tracking-wide rounded-lg hover:bg-[#d4a940] hover:shadow-[0_0_60px_rgba(196,153,59,0.3)] transition-all duration-300"
+                    >
+                      <BookOpen size={18} />
+                      {opt.label}
+                      <ExternalLink size={14} className="opacity-60" />
+                    </Link>
+                  ) : (
+                    <span className="inline-flex items-center gap-3 px-10 py-5 border border-[#C4993B]/20 text-[#C4993B]/50 font-bold text-base tracking-wide rounded-lg cursor-default">
+                      <BookOpen size={18} />
+                      {opt.label}
+                      <span className="text-xs font-normal opacity-60">Coming Soon</span>
+                    </span>
+                  )}
+                </div>
+              ))}
+            </div>
+          </Reveal>
+
+          <Reveal delay={0.25}>
+            <div className="flex justify-center">
               <Link
                 href="/override/tools"
-                className="inline-flex items-center gap-2 px-12 py-5 border border-[#C4993B]/30 text-[#C4993B] font-bold text-base tracking-wide rounded-lg hover:border-[#C4993B]/60 hover:bg-[#C4993B]/5 transition-all duration-300"
+                className="inline-flex items-center gap-2 px-8 py-4 border border-[#C4993B]/30 text-[#C4993B] font-bold text-sm tracking-wide rounded-lg hover:border-[#C4993B]/60 hover:bg-[#C4993B]/5 transition-all duration-300"
               >
-                <Sparkles size={16} /> Download Free Templates
+                <Sparkles size={14} /> Download Free Templates
               </Link>
             </div>
           </Reveal>

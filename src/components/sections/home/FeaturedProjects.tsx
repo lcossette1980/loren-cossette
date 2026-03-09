@@ -10,6 +10,7 @@ import { StaggerContainer } from "@/components/animations/StaggerContainer";
 import { staggerItem } from "@/components/animations/variants";
 import { projects } from "@/data/projects";
 import { ArrowRight, Eye, Globe, Bot, Shield, BookOpen } from "lucide-react";
+import { analytics } from "@/lib/analytics";
 
 const iconMap: Record<string, React.ComponentType<{ size?: number; className?: string }>> = {
   Eye, Globe, Bot, Shield, BookOpen,
@@ -33,7 +34,7 @@ export function FeaturedProjects() {
             const Icon = iconMap[p.icon] || Eye;
             return (
               <motion.div key={p.slug} variants={staggerItem}>
-                <Link href={`/projects/${p.slug}`}>
+                <Link href={`/projects/${p.slug}`} onClick={() => analytics.projectClick(p.slug)}>
                   <Card className="overflow-hidden group h-full" variant="glow">
                     <div className="relative aspect-video w-full overflow-hidden border-b border-border-default">
                       <Image

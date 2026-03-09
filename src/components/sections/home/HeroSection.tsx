@@ -5,7 +5,17 @@ import Image from "next/image";
 import { Reveal } from "@/components/animations/Reveal";
 import { Button } from "@/components/ui/Button";
 import { personal } from "@/data/personal";
-import { MapPin, Mail, ChevronDown, Linkedin, Github, ExternalLink, Download, Calendar } from "lucide-react";
+import {
+  MapPin,
+  Mail,
+  ChevronDown,
+  Linkedin,
+  Github,
+  ExternalLink,
+  Download,
+  Calendar,
+} from "lucide-react";
+import { analytics } from "@/lib/analytics";
 
 const ParticleBackground = lazy(() =>
   import("@/components/particles/ParticleBackground").then((mod) => ({
@@ -55,13 +65,13 @@ export function HeroSection() {
       {/* Content */}
       <div className="relative z-10 flex flex-col items-center text-center max-w-3xl mx-auto px-6">
         <Reveal>
-          <div className="relative w-[180px] h-[180px] mb-12">
+          <div className="relative w-[140px] h-[140px] md:w-[160px] md:h-[160px] mb-8">
             <div className="absolute -inset-1 rounded-full bg-gradient-to-br from-accent-cyan/30 via-accent-blue/20 to-accent-purple/30 blur-md animate-[glow-pulse_4s_ease-in-out_infinite]" />
             <Image
               src="/images/headshot.png"
               alt="Loren Cossette"
-              width={180}
-              height={180}
+              width={160}
+              height={160}
               className="relative rounded-full object-cover border-2 border-accent-cyan/20"
               priority
             />
@@ -69,81 +79,88 @@ export function HeroSection() {
         </Reveal>
 
         <Reveal delay={0.1}>
-          <p className="font-mono text-[11px] tracking-[2px] uppercase text-accent-warm font-medium mb-6">
+          <p className="font-mono text-[11px] tracking-[2px] uppercase text-accent-warm font-medium mb-4">
             {personal.title}
           </p>
         </Reveal>
 
         <Reveal delay={0.2}>
-          <h1 className="text-4xl md:text-6xl lg:text-7xl font-extrabold leading-[1.08] tracking-[-0.02em] mb-8">
+          <h1 className="text-4xl md:text-6xl lg:text-7xl font-extrabold leading-[1.08] tracking-[-0.02em] mb-6">
             {personal.name.split(" ")[0]}{" "}
             <span className="text-accent-cyan">{personal.name.split(" ")[1]}</span>
           </h1>
         </Reveal>
 
         <Reveal delay={0.3}>
-          <p className="text-base md:text-lg text-text-secondary max-w-xl leading-relaxed mb-10">
+          <p className="text-base md:text-lg text-text-secondary max-w-xl leading-relaxed mb-8">
             {personal.tagline}
           </p>
         </Reveal>
 
-        <Reveal delay={0.4}>
-          <div className="flex gap-5 flex-wrap justify-center mb-8">
-            <span className="flex items-center gap-2 text-text-muted text-[13px] font-mono">
-              <MapPin size={14} className="text-accent-warm/60" /> {personal.location}
+        {/* Trust strip — compact on mobile */}
+        <Reveal delay={0.35}>
+          <div className="flex gap-4 flex-wrap justify-center mb-8 text-[12px] font-mono text-text-muted">
+            <span className="flex items-center gap-1.5">
+              <MapPin size={12} className="text-accent-warm/60" /> {personal.location}
             </span>
-            <a
-              href={`mailto:${personal.email}`}
-              className="flex items-center gap-2 text-text-muted text-[13px] font-mono hover:text-accent-cyan transition-colors"
-            >
-              <Mail size={14} className="text-accent-warm/60" /> {personal.email}
-            </a>
+            <span className="hidden sm:inline text-border-default">·</span>
+            <span>Government · Enterprise · Academic</span>
           </div>
         </Reveal>
 
+        {/* Primary CTAs — clear hierarchy */}
+        <Reveal delay={0.4}>
+          <div className="flex gap-4 flex-wrap justify-center mb-6">
+            <Button
+              href="/consulting"
+              onClick={() => analytics.ctaClick("Book a Strategy Call", "hero")}
+            >
+              <Calendar size={16} /> Book a Strategy Call
+            </Button>
+            <Button
+              variant="secondary"
+              href="/projects"
+              onClick={() => analytics.ctaClick("Explore Case Studies", "hero")}
+            >
+              Explore Case Studies
+            </Button>
+          </div>
+        </Reveal>
+
+        {/* Secondary links — visually subordinate */}
         <Reveal delay={0.5}>
-          <div className="flex gap-3 mb-8">
+          <div className="flex gap-4 items-center justify-center flex-wrap">
             {personal.social.map((s) => (
               <a
                 key={s.platform}
                 href={s.url}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="flex items-center gap-2 px-4 py-2 rounded-lg bg-glass-bg border border-glass-border backdrop-blur-xl text-text-secondary text-[13px] font-mono hover:text-accent-cyan hover:border-accent-cyan/30 transition-all"
+                onClick={() => analytics.externalLink(s.platform, s.url)}
+                className="inline-flex items-center gap-1.5 text-text-muted text-[12px] font-mono hover:text-accent-cyan transition-colors"
               >
-                {s.platform === "LinkedIn" ? <Linkedin size={14} /> : <Github size={14} />}
+                {s.platform === "LinkedIn" ? <Linkedin size={13} /> : <Github size={13} />}
                 {s.platform}
                 <ExternalLink size={10} className="opacity-40" />
               </a>
             ))}
-          </div>
-        </Reveal>
-
-        <Reveal delay={0.6}>
-          <div className="flex gap-4 flex-wrap justify-center">
-            <Button href="/consulting">
-              <Calendar size={16} /> Book a Strategy Call
-            </Button>
-            <Button variant="secondary" href="/projects">
-              Explore Case Studies
-            </Button>
-          </div>
-          <div className="flex gap-5 items-center justify-center mt-5">
+            <span className="text-border-default text-[10px]">|</span>
             <a
               href="/Loren_Cossette_Resume.pdf"
               target="_blank"
               rel="noopener noreferrer"
-              className="inline-flex items-center gap-2 text-text-muted text-[12px] font-mono hover:text-accent-cyan transition-colors"
+              onClick={() => analytics.resumeDownload()}
+              className="inline-flex items-center gap-1.5 text-text-muted text-[12px] font-mono hover:text-accent-cyan transition-colors"
             >
-              <Download size={13} />
+              <Download size={12} />
               Resume
             </a>
             <span className="text-border-default text-[10px]">|</span>
             <a
               href={`mailto:${personal.email}`}
-              className="inline-flex items-center gap-2 text-text-muted text-[12px] font-mono hover:text-accent-cyan transition-colors"
+              className="inline-flex items-center gap-1.5 text-text-muted text-[12px] font-mono hover:text-accent-cyan transition-colors"
             >
-              <Mail size={13} />
+              <Mail size={12} />
               {personal.email}
             </a>
           </div>

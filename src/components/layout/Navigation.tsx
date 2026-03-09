@@ -7,6 +7,7 @@ import { motion, AnimatePresence, LayoutGroup } from "framer-motion";
 import { Menu, X } from "lucide-react";
 import { navItems } from "@/data/navigation";
 import { cn } from "@/lib/utils";
+import { analytics } from "@/lib/analytics";
 
 export function Navigation() {
   const [scrolled, setScrolled] = useState(false);
@@ -58,6 +59,7 @@ export function Navigation() {
                   <Link
                     key={item.href}
                     href={item.href}
+                    onClick={() => analytics.navClick(item.href)}
                     className={cn(
                       "relative px-4 py-2 font-mono text-[11px] tracking-[1px] uppercase transition-colors duration-300",
                       isActive ? "text-accent-cyan" : "text-text-secondary hover:text-text-primary"
