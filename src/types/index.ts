@@ -126,6 +126,7 @@ export interface PersonalProject {
   image: string;
   category: PersonalProjectCategory;
   status: "live" | "beta" | "development";
+  featured?: boolean;
 }
 
 export type PersonalProjectCategory = "ai-tools" | "saas" | "research" | "consulting";

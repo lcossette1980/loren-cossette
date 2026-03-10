@@ -6,7 +6,9 @@ import { motion, AnimatePresence } from "framer-motion";
 import { SectionHeading } from "@/components/ui/SectionHeading";
 import { Card } from "@/components/ui/Card";
 import { Badge } from "@/components/ui/Badge";
+import { Reveal } from "@/components/animations/Reveal";
 import { personalProjects } from "@/data/personal-projects";
+import { analytics } from "@/lib/analytics";
 import {
   Rocket,
   ShieldCheck,
@@ -17,6 +19,7 @@ import {
   ExternalLink,
   CheckCircle,
   ArrowUpRight,
+  ArrowRight,
 } from "lucide-react";
 import type { PersonalProjectCategory } from "@/types";
 
@@ -52,13 +55,18 @@ const statusLabels = {
   development: "In Development",
 };
 
+/* Separate the featured project from the rest */
+const featuredProject = personalProjects.find((p) => p.featured)!;
+const FeaturedIcon = iconMap[featuredProject.icon] || Rocket;
+const otherProjects = personalProjects.filter((p) => !p.featured);
+
 export default function AppsPage() {
   const [filter, setFilter] = useState<PersonalProjectCategory | "all">("all");
 
   const filtered =
     filter === "all"
-      ? personalProjects
-      : personalProjects.filter((p) => p.category === filter);
+      ? otherProjects
+      : otherProjects.filter((p) => p.category === filter);
 
   return (
     <div className="pt-32 pb-32">
@@ -70,8 +78,126 @@ export default function AppsPage() {
           description="Side projects, SaaS products, and AI tools — shipped and live."
         />
 
+        {/* ── Featured Spotlight ── */}
+        <Reveal>
+          <div className="mt-14 mb-16">
+            <p className="font-mono text-[11px] tracking-[2px] uppercase text-accent-warm font-medium mb-4">
+              Featured
+            </p>
+            <a
+              href={featuredProject.url}
+              target="_blank"
+              rel="noopener noreferrer"
+              onClick={() => analytics.ctaClick("featured_app", "apps_page")}
+              className="block"
+            >
+              <Card className="overflow-hidden group" variant="glow">
+                <div className="grid grid-cols-1 md:grid-cols-2">
+                  {/* Image */}
+                  <div className="relative aspect-video md:aspect-auto md:min-h-[400px] w-full overflow-hidden border-b md:border-b-0 md:border-r border-border-default">
+                    <Image
+                      src={featuredProject.image}
+                      alt={featuredProject.title}
+                      fill
+                      className="object-cover transition-transform duration-500 group-hover:scale-105"
+                      sizes="(max-width: 768px) 100vw, 50vw"
+                    />
+                  </div>
+
+                  {/* Content */}
+                  <div className="p-7 md:p-10 flex flex-col justify-center">
+                    <div className="flex items-start justify-between mb-3">
+                      <div className="flex items-center gap-3">
+                        <div className="w-11 h-11 rounded-xl bg-accent-cyan/10 border border-accent-cyan/20 flex items-center justify-center">
+                          <FeaturedIcon size={22} className="text-accent-cyan" />
+                        </div>
+                        <div>
+                          <h3 className="font-bold text-text-primary text-xl">
+                            {featuredProject.title}
+                          </h3>
+                          <p className="font-mono text-[11px] text-text-muted">
+                            {featuredProject.subtitle}
+                          </p>
+                        </div>
+                      </div>
+                      <span
+                        className={`hidden sm:inline-flex items-center text-[10px] px-2.5 py-1 rounded-full font-mono border ${statusStyles[featuredProject.status]}`}
+                      >
+                        {statusLabels[featuredProject.status]}
+                      </span>
+                    </div>
+
+                    <p className="text-sm text-text-secondary leading-relaxed mb-5 mt-2">
+                      {featuredProject.description}
+                    </p>
+
+                    {/* Highlights — show more for featured */}
+                    <div className="space-y-2 mb-5">
+                      {featuredProject.highlights.slice(0, 6).map((h) => (
+                        <div key={h} className="flex items-start gap-2.5">
+                          <CheckCircle
+                            size={14}
+                            className="text-accent-warm shrink-0 mt-0.5"
+                          />
+                          <span className="text-xs text-text-secondary leading-relaxed">
+                            {h}
+                          </span>
+                        </div>
+                      ))}
+                      {featuredProject.highlights.length > 6 && (
+                        <p className="text-[10px] text-text-muted font-mono pl-6">
+                          +{featuredProject.highlights.length - 6} more
+                        </p>
+                      )}
+                    </div>
+
+                    {/* Tech */}
+                    <div className="flex flex-wrap gap-1.5 mb-5">
+                      {featuredProject.tech.slice(0, 7).map((t) => (
+                        <Badge
+                          key={t}
+                          variant="outline"
+                          className="text-[9px] px-2 py-0.5"
+                        >
+                          {t}
+                        </Badge>
+                      ))}
+                      {featuredProject.tech.length > 7 && (
+                        <Badge
+                          variant="outline"
+                          className="text-[9px] px-2 py-0.5"
+                        >
+                          +{featuredProject.tech.length - 7}
+                        </Badge>
+                      )}
+                    </div>
+
+                    {/* Link */}
+                    <div className="flex items-center gap-2 text-accent-cyan/80 group-hover:text-accent-cyan text-xs font-mono transition-colors">
+                      <ExternalLink size={12} />
+                      {featuredProject.url.replace(/^https?:\/\//, "")}
+                      <ArrowRight
+                        size={12}
+                        className="group-hover:translate-x-1 transition-transform"
+                      />
+                    </div>
+                  </div>
+                </div>
+              </Card>
+            </a>
+          </div>
+        </Reveal>
+
+        {/* ── Section divider ── */}
+        <div className="h-px bg-gradient-to-r from-transparent via-accent-warm/20 to-transparent mb-14" />
+
+        {/* ── Other Projects heading ── */}
+        <p className="font-mono text-[11px] tracking-[2px] uppercase text-accent-warm font-medium mb-6">
+          All Projects
+        </p>
+
         {/* Filter bar */}
-        <div className="flex gap-2 flex-wrap mt-10 mb-10">
+        <div className="flex gap-2 flex-wrap mb-10">
           {filters.map((f) => (
             <button
               key={f.value}
