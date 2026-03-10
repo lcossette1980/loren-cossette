@@ -12,7 +12,8 @@ import { personal } from "@/data/personal";
 import { education } from "@/data/education";
 import { certifications } from "@/data/education";
 import { publications } from "@/data/publications";
-import { Award, GraduationCap } from "lucide-react";
+import { Award, GraduationCap, ArrowRight } from "lucide-react";
+import Link from "next/link";
 
 export default function AboutPage() {
   return (
@@ -174,6 +175,28 @@ export default function AboutPage() {
             </div>
           </Reveal>
         </div>
+
+        {/* Methodology CTA */}
+        <Reveal>
+          <Link href="/methodology" className="block mb-20 group">
+            <Card className="p-6 flex items-center justify-between gap-4 hover:border-accent-cyan/30 transition-colors">
+              <div className="flex items-center gap-4">
+                <div className="w-10 h-10 rounded-lg bg-accent-cyan/10 border border-accent-cyan/20 flex items-center justify-center shrink-0">
+                  <span className="font-mono text-xs font-bold text-accent-cyan">7φ</span>
+                </div>
+                <div>
+                  <p className="text-sm font-bold text-text-primary">
+                    Engineering Methodology
+                  </p>
+                  <p className="text-xs text-text-secondary mt-0.5">
+                    My 7-phase workflow from problem discovery to production handoff.
+                  </p>
+                </div>
+              </div>
+              <ArrowRight size={16} className="text-text-muted group-hover:text-accent-cyan group-hover:translate-x-1 transition-all shrink-0" />
+            </Card>
+          </Link>
+        </Reveal>
 
         {/* Publications */}
         <div>

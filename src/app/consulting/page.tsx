@@ -130,6 +130,13 @@ const processSteps = [
   },
 ];
 
+/* Methodology cross-link shown after process steps */
+const methodologyCTA = {
+  text: "Want the full playbook?",
+  description: "My 7-phase engineering methodology — from problem discovery to production handoff.",
+  href: "/methodology",
+};
+
 const engagementModels = [
   {
     type: "Engagement Model",
@@ -383,6 +390,30 @@ export default function ConsultingPage() {
           </StaggerContainer>
         </div>
       </section>
+
+      {/* ── METHODOLOGY CROSS-LINK ── */}
+      <Reveal>
+        <div className="max-w-6xl mx-auto px-6 md:px-8 -mt-16 mb-0">
+          <Link href={methodologyCTA.href} className="block group">
+            <Card className="p-6 flex items-center justify-between gap-4 hover:border-accent-cyan/30 transition-colors">
+              <div className="flex items-center gap-4">
+                <div className="w-10 h-10 rounded-lg bg-accent-cyan/10 border border-accent-cyan/20 flex items-center justify-center shrink-0">
+                  <Zap size={18} className="text-accent-cyan" />
+                </div>
+                <div>
+                  <p className="text-sm font-bold text-text-primary">
+                    {methodologyCTA.text}
+                  </p>
+                  <p className="text-xs text-text-secondary mt-0.5">
+                    {methodologyCTA.description}
+                  </p>
+                </div>
+              </div>
+              <ArrowRight size={16} className="text-text-muted group-hover:text-accent-cyan group-hover:translate-x-1 transition-all shrink-0" />
+            </Card>
+          </Link>
+        </div>
+      </Reveal>
 
       {/* ── PRICING ── */}
       <section className="py-32 lg:py-40">
