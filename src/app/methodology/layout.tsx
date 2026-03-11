@@ -8,6 +8,14 @@ export const metadata: Metadata = {
     title: "The AI Automation Engineer Workflow | Loren Cossette",
     description:
       "Seven phases from idea to production. A codified methodology for building AI systems that survive contact with the real world.",
+    type: "website",
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "The AI Automation Engineer Workflow | Loren Cossette",
+    description:
+      "7-phase engineering methodology — from problem discovery to production handoff. Built from real-world AI deployments.",
+    creator: "@lorencossette",
   },
 };
 
