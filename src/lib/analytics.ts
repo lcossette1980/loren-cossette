@@ -60,4 +60,16 @@ export const analytics = {
   /** Routing lane click on homepage */
   routingLane: (lane: string) =>
     trackEvent("routing_lane_click", { lane }),
+
+  /** Demo — assessment started */
+  demoStart: (scenario: string) =>
+    trackEvent("demo_start", { scenario }),
+
+  /** Demo — assessment completed */
+  demoComplete: (scenario: string) =>
+    trackEvent("demo_complete", { scenario }),
+
+  /** Demo — scenario selected */
+  demoScenarioSelect: (scenario: string) =>
+    trackEvent("demo_scenario_select", { scenario }),
 };
