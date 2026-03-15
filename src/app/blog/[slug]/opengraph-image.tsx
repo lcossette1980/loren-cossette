@@ -16,7 +16,7 @@ export default async function OGImage({
 
   const { data: post } = await getSupabase()
     .from("blog_posts")
-    .select("title, tags")
+    .select("title, tags, cover_image")
     .eq("slug", slug)
     .eq("status", "published")
     .single();
@@ -29,6 +29,7 @@ export default async function OGImage({
   const logoSrc = `data:image/png;base64,${logoBuffer.toString("base64")}`;
 
   const tags = (post.tags ?? []) as string[];
+  const hasCover = !!post.cover_image;
 
   return new ImageResponse(
     (
@@ -39,14 +40,31 @@ export default async function OGImage({
           display: "flex",
           flexDirection: "column",
           justifyContent: "space-between",
-          background:
-            "linear-gradient(135deg, #0a0a0f 0%, #0d0d1a 40%, #111122 100%)",
-          padding: "60px 70px",
           position: "relative",
           overflow: "hidden",
+          background: hasCover
+            ? "#0a0a0f"
+            : "linear-gradient(135deg, #0a0a0f 0%, #0d0d1a 40%, #111122 100%)",
+          padding: "60px 70px",
         }}
       >
-        {/* Grid overlay */}
+        {/* Cover image background */}
+        {hasCover && (
+          <img
+            src={post.cover_image}
+            alt=""
+            style={{
+              position: "absolute",
+              top: 0,
+              left: 0,
+              width: "100%",
+              height: "100%",
+              objectFit: "cover",
+            }}
+          />
+        )}
+
+        {/* Dark gradient overlay for readability */}
         <div
           style={{
             position: "absolute",
@@ -55,12 +73,29 @@ export default async function OGImage({
             right: 0,
             bottom: 0,
             display: "flex",
-            opacity: 0.04,
-            backgroundImage:
-              "linear-gradient(rgba(34,231,240,1) 1px, transparent 1px), linear-gradient(90deg, rgba(34,231,240,1) 1px, transparent 1px)",
-            backgroundSize: "60px 60px",
+            background: hasCover
+              ? "linear-gradient(180deg, rgba(10,10,15,0.35) 0%, rgba(10,10,15,0.55) 40%, rgba(10,10,15,0.92) 100%)"
+              : "transparent",
           }}
         />
+
+        {/* Grid overlay (subtle, only without cover) */}
+        {!hasCover && (
+          <div
+            style={{
+              position: "absolute",
+              top: 0,
+              left: 0,
+              right: 0,
+              bottom: 0,
+              display: "flex",
+              opacity: 0.04,
+              backgroundImage:
+                "linear-gradient(rgba(34,231,240,1) 1px, transparent 1px), linear-gradient(90deg, rgba(34,231,240,1) 1px, transparent 1px)",
+              backgroundSize: "60px 60px",
+            }}
+          />
+        )}
 
         {/* Glow top-right */}
         <div
@@ -71,29 +106,22 @@ export default async function OGImage({
             width: "400px",
             height: "400px",
             borderRadius: "50%",
-            background:
-              "radial-gradient(circle, rgba(34,231,240,0.12) 0%, transparent 70%)",
-            display: "flex",
-          }}
-        />
-
-        {/* Glow bottom-left */}
-        <div
-          style={{
-            position: "absolute",
-            bottom: "-100px",
-            left: "-60px",
-            width: "350px",
-            height: "350px",
-            borderRadius: "50%",
-            background:
-              "radial-gradient(circle, rgba(226,184,84,0.08) 0%, transparent 70%)",
+            background: hasCover
+              ? "radial-gradient(circle, rgba(34,231,240,0.08) 0%, transparent 70%)"
+              : "radial-gradient(circle, rgba(34,231,240,0.12) 0%, transparent 70%)",
             display: "flex",
           }}
         />
 
         {/* Top section */}
-        <div style={{ display: "flex", flexDirection: "column" }}>
+        <div
+          style={{
+            display: "flex",
+            flexDirection: "column",
+            position: "relative",
+            zIndex: 1,
+          }}
+        >
           {/* Blog label */}
           <div
             style={{
@@ -139,6 +167,7 @@ export default async function OGImage({
               WebkitLineClamp: 3,
               WebkitBoxOrient: "vertical" as const,
               overflow: "hidden",
+              textShadow: hasCover ? "0 2px 12px rgba(0,0,0,0.6)" : "none",
             }}
           >
             {post.title}
@@ -151,6 +180,8 @@ export default async function OGImage({
             display: "flex",
             justifyContent: "space-between",
             alignItems: "flex-end",
+            position: "relative",
+            zIndex: 1,
           }}
         >
           {/* Tags */}
@@ -162,14 +193,17 @@ export default async function OGImage({
                   display: "flex",
                   alignItems: "center",
                   padding: "8px 16px",
-                  border: "1px solid rgba(34,231,240,0.2)",
+                  border: "1px solid rgba(34,231,240,0.25)",
                   borderRadius: "8px",
-                  background: "rgba(34,231,240,0.06)",
+                  background: hasCover
+                    ? "rgba(10,10,15,0.6)"
+                    : "rgba(34,231,240,0.06)",
                   fontSize: "12px",
                   fontWeight: 500,
                   color: "#22e7f0",
                   fontFamily: "monospace",
                   letterSpacing: "0.5px",
+                  backdropFilter: hasCover ? "blur(8px)" : "none",
                 }}
               >
                 {tag}
@@ -189,8 +223,9 @@ export default async function OGImage({
               style={{
                 fontSize: "14px",
                 fontWeight: 500,
-                color: "rgba(240,240,245,0.4)",
+                color: "rgba(240,240,245,0.5)",
                 fontFamily: "monospace",
+                textShadow: hasCover ? "0 1px 4px rgba(0,0,0,0.5)" : "none",
               }}
             >
               lorencossette.com
