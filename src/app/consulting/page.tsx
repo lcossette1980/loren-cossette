@@ -29,7 +29,10 @@ import {
   Zap,
   Users,
   TrendingUp,
+  Calendar,
+  Target,
 } from "lucide-react";
+import { BOOKING_URL } from "@/lib/constants";
 
 /* ─── DATA ─── */
 
@@ -237,9 +240,14 @@ export default function ConsultingPage() {
           </Reveal>
 
           <Reveal delay={0.3}>
-            <Button href={`mailto:${personal.email}`} size="lg">
-              <Mail size={16} /> Start a Conversation
-            </Button>
+            <div className="flex gap-4 flex-wrap">
+              <Button href={BOOKING_URL} external size="lg">
+                <Calendar size={16} /> Book a Strategy Call
+              </Button>
+              <Button href={`mailto:${personal.email}`} size="lg" variant="secondary">
+                <Mail size={16} /> Email Me Directly
+              </Button>
+            </div>
           </Reveal>
 
           {/* Hero stats */}
@@ -361,8 +369,84 @@ export default function ConsultingPage() {
         </div>
       </section>
 
-      {/* ── PROCESS ── */}
+      {/* ── WHO I WORK BEST WITH ── */}
       <section className="py-32 lg:py-40 bg-bg-elevated">
+        <div className="max-w-4xl mx-auto px-6 md:px-8">
+          <SectionHeading
+            label="Ideal Clients"
+            heading="Who I work best with"
+            accentWord="best"
+          />
+
+          <Reveal>
+            <p className="text-text-secondary text-base md:text-lg leading-relaxed mt-8 mb-10 max-w-2xl">
+              My engagements work best when the problem is real, the stakes are
+              high, and the organization is ready to move — not just explore.
+            </p>
+          </Reveal>
+
+          <div className="space-y-5">
+            {[
+              {
+                icon: Shield,
+                label: "Government agencies",
+                description:
+                  "facing compliance or accessibility deadlines — Section 508, WCAG, ADA, or federal AI governance requirements",
+              },
+              {
+                icon: TrendingUp,
+                label: "Enterprises",
+                description:
+                  "that have run AI pilots but can't get to production or adoption at scale",
+              },
+              {
+                icon: Zap,
+                label: "Founders and startups",
+                description:
+                  "who need a senior architect to build the real thing, not a prototype",
+              },
+              {
+                icon: Target,
+                label: "Organizations with a made business case",
+                description:
+                  "where the technical path, governance, or change management is the missing piece",
+              },
+            ].map((item, i) => {
+              const Icon = item.icon;
+              return (
+                <Reveal key={item.label} delay={i * 0.08}>
+                  <Card className="p-6 flex items-start gap-5" variant="solid">
+                    <div className="w-10 h-10 rounded-lg bg-accent-cyan/10 border border-accent-cyan/20 flex items-center justify-center shrink-0">
+                      <Icon size={18} className="text-accent-cyan" />
+                    </div>
+                    <div>
+                      <p className="text-sm text-text-primary">
+                        <strong>{item.label}</strong> {item.description}
+                      </p>
+                    </div>
+                  </Card>
+                </Reveal>
+              );
+            })}
+          </div>
+
+          <Reveal delay={0.4}>
+            <p className="text-sm text-text-muted mt-8">
+              Not sure if you&apos;re a fit?{" "}
+              <a
+                href={`mailto:${personal.email}`}
+                className="text-accent-cyan hover:underline"
+              >
+                Email me directly
+              </a>{" "}
+              — I&apos;ll tell you honestly.
+            </p>
+          </Reveal>
+        </div>
+      </section>
+
+      {/* ── PROCESS ── */}
+      <section className="py-32 lg:py-40">
         <div className="max-w-6xl mx-auto px-6 md:px-8">
           <SectionHeading
             label="How It Works"
@@ -547,16 +631,11 @@ export default function ConsultingPage() {
               I&apos;ll point you to someone who is.
             </p>
             <div className="flex gap-4 justify-center flex-wrap">
-              <Button href={`mailto:${personal.email}`}>
-                <Mail size={16} /> Email Me Directly
+              <Button href={BOOKING_URL} external>
+                <Calendar size={16} /> Book a Strategy Call
               </Button>
-              <Button
-                variant="secondary"
-                href={personal.social[0].url}
-                external
-              >
-                <Linkedin size={16} /> Connect on LinkedIn{" "}
-                <ExternalLink size={12} className="opacity-40" />
+              <Button href={`mailto:${personal.email}`} variant="secondary">
+                <Mail size={16} /> Email Me Directly
               </Button>
             </div>
           </Reveal>

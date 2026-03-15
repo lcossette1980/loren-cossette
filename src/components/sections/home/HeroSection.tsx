@@ -16,6 +16,7 @@ import {
   Calendar,
 } from "lucide-react";
 import { analytics } from "@/lib/analytics";
+import { BOOKING_URL } from "@/lib/constants";
 
 const ParticleBackground = lazy(() =>
   import("@/components/particles/ParticleBackground").then((mod) => ({
@@ -91,7 +92,14 @@ export function HeroSection() {
           </h1>
         </Reveal>
 
-        <Reveal delay={0.3}>
+        <Reveal delay={0.25}>
+          <p className="text-lg md:text-xl lg:text-2xl font-semibold text-text-primary max-w-xl leading-snug mb-4">
+            Most AI initiatives fail between vision and execution.{" "}
+            <span className="text-accent-cyan">I close that gap.</span>
+          </p>
+        </Reveal>
+
+        <Reveal delay={0.35}>
           <p className="text-base md:text-lg text-text-secondary max-w-xl leading-relaxed mb-8">
             {personal.tagline}
           </p>
@@ -112,7 +120,8 @@ export function HeroSection() {
         <Reveal delay={0.4}>
           <div className="flex gap-4 flex-wrap justify-center mb-6">
             <Button
-              href="/consulting"
+              href={BOOKING_URL}
+              external
               onClick={() => analytics.ctaClick("Book a Strategy Call", "hero")}
             >
               <Calendar size={16} /> Book a Strategy Call

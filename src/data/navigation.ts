@@ -5,9 +5,12 @@ export const navItems: NavItem[] = [
   { label: "Consulting", href: "/consulting" },
   { label: "Projects", href: "/projects" },
   { label: "About", href: "/about" },
+  { label: "Contact", href: "/contact" },
+];
+
+export const secondaryNavItems: NavItem[] = [
   { label: "Methodology", href: "/methodology" },
   { label: "Demo", href: "/demo" },
   { label: "Override", href: "/override" },
   { label: "Apps", href: "/apps" },
-  { label: "Contact", href: "/contact" },
 ];

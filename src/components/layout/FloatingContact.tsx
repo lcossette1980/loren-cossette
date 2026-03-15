@@ -6,7 +6,9 @@ import { motion, AnimatePresence } from "framer-motion";
 import { MessageCircle, X, Send } from "lucide-react";
 import { analytics } from "@/lib/analytics";
 
-const CONTACT_EMAIL = "lorentcossette@gmail.com";
+import { personal } from "@/data/personal";
+
+const CONTACT_EMAIL = personal.email;
 
 export function FloatingContact() {
   const [open, setOpen] = useState(false);

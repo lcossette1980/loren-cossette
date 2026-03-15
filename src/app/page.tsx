@@ -5,6 +5,7 @@ import { EngagementModes } from "@/components/sections/home/EngagementModes";
 import { FeaturedProjects } from "@/components/sections/home/FeaturedProjects";
 import { AboutTeaser } from "@/components/sections/home/AboutTeaser";
 import { TechShowcase } from "@/components/sections/home/TechShowcase";
+import { Testimonials } from "@/components/sections/home/Testimonials";
 import { FooterCTA } from "@/components/sections/home/FooterCTA";
 
 export default function Home() {
@@ -14,6 +15,7 @@ export default function Home() {
       <RoutingLanes />
       <FeaturedProjects />
       <ImpactMetrics />
+      <Testimonials />
       <EngagementModes />
       <AboutTeaser />
       <TechShowcase />

@@ -5,6 +5,7 @@ import { Button } from "@/components/ui/Button";
 import { personal } from "@/data/personal";
 import { Calendar, Mail, Linkedin, ExternalLink } from "lucide-react";
 import { analytics } from "@/lib/analytics";
+import { BOOKING_URL } from "@/lib/constants";
 
 export function FooterCTA() {
   return (
@@ -25,7 +26,8 @@ export function FooterCTA() {
         </p>
         <div className="flex gap-4 justify-center flex-wrap">
           <Button
-            href="/consulting"
+            href={BOOKING_URL}
+            external
             onClick={() => analytics.ctaClick("Book a Strategy Call", "footer")}
           >
             <Calendar size={16} /> Book a Strategy Call

@@ -98,7 +98,7 @@ const personSchema = {
     addressRegion: "TX",
     addressCountry: "US",
   },
-  email: "mailto:lorentcossette@gmail.com",
+  email: "mailto:loren.cossette@evolviqtx.com",
   sameAs: [
     "https://linkedin.com/in/loren-cossette",
     "https://github.com/lorentcossette",

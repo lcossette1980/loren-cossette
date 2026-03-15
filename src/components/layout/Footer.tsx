@@ -1,6 +1,6 @@
 import Link from "next/link";
 import { personal } from "@/data/personal";
-import { navItems } from "@/data/navigation";
+import { navItems, secondaryNavItems } from "@/data/navigation";
 import { Github, Linkedin, Mail, ExternalLink } from "lucide-react";
 
 const seoKeywords = [
@@ -18,7 +18,7 @@ export function Footer() {
   return (
     <footer className="border-t border-border-subtle bg-bg-secondary/50">
       <div className="site-container py-20">
-        <div className="grid grid-cols-1 md:grid-cols-4 gap-12">
+        <div className="grid grid-cols-1 md:grid-cols-5 gap-12">
           {/* Brand */}
           <div>
             <p className="font-mono text-sm tracking-[3px] text-accent-warm font-medium mb-4">
@@ -29,13 +29,31 @@ export function Footer() {
             </p>
           </div>
 
-          {/* Links */}
+          {/* Primary nav */}
           <div>
             <p className="font-mono text-[11px] tracking-[2px] uppercase text-text-muted mb-4">
               Navigation
             </p>
             <div className="flex flex-col gap-2">
               {navItems.map((item) => (
+                <Link
+                  key={item.href}
+                  href={item.href}
+                  className="text-text-secondary text-sm hover:text-accent-cyan transition-colors"
+                >
+                  {item.label}
+                </Link>
+              ))}
+            </div>
+          </div>
+
+          {/* Resources (secondary nav) */}
+          <div>
+            <p className="font-mono text-[11px] tracking-[2px] uppercase text-text-muted mb-4">
+              Resources
+            </p>
+            <div className="flex flex-col gap-2">
+              {secondaryNavItems.map((item) => (
                 <Link
                   key={item.href}
                   href={item.href}

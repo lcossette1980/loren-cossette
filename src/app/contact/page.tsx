@@ -9,7 +9,7 @@ import { Reveal } from "@/components/animations/Reveal";
 import { personal } from "@/data/personal";
 import { Mail, Phone, MapPin, Linkedin, Github, ExternalLink, Send } from "lucide-react";
 
-const CONTACT_EMAIL = "lorentcossette@gmail.com";
+const CONTACT_EMAIL = personal.email;
 
 export default function ContactPage() {
   const nameRef = useRef<HTMLInputElement>(null);
@@ -36,7 +36,7 @@ export default function ContactPage() {
           label="Contact"
           heading="Let's build something extraordinary"
           accentWord="extraordinary"
-          description="Open to senior AI engineering, principal architect, and strategic AI leadership roles."
+          description="Tell me what you're trying to build, fix, or transform. I'll tell you if I'm the right person — and if not, I'll point you to someone who is."
         />
 
         <div className="grid grid-cols-1 md:grid-cols-2 gap-8 mt-14">

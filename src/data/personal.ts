@@ -8,7 +8,7 @@ export const personal: PersonalInfo = {
   tagline:
     "I design and deploy production AI systems that automate operations, reduce cost, and scale decision-making \u2014 for governments, enterprises, and startups.",
   location: "San Antonio, TX",
-  email: "lorentcossette@gmail.com",
+  email: "loren.cossette@evolviqtx.com",
   phone: "210.836.4789",
   social: [
     { platform: "LinkedIn", url: "https://linkedin.com/in/loren-cossette", icon: "Linkedin" },
