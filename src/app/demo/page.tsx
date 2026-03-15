@@ -86,19 +86,28 @@ export default function DemoPage() {
 
       const reader = response.body!.getReader();
       const decoder = new TextDecoder();
+      let sseBuffer = "";
 
       while (true) {
         const { done, value } = await reader.read();
         if (done) break;
 
-        const text = decoder.decode(value, { stream: true });
-        const lines = text
-          .split("\n")
-          .filter((l) => l.startsWith("data: "));
+        sseBuffer += decoder.decode(value, { stream: true });
 
-        for (const line of lines) {
+        // SSE messages are delimited by double newlines — only
+        // process complete messages to avoid split-chunk JSON failures
+        const messages = sseBuffer.split("\n\n");
+        // Keep the last element (may be incomplete)
+        sseBuffer = messages.pop() || "";
+
+        for (const msg of messages) {
+          const dataLine = msg
+            .split("\n")
+            .find((l) => l.startsWith("data: "));
+          if (!dataLine) continue;
+
           try {
-            const payload = JSON.parse(line.slice(6));
+            const payload = JSON.parse(dataLine.slice(6));
 
             if (payload.stage === "analyzing") {
               setState((prev) => ({ ...prev, status: "analyzing" }));

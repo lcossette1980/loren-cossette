@@ -1,8 +1,10 @@
 "use client";
 
 import { motion } from "framer-motion";
+import { Brain, Sparkles } from "lucide-react";
 import { StaggerContainer } from "@/components/animations/StaggerContainer";
 import { staggerItem } from "@/components/animations/variants";
+import { ModelBadge } from "./ModelBadge";
 import { DomainScoreCard } from "./DomainScoreCard";
 import { StrategicSynthesis } from "./StrategicSynthesis";
 import { PipelineStatus } from "./PipelineStatus";
@@ -17,6 +19,9 @@ export function AssessmentResults({ state }: AssessmentResultsProps) {
 
   if (status === "idle") return null;
 
+  const showSynthesisSection =
+    status === "synthesizing" || status === "complete";
+
   return (
     <div className="mt-12">
       {/* Divider */}
@@ -29,6 +34,19 @@ export function AssessmentResults({ state }: AssessmentResultsProps) {
       {status === "error" && error && (
         <div className="bg-red-500/5 border border-red-500/20 rounded-lg p-4">
           <p className="text-sm text-red-400">{error}</p>
+        </div>
+      )}
+
+      {/* ── STAGE 1: Domain Analysis ── */}
+
+      {/* Section Label (visible once domain cards or skeleton shows) */}
+      {(status === "analyzing" || domainAnalysis) && (
+        <div className="flex items-center gap-2 mb-4">
+          <Brain size={14} className="text-[#10a37f]" />
+          <span className="font-mono text-[10px] tracking-[2px] uppercase text-text-muted">
+            Stage 1 — Domain Analysis
+          </span>
+          <ModelBadge model="GPT-4o" />
         </div>
       )}
 
@@ -66,28 +84,42 @@ export function AssessmentResults({ state }: AssessmentResultsProps) {
         </StaggerContainer>
       )}
 
-      {/* Synthesis Loading (Stage 2 in progress) */}
-      {status === "synthesizing" && !strategicSynthesis && (
-        <div className="mt-6 bg-[rgba(13,17,23,0.6)] backdrop-blur-xl border border-border-accent rounded-xl p-6 animate-pulse">
-          <div className="h-5 bg-bg-elevated rounded w-48 mb-4" />
-          <div className="h-4 bg-bg-elevated rounded w-full mb-2" />
-          <div className="h-4 bg-bg-elevated rounded w-5/6 mb-2" />
-          <div className="h-4 bg-bg-elevated rounded w-4/6 mb-6" />
-          <div className="h-4 bg-bg-elevated rounded w-full mb-2" />
-          <div className="h-4 bg-bg-elevated rounded w-3/4" />
-        </div>
-      )}
+      {/* ── STAGE 2: Strategic Synthesis ── */}
 
-      {/* Strategic Synthesis (Stage 2 complete) */}
-      {strategicSynthesis && (
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.5 }}
-          className="mt-6"
-        >
-          <StrategicSynthesis synthesis={strategicSynthesis} />
-        </motion.div>
+      {showSynthesisSection && (
+        <div className="mt-8">
+          {/* Section Label */}
+          <div className="flex items-center gap-2 mb-4">
+            <Sparkles size={14} className="text-[#d4a574]" />
+            <span className="font-mono text-[10px] tracking-[2px] uppercase text-text-muted">
+              Stage 2 — Strategic Synthesis
+            </span>
+            <ModelBadge model="Claude" />
+          </div>
+
+          {/* Synthesis Loading (Stage 2 in progress) */}
+          {status === "synthesizing" && !strategicSynthesis && (
+            <div className="bg-[rgba(13,17,23,0.6)] backdrop-blur-xl border border-border-accent rounded-xl p-6 animate-pulse">
+              <div className="h-5 bg-bg-elevated rounded w-48 mb-4" />
+              <div className="h-4 bg-bg-elevated rounded w-full mb-2" />
+              <div className="h-4 bg-bg-elevated rounded w-5/6 mb-2" />
+              <div className="h-4 bg-bg-elevated rounded w-4/6 mb-6" />
+              <div className="h-4 bg-bg-elevated rounded w-full mb-2" />
+              <div className="h-4 bg-bg-elevated rounded w-3/4" />
+            </div>
+          )}
+
+          {/* Strategic Synthesis (Stage 2 complete) */}
+          {strategicSynthesis && (
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.5 }}
+            >
+              <StrategicSynthesis synthesis={strategicSynthesis} />
+            </motion.div>
+          )}
+        </div>
       )}
     </div>
   );
