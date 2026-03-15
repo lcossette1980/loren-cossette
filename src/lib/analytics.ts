@@ -72,4 +72,12 @@ export const analytics = {
   /** Demo — scenario selected */
   demoScenarioSelect: (scenario: string) =>
     trackEvent("demo_scenario_select", { scenario }),
+
+  /** Blog — post viewed */
+  blogPostView: (slug: string) =>
+    trackEvent("blog_post_view", { slug }),
+
+  /** Blog — share button clicked */
+  blogShare: (slug: string, platform: string) =>
+    trackEvent("blog_share", { slug, platform }),
 };

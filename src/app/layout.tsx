@@ -2,9 +2,7 @@ import type { Metadata, Viewport } from "next";
 import { Inter, JetBrains_Mono, EB_Garamond } from "next/font/google";
 import "./globals.css";
 import { Analytics } from "@vercel/analytics/react";
-import { Navigation } from "@/components/layout/Navigation";
-import { Footer } from "@/components/layout/Footer";
-import { FloatingContact } from "@/components/layout/FloatingContact";
+import { ConditionalLayout } from "@/components/layout/ConditionalLayout";
 
 const inter = Inter({
   variable: "--font-inter",
@@ -167,14 +165,9 @@ export default function RootLayout({
       <body
         className={`${inter.variable} ${jetbrainsMono.variable} ${ebGaramond.variable} antialiased bg-background text-foreground`}
       >
-        <Navigation />
-        <main className="min-h-screen">
-          <div className="site-container">
-            {children}
-          </div>
-        </main>
-        <Footer />
-        <FloatingContact />
+        <ConditionalLayout>
+          {children}
+        </ConditionalLayout>
         <Analytics />
       </body>
     </html>

@@ -1,0 +1,102 @@
+.blog-prose h2 {
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: var(--text-primary);
+  margin-top: 3rem;
+  margin-bottom: 1rem;
+}
+.blog-prose h3 {
+  font-size: 1.25rem;
+  font-weight: 700;
+  color: var(--text-primary);
+  margin-top: 2rem;
+  margin-bottom: 0.75rem;
+}
+.blog-prose h4 {
+  font-size: 1.125rem;
+  font-weight: 600;
+  color: var(--text-primary);
+  margin-top: 1.5rem;
+  margin-bottom: 0.5rem;
+}
+.blog-prose p {
+  color: var(--text-secondary);
+  font-size: 1rem;
+  line-height: 1.75;
+  margin-bottom: 1.5rem;
+}
+.blog-prose a {
+  color: var(--accent-cyan);
+}
+.blog-prose a:hover {
+  text-decoration: underline;
+}
+.blog-prose strong {
+  color: var(--text-primary);
+  font-weight: 600;
+}
+.blog-prose em {
+  font-style: italic;
+}
+.blog-prose blockquote {
+  border-left: 2px solid var(--accent-warm);
+  padding-left: 1.5rem;
+  font-style: italic;
+  color: var(--text-muted);
+  margin: 1.5rem 0;
+}
+.blog-prose ul {
+  list-style-type: disc;
+  list-style-position: inside;
+  color: var(--text-secondary);
+  margin-bottom: 1.5rem;
+  margin-left: 1rem;
+}
+.blog-prose ul > li {
+  margin-bottom: 0.5rem;
+}
+.blog-prose ol {
+  list-style-type: decimal;
+  list-style-position: inside;
+  color: var(--text-secondary);
+  margin-bottom: 1.5rem;
+  margin-left: 1rem;
+}
+.blog-prose ol > li {
+  margin-bottom: 0.5rem;
+}
+.blog-prose li {
+  font-size: 1rem;
+  line-height: 1.75;
+}
+.blog-prose code {
+  background: var(--bg-tertiary);
+  padding: 0.125rem 0.375rem;
+  border-radius: 0.25rem;
+  font-family: var(--font-mono, monospace);
+  font-size: 0.875rem;
+  color: var(--accent-cyan);
+}
+.blog-prose pre {
+  background: var(--bg-tertiary);
+  padding: 1.5rem;
+  border-radius: 0.75rem;
+  border: 1px solid var(--border-subtle);
+  overflow-x: auto;
+  margin-bottom: 1.5rem;
+}
+.blog-prose pre code {
+  background: transparent;
+  padding: 0;
+  color: var(--text-secondary);
+}
+.blog-prose img {
+  border-radius: 0.75rem;
+  border: 1px solid var(--glass-border);
+  margin: 2rem 0;
+  max-width: 100%;
+}
+.blog-prose hr {
+  border-color: var(--border-default);
+  margin: 2.5rem 0;
+}
