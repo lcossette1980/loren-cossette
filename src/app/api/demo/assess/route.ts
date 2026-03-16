@@ -18,6 +18,22 @@ const MAX_INPUT_LENGTH = 3000;
 
 export const maxDuration = 60; // Vercel function timeout
 
+/**
+ * Race a promise against a timeout so we don't silently hang.
+ */
+function withTimeout<T>(promise: Promise<T>, ms: number, label: string): Promise<T> {
+  return new Promise((resolve, reject) => {
+    const timer = setTimeout(
+      () => reject(new Error(`${label} timed out after ${ms / 1000}s`)),
+      ms
+    );
+    promise.then(
+      (v) => { clearTimeout(timer); resolve(v); },
+      (e) => { clearTimeout(timer); reject(e); }
+    );
+  });
+}
+
 export async function POST(request: NextRequest) {
   try {
     // 1. Parse and validate input
@@ -42,7 +58,23 @@ export async function POST(request: NextRequest) {
       );
     }
 
-    // 2. Rate limit check
+    // 2. Verify API keys are present
+    if (!process.env.OPENAI_API_KEY) {
+      console.error("[demo] OPENAI_API_KEY is not set");
+      return NextResponse.json(
+        { error: "Service configuration error (OpenAI key missing).", code: "CONFIG_ERROR" },
+        { status: 500 }
+      );
+    }
+    if (!process.env.ANTHROPIC_API_KEY) {
+      console.error("[demo] ANTHROPIC_API_KEY is not set");
+      return NextResponse.json(
+        { error: "Service configuration error (Anthropic key missing).", code: "CONFIG_ERROR" },
+        { status: 500 }
+      );
+    }
+
+    // 3. Rate limit check
     const forwarded = request.headers.get("x-forwarded-for");
     const ip = forwarded?.split(",")[0]?.trim() ?? "unknown";
     const rateResult = checkRateLimit(ip);
@@ -58,109 +90,157 @@ export async function POST(request: NextRequest) {
       );
     }
 
-    // 3. Create SSE stream
+    // 4. Create SSE stream
     const encoder = new TextEncoder();
 
     const readable = new ReadableStream({
       async start(controller) {
+        const send = (data: Record<string, unknown>) => {
+          controller.enqueue(encoder.encode(`data: ${JSON.stringify(data)}\n\n`));
+        };
+
         try {
           // ── STAGE 1: GPT-4o structured domain analysis ──
-          controller.enqueue(
-            encoder.encode(
-              `data: ${JSON.stringify({ stage: "analyzing", message: "Stage 1: GPT-4o analyzing 12 subdimensions..." })}\n\n`
-            )
-          );
+          console.log("[demo] Stage 1: Starting GPT-4o domain analysis...");
+          send({ stage: "analyzing", message: "Stage 1: GPT-4o analyzing 12 subdimensions..." });
 
-          const gpt4oResponse = await getOpenAI().chat.completions.create({
-            model: "gpt-4o",
-            messages: [
-              { role: "system", content: buildGpt4oPrompt() },
-              {
-                role: "user",
-                content: `Assess this organization's AI leadership readiness:\n\n${description}`,
-              },
-            ],
-            tools: [
-              { type: "function", function: domainAnalysisSchema },
-            ],
-            tool_choice: {
-              type: "function",
-              function: { name: "deliver_domain_analysis" },
-            },
-            temperature: 0.3,
-          });
+          let domainAnalysis: Record<string, unknown>;
 
-          const toolCall = gpt4oResponse.choices[0]?.message?.tool_calls?.[0];
-          if (!toolCall || toolCall.type !== "function" || !toolCall.function?.arguments) {
-            throw new Error("GPT-4o did not return structured output");
+          try {
+            const gpt4oResponse = await withTimeout(
+              getOpenAI().chat.completions.create({
+                model: "gpt-4o",
+                messages: [
+                  { role: "system", content: buildGpt4oPrompt() },
+                  {
+                    role: "user",
+                    content: `Assess this organization's AI leadership readiness:\n\n${description}`,
+                  },
+                ],
+                tools: [
+                  { type: "function", function: domainAnalysisSchema },
+                ],
+                tool_choice: {
+                  type: "function",
+                  function: { name: "deliver_domain_analysis" },
+                },
+                temperature: 0.3,
+              }),
+              25000,
+              "GPT-4o"
+            );
+
+            console.log("[demo] GPT-4o raw finish_reason:", gpt4oResponse.choices[0]?.finish_reason);
+
+            const toolCall = gpt4oResponse.choices[0]?.message?.tool_calls?.[0];
+            if (!toolCall || toolCall.type !== "function" || !toolCall.function?.arguments) {
+              const debugInfo = JSON.stringify({
+                finish_reason: gpt4oResponse.choices[0]?.finish_reason,
+                hasToolCalls: !!gpt4oResponse.choices[0]?.message?.tool_calls,
+                toolCallCount: gpt4oResponse.choices[0]?.message?.tool_calls?.length ?? 0,
+                contentPreview: gpt4oResponse.choices[0]?.message?.content?.slice(0, 200),
+              });
+              console.error("[demo] GPT-4o no tool call:", debugInfo);
+              throw new Error("GPT-4o did not return a function call");
+            }
+
+            domainAnalysis = JSON.parse(toolCall.function.arguments);
+
+            const domainCount = Array.isArray((domainAnalysis as { domains?: unknown[] }).domains)
+              ? (domainAnalysis as { domains: unknown[] }).domains.length
+              : "unknown";
+            console.log(`[demo] GPT-4o complete — ${domainCount} domains parsed`);
+          } catch (gptErr) {
+            const msg = gptErr instanceof Error ? gptErr.message : String(gptErr);
+            console.error("[demo] GPT-4o failed:", msg);
+            send({ stage: "error", error: `Stage 1 (GPT-4o) failed: ${msg}` });
+            controller.close();
+            return;
           }
-
-          const domainAnalysis = JSON.parse(
-            (toolCall as { type: "function"; function: { arguments: string } }).function.arguments
-          );
 
           // Send Stage 1 results to client
-          controller.enqueue(
-            encoder.encode(
-              `data: ${JSON.stringify({ stage: "domains_complete", domainAnalysis })}\n\n`
-            )
-          );
+          send({ stage: "domains_complete", domainAnalysis });
 
           // ── STAGE 2: Claude strategic synthesis ──
-          controller.enqueue(
-            encoder.encode(
-              `data: ${JSON.stringify({ stage: "synthesizing", message: "Stage 2: Claude synthesizing strategic recommendations..." })}\n\n`
-            )
-          );
+          console.log("[demo] Stage 2: Starting Claude synthesis...");
+          send({ stage: "synthesizing", message: "Stage 2: Claude synthesizing strategic recommendations..." });
 
-          const claudeResponse = await getAnthropic().messages.create({
-            model: "claude-sonnet-4-6",
-            max_tokens: 2000,
-            system: buildClaudePrompt(),
-            messages: [
-              {
-                role: "user",
-                content: `Original organization description:\n${description}\n\nStructured domain analysis from GPT-4o:\n${JSON.stringify(domainAnalysis, null, 2)}`,
-              },
-            ],
-          });
+          let strategicSynthesis: Record<string, unknown>;
 
-          // Extract text from Claude's response
-          const claudeText = claudeResponse.content
-            .filter((block): block is Anthropic.TextBlock => block.type === "text")
-            .map((block) => block.text)
-            .join("");
-
-          let strategicSynthesis;
           try {
-            strategicSynthesis = JSON.parse(claudeText);
-          } catch {
-            // If Claude didn't return clean JSON, try extracting it
-            const jsonMatch = claudeText.match(/\{[\s\S]*\}/);
-            if (jsonMatch) {
-              strategicSynthesis = JSON.parse(jsonMatch[0]);
-            } else {
-              throw new Error("Claude did not return valid JSON");
+            const claudeResponse = await withTimeout(
+              getAnthropic().messages.create({
+                model: "claude-sonnet-4-6",
+                max_tokens: 2000,
+                system: buildClaudePrompt(),
+                messages: [
+                  {
+                    role: "user",
+                    content: `Original organization description:\n${description}\n\nStructured domain analysis from GPT-4o:\n${JSON.stringify(domainAnalysis, null, 2)}`,
+                  },
+                ],
+              }),
+              30000,
+              "Claude"
+            );
+
+            console.log("[demo] Claude response — stop_reason:", claudeResponse.stop_reason, "blocks:", claudeResponse.content.length);
+
+            // Extract text from Claude's response
+            const claudeText = claudeResponse.content
+              .filter((block): block is Anthropic.TextBlock => block.type === "text")
+              .map((block) => block.text)
+              .join("");
+
+            console.log("[demo] Claude text length:", claudeText.length, "| first 300 chars:", claudeText.slice(0, 300));
+
+            if (!claudeText.trim()) {
+              throw new Error("Claude returned empty text response");
             }
+
+            // Parse JSON — handle various output formats Claude might use
+            try {
+              // Attempt 1: Direct JSON parse
+              strategicSynthesis = JSON.parse(claudeText.trim());
+            } catch {
+              // Attempt 2: Strip markdown code fences
+              const stripped = claudeText
+                .replace(/^```(?:json)?\s*\n?/m, "")
+                .replace(/\n?```\s*$/m, "")
+                .trim();
+              try {
+                strategicSynthesis = JSON.parse(stripped);
+              } catch {
+                // Attempt 3: Extract JSON object via regex
+                const jsonMatch = stripped.match(/\{[\s\S]*\}/);
+                if (jsonMatch) {
+                  strategicSynthesis = JSON.parse(jsonMatch[0]);
+                } else {
+                  console.error("[demo] Claude JSON parse failed. Full text:", claudeText);
+                  throw new Error("Claude response was not valid JSON");
+                }
+              }
+            }
+
+            console.log("[demo] Claude synthesis parsed — keys:", Object.keys(strategicSynthesis).join(", "));
+          } catch (claudeErr) {
+            const msg = claudeErr instanceof Error ? claudeErr.message : String(claudeErr);
+            console.error("[demo] Claude failed:", msg);
+            send({ stage: "error", error: `Stage 2 (Claude) failed: ${msg}` });
+            controller.close();
+            return;
           }
 
-          // Send Stage 2 results
-          controller.enqueue(
-            encoder.encode(
-              `data: ${JSON.stringify({ stage: "complete", strategicSynthesis, remaining: rateResult.remaining })}\n\n`
-            )
-          );
+          // Send Stage 2 results + close stream
+          send({ stage: "complete", strategicSynthesis, remaining: rateResult.remaining });
+          console.log("[demo] Pipeline complete ✓");
 
           controller.close();
         } catch (err) {
           const message =
             err instanceof Error ? err.message : "An unexpected error occurred";
-          console.error("Assessment pipeline error:", err);
-          controller.enqueue(
-            encoder.encode(
-              `data: ${JSON.stringify({ stage: "error", error: message })}\n\n`
-            )
-          );
+          console.error("[demo] Pipeline error:", err);
+          send({ stage: "error", error: message });
           controller.close();
         }
       },
@@ -175,7 +255,7 @@ export async function POST(request: NextRequest) {
       },
     });
   } catch (error) {
-    console.error("Assessment API error:", error);
+    console.error("[demo] Top-level API error:", error);
     return NextResponse.json(
       {
         error: "Something went wrong. Please try again.",
