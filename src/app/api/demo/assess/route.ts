@@ -59,7 +59,13 @@ function condenseDomainAnalysis(analysis: Record<string, unknown>) {
   };
 }
 
-export const maxDuration = 60; // Vercel function timeout
+// Vercel Pro allows up to 300s; set 120s to be safe for two LLM calls
+export const maxDuration = 120;
+
+// Time budget: total wall-clock budget for both LLM calls
+const TOTAL_BUDGET_MS = 110_000; // 110s — leave 10s buffer for Vercel overhead
+const GPT4O_TIMEOUT_MS = 45_000; // Stage 1 max
+const CLAUDE_MIN_MS = 20_000; // Claude must get at least 20s
 
 /**
  * Race a promise against a timeout so we don't silently hang.
@@ -153,6 +159,7 @@ export async function POST(request: NextRequest) {
           send({ stage: "analyzing", message: "Analyzing 12 subdimensions..." });
 
           let domainAnalysis: Record<string, unknown>;
+          const stageOneStart = Date.now();
 
           try {
             const gpt4oResponse = await withTimeout(
@@ -174,7 +181,7 @@ export async function POST(request: NextRequest) {
                 },
                 temperature: 0.3,
               }),
-              25000,
+              GPT4O_TIMEOUT_MS,
               "GPT-4o"
             );
 
@@ -222,6 +229,11 @@ export async function POST(request: NextRequest) {
             const condensed = condenseDomainAnalysis(domainAnalysis);
             console.log("[demo] Condensed analysis length:", JSON.stringify(condensed).length, "chars (from", JSON.stringify(domainAnalysis).length, ")");
 
+            // Dynamic timeout: give Claude whatever time remains from the budget
+            const elapsed = Date.now() - stageOneStart;
+            const claudeTimeout = Math.max(CLAUDE_MIN_MS, TOTAL_BUDGET_MS - elapsed);
+            console.log(`[demo] Claude timeout: ${(claudeTimeout / 1000).toFixed(1)}s (${(elapsed / 1000).toFixed(1)}s elapsed)`);
+
             const claudeResponse = await withTimeout(
               getAnthropic().messages.create({
                 model: "claude-sonnet-4-6",
@@ -234,7 +246,7 @@ export async function POST(request: NextRequest) {
                   },
                 ],
               }),
-              50000, // 50s — safely under 60s Vercel limit
+              claudeTimeout,
               "Claude"
             );
 
