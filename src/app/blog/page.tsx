@@ -1,8 +1,8 @@
-import Link from "next/link";
 import { getSupabase } from "@/lib/supabase";
 import { SectionHeading } from "@/components/ui/SectionHeading";
+import { FeaturedPost } from "@/components/blog/FeaturedPost";
 import { BlogCard } from "@/components/blog/BlogCard";
-import { Badge } from "@/components/ui/Badge";
+import { TagFilter } from "@/components/blog/TagFilter";
 import type { BlogPostCard } from "@/types/blog";
 
 export const revalidate = 60;
@@ -24,15 +24,25 @@ export default async function BlogPage({ searchParams }: Props) {
 
   const allPosts = (posts ?? []) as BlogPostCard[];
 
-  // Extract unique tags from all posts
-  const allTags = Array.from(
-    new Set(allPosts.flatMap((p) => p.tags ?? []))
-  ).sort();
+  // Extract unique tags sorted by frequency (most used first)
+  const tagCounts = new Map<string, number>();
+  allPosts.forEach((p) =>
+    (p.tags ?? []).forEach((t) => tagCounts.set(t, (tagCounts.get(t) ?? 0) + 1))
+  );
+  const allTags = Array.from(tagCounts.entries())
+    .sort((a, b) => b[1] - a[1])
+    .map(([t]) => t);
+
+  // Featured post = most recent (only when viewing all, not filtered by tag)
+  const featuredPost = !tag && allPosts.length > 0 ? allPosts[0] : null;
+
+  // Remaining posts (exclude featured when showing)
+  const remainingPosts = featuredPost ? allPosts.slice(1) : allPosts;
 
   // Filter by tag if specified
   const filtered = tag
-    ? allPosts.filter((p) => p.tags?.includes(tag))
-    : allPosts;
+    ? remainingPosts.filter((p) => p.tags?.includes(tag))
+    : remainingPosts;
 
   return (
     <div className="pt-32 pb-32">
@@ -44,48 +54,49 @@ export default async function BlogPage({ searchParams }: Props) {
           description="Insights on AI systems, governance, and organizational transformation."
         />
 
-        {/* Tag filters */}
-        {allTags.length > 0 && (
-          <div className="flex gap-2 flex-wrap mt-12 mb-10">
-            <Link href="/blog">
-              <button
-                className={`px-4 py-2 rounded-lg font-mono text-[11px] tracking-wider uppercase transition-all border ${
-                  !tag
-                    ? "bg-accent-cyan/10 border-accent-cyan/30 text-accent-cyan"
-                    : "bg-transparent border-border-default text-text-secondary hover:text-text-primary hover:border-text-muted"
-                }`}
-              >
-                All
-              </button>
-            </Link>
-            {allTags.map((t) => (
-              <Link key={t} href={`/blog?tag=${encodeURIComponent(t)}`}>
-                <button
-                  className={`px-4 py-2 rounded-lg font-mono text-[11px] tracking-wider uppercase transition-all border ${
-                    tag === t
-                      ? "bg-accent-cyan/10 border-accent-cyan/30 text-accent-cyan"
-                      : "bg-transparent border-border-default text-text-secondary hover:text-text-primary hover:border-text-muted"
-                  }`}
-                >
-                  {t}
-                </button>
-              </Link>
-            ))}
+        {/* ── Featured Post Hero ── */}
+        {featuredPost && (
+          <div className="mt-12 mb-14">
+            <p className="font-mono text-[11px] tracking-[2px] uppercase text-accent-warm font-medium mb-4">
+              Latest
+            </p>
+            <FeaturedPost post={featuredPost} />
           </div>
         )}
 
-        {/* Posts grid */}
+        {/* ── Divider ── */}
+        {featuredPost && (
+          <div className="h-px bg-gradient-to-r from-transparent via-accent-warm/20 to-transparent mb-14" />
+        )}
+
+        {/* ── Tag filter bar ── */}
+        {allTags.length > 0 && (
+          <div className="mb-10">
+            <p className="font-mono text-[11px] tracking-[2px] uppercase text-accent-warm font-medium mb-4">
+              {tag ? `Filtered by "${tag}"` : "All Posts"}
+            </p>
+            <TagFilter tags={allTags} activeTag={tag} maxVisible={6} />
+          </div>
+        )}
+
+        {/* ── Posts grid ── */}
         {filtered.length > 0 ? (
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5 mt-12">
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5">
             {filtered.map((post) => (
               <BlogCard key={post.id} post={post} />
             ))}
           </div>
-        ) : (
+        ) : allPosts.length === 0 ? (
           <div className="mt-16 text-center py-20 rounded-xl border border-border-subtle bg-bg-secondary/50">
             <p className="text-text-muted text-lg">
               Coming soon — check back for insights on AI systems, governance,
               and organizational transformation.
+            </p>
+          </div>
+        ) : (
+          <div className="mt-8 text-center py-16 rounded-xl border border-border-subtle bg-bg-secondary/50">
+            <p className="text-text-muted">
+              No posts found with tag &ldquo;{tag}&rdquo;.
             </p>
           </div>
         )}
