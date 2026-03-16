@@ -16,6 +16,34 @@ function getAnthropic() {
 const MIN_INPUT_LENGTH = 50;
 const MAX_INPUT_LENGTH = 3000;
 
+/**
+ * Strip verbose fields from the GPT-4o domain analysis before
+ * forwarding to Claude. Keeps scores, names, and summaries —
+ * drops full justifications, risk lists, and action lists to
+ * cut input tokens roughly in half.
+ */
+function condenseDomainAnalysis(analysis: Record<string, unknown>) {
+  const domains = (analysis as { domains?: Array<Record<string, unknown>> }).domains;
+  if (!Array.isArray(domains)) return analysis;
+
+  return {
+    domains: domains.map((d) => ({
+      domainName: d.domainName,
+      domainSummary: d.domainSummary,
+      subdimensions: Array.isArray(d.subdimensions)
+        ? (d.subdimensions as Array<Record<string, unknown>>).map((s) => ({
+            subdimensionName: s.subdimensionName,
+            score: s.score,
+            // One-line summary instead of full justification + arrays
+            keyFinding: typeof s.justification === "string"
+              ? (s.justification as string).split(".")[0] + "."
+              : "",
+          }))
+        : [],
+    })),
+  };
+}
+
 export const maxDuration = 60; // Vercel function timeout
 
 /**
@@ -168,19 +196,24 @@ export async function POST(request: NextRequest) {
           let strategicSynthesis: Record<string, unknown>;
 
           try {
+            // Condense domain analysis for Claude — full JSON is too verbose
+            // and inflates input tokens / latency. Keep scores + key info only.
+            const condensed = condenseDomainAnalysis(domainAnalysis);
+            console.log("[demo] Condensed analysis length:", JSON.stringify(condensed).length, "chars (from", JSON.stringify(domainAnalysis).length, ")");
+
             const claudeResponse = await withTimeout(
               getAnthropic().messages.create({
                 model: "claude-sonnet-4-6",
-                max_tokens: 2000,
+                max_tokens: 1500,
                 system: buildClaudePrompt(),
                 messages: [
                   {
                     role: "user",
-                    content: `Original organization description:\n${description}\n\nStructured domain analysis from GPT-4o:\n${JSON.stringify(domainAnalysis, null, 2)}`,
+                    content: `Organization description:\n${description}\n\nDomain analysis (3 domains, 12 subdimensions):\n${JSON.stringify(condensed, null, 2)}`,
                   },
                 ],
               }),
-              30000,
+              50000, // 50s — safely under 60s Vercel limit
               "Claude"
             );
 
