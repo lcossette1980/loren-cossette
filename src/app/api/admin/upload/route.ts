@@ -20,8 +20,38 @@ export async function POST(request: NextRequest) {
       );
     }
 
-    const originalName = file.name;
-    const filePath = `${path}/${Date.now()}-${originalName}`;
+    // File type validation — images only
+    const ALLOWED_TYPES = ["image/jpeg", "image/png", "image/gif", "image/webp", "image/avif"];
+    const ALLOWED_EXTENSIONS = [".jpg", ".jpeg", ".png", ".gif", ".webp", ".avif"];
+    const MAX_FILE_SIZE = 5 * 1024 * 1024; // 5MB
+
+    if (!ALLOWED_TYPES.includes(file.type)) {
+      return NextResponse.json(
+        { error: `File type not allowed. Accepted: ${ALLOWED_EXTENSIONS.join(", ")}` },
+        { status: 400 }
+      );
+    }
+
+    const ext = file.name.toLowerCase().slice(file.name.lastIndexOf("."));
+    if (!ALLOWED_EXTENSIONS.includes(ext)) {
+      return NextResponse.json(
+        { error: `File extension not allowed. Accepted: ${ALLOWED_EXTENSIONS.join(", ")}` },
+        { status: 400 }
+      );
+    }
+
+    if (file.size > MAX_FILE_SIZE) {
+      return NextResponse.json(
+        { error: "File too large. Maximum size is 5MB." },
+        { status: 400 }
+      );
+    }
+
+    // Sanitize filename — strip path traversal, special chars
+    const safeName = file.name
+      .replace(/[^a-zA-Z0-9._-]/g, "_")
+      .replace(/\.{2,}/g, ".");
+    const filePath = `${path}/${Date.now()}-${safeName}`;
 
     const supabase = getSupabase();
     const { error } = await supabase.storage

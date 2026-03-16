@@ -17,6 +17,21 @@ const MIN_INPUT_LENGTH = 50;
 const MAX_INPUT_LENGTH = 3000;
 
 /**
+ * Sanitize user input before sending to LLM prompts.
+ * Strips control characters and excessive whitespace.
+ */
+function sanitizeInput(text: string): string {
+  return text
+    // Remove null bytes and control chars (except newlines/tabs)
+    .replace(/[\x00-\x08\x0B\x0C\x0E-\x1F\x7F]/g, "")
+    // Collapse excessive whitespace
+    .replace(/[ \t]{10,}/g, "  ")
+    // Limit consecutive newlines
+    .replace(/\n{5,}/g, "\n\n\n")
+    .trim();
+}
+
+/**
  * Strip verbose fields from the GPT-4o domain analysis before
  * forwarding to Claude. Keeps scores, names, and summaries —
  * drops full justifications, risk lists, and action lists to
@@ -66,7 +81,7 @@ export async function POST(request: NextRequest) {
   try {
     // 1. Parse and validate input
     const body = await request.json();
-    const description = body?.description?.trim();
+    const description = sanitizeInput(body?.description ?? "");
 
     if (!description || description.length < MIN_INPUT_LENGTH) {
       return NextResponse.json(
@@ -87,18 +102,14 @@ export async function POST(request: NextRequest) {
     }
 
     // 2. Verify API keys are present
-    if (!process.env.OPENAI_API_KEY) {
-      console.error("[demo] OPENAI_API_KEY is not set");
+    if (!process.env.OPENAI_API_KEY || !process.env.ANTHROPIC_API_KEY) {
+      console.error("[demo] Missing API key(s):", {
+        openai: !!process.env.OPENAI_API_KEY,
+        anthropic: !!process.env.ANTHROPIC_API_KEY,
+      });
       return NextResponse.json(
-        { error: "Service configuration error (OpenAI key missing).", code: "CONFIG_ERROR" },
-        { status: 500 }
-      );
-    }
-    if (!process.env.ANTHROPIC_API_KEY) {
-      console.error("[demo] ANTHROPIC_API_KEY is not set");
-      return NextResponse.json(
-        { error: "Service configuration error (Anthropic key missing).", code: "CONFIG_ERROR" },
-        { status: 500 }
+        { error: "Service temporarily unavailable. Please try again later.", code: "CONFIG_ERROR" },
+        { status: 503 }
       );
     }
 
@@ -127,10 +138,19 @@ export async function POST(request: NextRequest) {
           controller.enqueue(encoder.encode(`data: ${JSON.stringify(data)}\n\n`));
         };
 
+        // SSE keepalive — prevents proxy/CDN timeouts during long LLM calls
+        const keepalive = setInterval(() => {
+          try {
+            controller.enqueue(encoder.encode(": keepalive\n\n"));
+          } catch {
+            // Stream already closed
+          }
+        }, 15000);
+
         try {
           // ── STAGE 1: GPT-4o structured domain analysis ──
           console.log("[demo] Stage 1: Starting GPT-4o domain analysis...");
-          send({ stage: "analyzing", message: "Stage 1: GPT-4o analyzing 12 subdimensions..." });
+          send({ stage: "analyzing", message: "Analyzing 12 subdimensions..." });
 
           let domainAnalysis: Record<string, unknown>;
 
@@ -181,7 +201,8 @@ export async function POST(request: NextRequest) {
           } catch (gptErr) {
             const msg = gptErr instanceof Error ? gptErr.message : String(gptErr);
             console.error("[demo] GPT-4o failed:", msg);
-            send({ stage: "error", error: `Stage 1 (GPT-4o) failed: ${msg}` });
+            clearInterval(keepalive);
+            send({ stage: "error", error: "Domain analysis failed. Please try again." });
             controller.close();
             return;
           }
@@ -191,7 +212,7 @@ export async function POST(request: NextRequest) {
 
           // ── STAGE 2: Claude strategic synthesis ──
           console.log("[demo] Stage 2: Starting Claude synthesis...");
-          send({ stage: "synthesizing", message: "Stage 2: Claude synthesizing strategic recommendations..." });
+          send({ stage: "synthesizing", message: "Synthesizing strategic recommendations..." });
 
           let strategicSynthesis: Record<string, unknown>;
 
@@ -259,21 +280,24 @@ export async function POST(request: NextRequest) {
           } catch (claudeErr) {
             const msg = claudeErr instanceof Error ? claudeErr.message : String(claudeErr);
             console.error("[demo] Claude failed:", msg);
-            send({ stage: "error", error: `Stage 2 (Claude) failed: ${msg}` });
+            clearInterval(keepalive);
+            send({ stage: "error", error: "Strategic synthesis failed. Please try again." });
             controller.close();
             return;
           }
 
           // Send Stage 2 results + close stream
+          clearInterval(keepalive);
           send({ stage: "complete", strategicSynthesis, remaining: rateResult.remaining });
           console.log("[demo] Pipeline complete ✓");
 
           controller.close();
         } catch (err) {
+          clearInterval(keepalive);
           const message =
             err instanceof Error ? err.message : "An unexpected error occurred";
           console.error("[demo] Pipeline error:", err);
-          send({ stage: "error", error: message });
+          send({ stage: "error", error: "Something went wrong. Please try again." });
           controller.close();
         }
       },

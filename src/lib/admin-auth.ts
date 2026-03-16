@@ -1,5 +1,6 @@
 import { SignJWT, jwtVerify } from "jose";
 import { NextRequest } from "next/server";
+import { timingSafeEqual } from "crypto";
 
 const COOKIE_NAME = "admin_token";
 
@@ -27,6 +28,23 @@ export async function verifyAdminToken(request: NextRequest): Promise<boolean> {
   }
 }
 
+/**
+ * Constant-time password comparison to prevent timing attacks.
+ */
 export function verifyPassword(password: string): boolean {
-  return password === process.env.ADMIN_PASSWORD!;
+  const expected = process.env.ADMIN_PASSWORD;
+  if (!expected) return false;
+
+  const a = Buffer.from(password);
+  const b = Buffer.from(expected);
+
+  // Pad to same length to avoid leaking length info
+  if (a.length !== b.length) {
+    const padded = Buffer.alloc(b.length);
+    a.copy(padded);
+    try { timingSafeEqual(padded, b); } catch { /* ignore */ }
+    return false;
+  }
+
+  return timingSafeEqual(a, b);
 }
