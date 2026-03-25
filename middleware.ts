@@ -51,7 +51,8 @@ export async function middleware(request: NextRequest) {
   }
 
   // ── Admin API protection (belt + suspenders with route-level checks) ──
-  if (pathname.startsWith("/api/admin")) {
+  // Exclude the auth endpoint — it handles its own password verification
+  if (pathname.startsWith("/api/admin") && !pathname.startsWith("/api/admin/auth")) {
     const token = request.cookies.get(ADMIN_COOKIE)?.value;
     const secret = getSecret();
 
