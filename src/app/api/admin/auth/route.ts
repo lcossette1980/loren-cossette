@@ -17,8 +17,21 @@ export async function POST(request: NextRequest) {
     const hasAdminSecret = !!process.env.ADMIN_SECRET;
     console.log("[admin-auth] ADMIN_PASSWORD set:", hasAdminPw, "| ADMIN_SECRET set:", hasAdminSecret, "| password length:", password.length);
 
+    if (!process.env.ADMIN_PASSWORD) {
+      return NextResponse.json(
+        { error: "Server misconfigured: ADMIN_PASSWORD env var is not set." },
+        { status: 401 }
+      );
+    }
+
+    if (!process.env.ADMIN_SECRET) {
+      return NextResponse.json(
+        { error: "Server misconfigured: ADMIN_SECRET env var is not set." },
+        { status: 401 }
+      );
+    }
+
     if (!verifyPassword(password)) {
-      console.log("[admin-auth] Password verification failed. Expected length:", process.env.ADMIN_PASSWORD?.length ?? "N/A", "| Got length:", password.length);
       return NextResponse.json(
         { error: "Invalid password." },
         { status: 401 }
