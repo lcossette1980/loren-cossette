@@ -13,7 +13,12 @@ export async function POST(request: NextRequest) {
       );
     }
 
+    const hasAdminPw = !!process.env.ADMIN_PASSWORD;
+    const hasAdminSecret = !!process.env.ADMIN_SECRET;
+    console.log("[admin-auth] ADMIN_PASSWORD set:", hasAdminPw, "| ADMIN_SECRET set:", hasAdminSecret, "| password length:", password.length);
+
     if (!verifyPassword(password)) {
+      console.log("[admin-auth] Password verification failed. Expected length:", process.env.ADMIN_PASSWORD?.length ?? "N/A", "| Got length:", password.length);
       return NextResponse.json(
         { error: "Invalid password." },
         { status: 401 }
