@@ -10,27 +10,27 @@ import { Bot, Search, ShieldCheck, Users } from "lucide-react";
 const modes = [
   {
     icon: Bot,
-    title: "AI Automation & Agentic Workflows",
+    title: "Automate Complex, High-Stakes Workflows",
     description:
-      "Production multi-agent systems, tool-calling pipelines, and autonomous workflows that run in the real world — not just in notebooks.",
+      "Turn manual, error-prone processes into production AI systems that run reliably — multi-agent orchestration, tool-calling pipelines, and autonomous workflows.",
   },
   {
     icon: Search,
-    title: "RAG & Retrieval Evaluation",
+    title: "Turn Institutional Knowledge Into Searchable Systems",
     description:
-      "End-to-end retrieval-augmented generation: embedding pipelines, vector stores, hybrid search, reranking, and evaluation frameworks.",
+      "Your organization's knowledge is trapped in documents, databases, and people's heads. I build retrieval systems that make it findable, trustworthy, and actionable.",
   },
   {
     icon: ShieldCheck,
-    title: "Compliance & Accessibility at Scale",
+    title: "Make Compliance Manageable at Scale",
     description:
-      "Automated WCAG auditing, remediation pipelines, and governance frameworks that turn 56,000+ files into structured, compliant output.",
+      "Facing a WCAG, Section 508, or federal compliance deadline with thousands of files? I build automated pipelines that turn that backlog into structured, auditable output.",
   },
   {
     icon: Users,
-    title: "AI Transformation & Exec Enablement",
+    title: "Get Your AI Initiative Out of Pilot Purgatory",
     description:
-      "Strategic AI roadmaps, stakeholder alignment, and change management for organizations where not everyone is on board.",
+      "You've proven the concept but can't get to production. I build the strategy, governance, and change management that gets AI adopted — not just approved.",
   },
 ];
 
@@ -39,9 +39,9 @@ export function EngagementModes() {
     <section className="py-32 lg:py-40">
       <div className="max-w-6xl mx-auto px-6 md:px-8">
         <SectionHeading
-          label="Capabilities"
-          heading="I can help with"
-          accentWord="help"
+          label="Problems I Solve"
+          heading="Where I create impact"
+          accentWord="impact"
           center
         />
 

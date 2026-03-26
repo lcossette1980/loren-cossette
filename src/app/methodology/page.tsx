@@ -154,10 +154,10 @@ export default function MethodologyPage() {
     <div className="pt-32 pb-32">
       <div className="max-w-3xl mx-auto px-6 md:px-8">
         <SectionHeading
-          label="Solo Engineer Playbook"
-          heading="The AI automation engineer workflow"
-          accentWord="workflow"
-          description="Seven phases from idea to production. A codified methodology built from deploying AI systems in the real world."
+          label="How I Work"
+          heading="How I take AI systems from idea to production"
+          accentWord="production"
+          description="Seven phases from problem discovery to production handoff. A codified methodology built from deploying AI systems in high-stakes environments."
         />
 
         {/* Tab bar */}
@@ -191,7 +191,7 @@ export default function MethodologyPage() {
             <Reveal delay={0.3}>
               <Card className="mt-8 p-8 text-center">
                 <p className="text-sm text-text-secondary italic leading-relaxed max-w-lg mx-auto">
-                  &ldquo;The best solo AI automation engineers aren&apos;t the
+                  &ldquo;The best applied AI builders aren&apos;t the
                   ones who write the most code. They&apos;re the ones who make
                   the{" "}
                   <span className="text-accent-cyan font-semibold not-italic">

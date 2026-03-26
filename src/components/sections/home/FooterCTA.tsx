@@ -16,13 +16,13 @@ export function FooterCTA() {
           Work With Me
         </p>
         <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold mb-6 text-text-primary">
-          Ready to deploy{" "}
-          <span className="text-accent-cyan">real AI systems</span>?
+          Ready to turn your AI ambition into a{" "}
+          <span className="text-accent-cyan">working system</span>?
         </h2>
         <p className="text-text-secondary max-w-lg mx-auto mb-10 text-base md:text-lg leading-relaxed">
-          Organizations hire me to design and deploy production AI systems that
-          move from concept to operational reality. Let&apos;s talk about your
-          challenge.
+          Whether you need a strategy, a build, or both — I help organizations
+          close the gap between AI ambition and operational reality. Let&apos;s
+          talk about what you&apos;re trying to solve.
         </p>
         <div className="flex gap-4 justify-center flex-wrap">
           <Button

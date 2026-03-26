@@ -50,7 +50,7 @@ export default function AboutPage() {
               <p className="text-text-secondary text-lg leading-relaxed mb-4">
                 As a{" "}
                 <strong className="text-text-primary font-semibold">
-                  sole AI automation engineer,
+                  applied AI strategist and builder,
                 </strong>{" "}
                 I own the full lifecycle &mdash; problem
                 discovery, stakeholder alignment, architecture, code, deployment,

@@ -29,7 +29,7 @@ export function AboutTeaser() {
           <p className="text-base md:text-lg text-text-secondary leading-relaxed">
             As a{" "}
             <strong className="text-text-primary font-semibold">
-              full-lifecycle AI engineer
+              full-lifecycle AI strategist and builder
             </strong>
             , I own every phase &mdash; problem discovery, stakeholder alignment,
             architecture, code, deployment, and change management. Recent work

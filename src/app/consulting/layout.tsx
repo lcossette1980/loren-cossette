@@ -36,7 +36,7 @@ const serviceSchema = {
   "@type": "ProfessionalService",
   name: "Loren Cossette AI Consulting",
   description:
-    "AI systems architecture, automation consulting, and organizational AI transformation for governments, enterprises, and startups.",
+    "AI strategy, system design and build, and organizational AI transformation for public sector, mission-driven organizations, and teams with high-stakes workflows.",
   url: `${siteUrl}/consulting`,
   provider: {
     "@type": "Person",

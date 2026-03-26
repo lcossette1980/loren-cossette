@@ -1,7 +1,6 @@
 "use client";
 
 import { Suspense, lazy, useState, useEffect } from "react";
-import Image from "next/image";
 import { Reveal } from "@/components/animations/Reveal";
 import { Button } from "@/components/ui/Button";
 import { personal } from "@/data/personal";
@@ -65,20 +64,6 @@ export function HeroSection() {
 
       {/* Content */}
       <div className="relative z-10 flex flex-col items-center text-center max-w-3xl mx-auto px-6">
-        <Reveal>
-          <div className="relative w-[140px] h-[140px] md:w-[160px] md:h-[160px] mb-8">
-            <div className="absolute -inset-1 rounded-full bg-gradient-to-br from-accent-cyan/30 via-accent-blue/20 to-accent-purple/30 blur-md animate-[glow-pulse_4s_ease-in-out_infinite]" />
-            <Image
-              src="/images/headshot.png"
-              alt="Loren Cossette"
-              width={160}
-              height={160}
-              className="relative rounded-full object-cover border-2 border-accent-cyan/20"
-              priority
-            />
-          </div>
-        </Reveal>
-
         <Reveal delay={0.1}>
           <p className="font-mono text-[11px] tracking-[2px] uppercase text-accent-warm font-medium mb-4">
             {personal.title}
@@ -94,7 +79,7 @@ export function HeroSection() {
 
         <Reveal delay={0.25}>
           <p className="text-lg md:text-xl lg:text-2xl font-semibold text-text-primary max-w-xl leading-snug mb-4">
-            Most AI initiatives fail between vision and execution.{" "}
+            Your AI initiative is stuck between strategy and reality.{" "}
             <span className="text-accent-cyan">I close that gap.</span>
           </p>
         </Reveal>
@@ -112,7 +97,7 @@ export function HeroSection() {
               <MapPin size={12} className="text-accent-warm/60" /> {personal.location}
             </span>
             <span className="hidden sm:inline text-border-default">·</span>
-            <span>Government · Enterprise · Academic</span>
+            <span>Public Sector · Mission-Driven Orgs · High-Stakes Workflows</span>
           </div>
         </Reveal>
 

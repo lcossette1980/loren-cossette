@@ -99,7 +99,7 @@ export default function OverrideAboutPage() {
 
               <Reveal delay={0.2}>
                 <p className="font-serif text-lg text-[#ccc] leading-relaxed mb-5">
-                  As the sole AI automation engineer for Multnomah County, Loren owns the full
+                  As the applied AI strategist and builder for Multnomah County, Loren owns the full
                   lifecycle &mdash; from problem discovery and stakeholder alignment through
                   architecture, code, deployment, and change management.
                 </p>

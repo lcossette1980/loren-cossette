@@ -6,7 +6,7 @@ import { Github, Linkedin, Mail, ExternalLink } from "lucide-react";
 const seoKeywords = [
   { label: "AI Consulting", href: "/consulting" },
   { label: "AI Strategy", href: "/consulting" },
-  { label: "AI Systems Architecture", href: "/projects" },
+  { label: "AI Systems Design & Build", href: "/projects" },
   { label: "RAG Systems", href: "/projects/ai-commander" },
   { label: "Agentic AI", href: "/projects/ai-commander" },
   { label: "AI Automation", href: "/projects/wcag-remediation" },
@@ -118,7 +118,7 @@ export function Footer() {
 
         <div className="mt-12 pt-8 border-t border-border-default flex flex-col md:flex-row justify-between items-center gap-4">
           <p className="font-mono text-[10px] tracking-[2px] text-text-muted uppercase">
-            &copy; {new Date().getFullYear()} Loren Cossette &middot; AI Systems Architect &amp; Automation Consultant
+            &copy; {new Date().getFullYear()} Loren Cossette &middot; Applied AI Strategist, Architect &amp; Builder
           </p>
           <p className="font-mono text-[10px] tracking-[2px] text-text-muted uppercase">
             San Antonio, TX &middot; Available Worldwide

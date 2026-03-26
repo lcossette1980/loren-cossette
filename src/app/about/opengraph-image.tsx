@@ -2,7 +2,7 @@ import { ImageResponse } from "next/og";
 import { readFile } from "node:fs/promises";
 import { join } from "node:path";
 
-export const alt = "About Loren Cossette — AI Systems Architect";
+export const alt = "About Loren Cossette — Applied AI Strategist & Builder";
 export const size = { width: 1200, height: 630 };
 export const contentType = "image/png";
 
@@ -131,7 +131,7 @@ export default async function OGImage() {
             letterSpacing: "1px",
           }}
         >
-          AI Systems Architect & Automation Consultant
+          Applied AI Strategist, Architect & Builder
         </p>
 
         {/* Description */}
@@ -145,8 +145,8 @@ export default async function OGImage() {
             lineHeight: 1.5,
           }}
         >
-          Sole AI automation engineer owning the full lifecycle — strategy,
-          architecture, code, deployment, and change management.
+          Applied AI strategist and builder owning the full lifecycle —
+          strategy, architecture, code, deployment, and change management.
         </p>
 
         {/* Bottom bar */}

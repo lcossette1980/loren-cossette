@@ -241,7 +241,7 @@ export const outcomes = [
 
 export const authorBio = {
   name: "Loren T. Cossette",
-  title: "AI Systems Architect & Change Strategist",
+  title: "Applied AI Strategist, Architect & Builder",
   credentials: [
     "20-year military career — E-9 (top 1% of enlisted leadership)",
     "Ph.D. candidate in Leadership & Program Evaluation",

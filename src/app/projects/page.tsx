@@ -55,9 +55,9 @@ export default function ProjectsPage() {
       <div className="max-w-6xl mx-auto px-6 md:px-8">
         <SectionHeading
           label="Projects"
-          heading="Built & shipped"
-          accentWord="shipped"
-          description="Production systems I've designed, built, and deployed."
+          heading="Complex problems, working systems"
+          accentWord="working"
+          description="Case studies in turning complex organizational problems into deployed AI systems with measurable outcomes."
         />
 
         {/* ── Featured Project Hero ── */}

@@ -3,10 +3,10 @@ import type { PersonalInfo } from "@/types";
 export const personal: PersonalInfo = {
   name: "Loren Cossette",
   suffix: "Ph.D. (c)",
-  title: "AI Systems Architect & Automation Consultant",
-  subtitle: "AI Strategy \u2192 Architecture \u2192 Production",
+  title: "Applied AI Strategist, Architect & Builder",
+  subtitle: "From ambiguous AI problems to working systems",
   tagline:
-    "I design and deploy production AI systems that automate operations, reduce cost, and scale decision-making \u2014 for governments, enterprises, and startups.",
+    "I help organizations turn messy, high-stakes AI problems into working systems, operational change, and measurable outcomes \u2014 for public sector, mission-driven organizations, and teams stuck between vision and execution.",
   location: "San Antonio, TX",
   email: "loren.cossette@evolviqtx.com",
   phone: "210.836.4789",
@@ -15,8 +15,8 @@ export const personal: PersonalInfo = {
     { platform: "GitHub", url: "https://github.com/lorentcossette", icon: "Github" },
   ],
   availableFor: [
-    "AI Consulting & Strategy",
-    "AI Systems Architecture",
-    "Enterprise AI Implementation",
+    "AI Strategy & Roadmapping",
+    "System Design & Build",
+    "Organizational AI Adoption",
   ],
 };

@@ -72,10 +72,10 @@ export default function AppsPage() {
     <div className="pt-32 pb-32">
       <div className="max-w-6xl mx-auto px-6 md:px-8">
         <SectionHeading
-          label="Personal Projects"
+          label="Products"
           heading="Apps & ventures I've built"
           accentWord="built"
-          description="Side projects, SaaS products, and AI tools — shipped and live."
+          description="Products I've built to prove and extend my approach to applied AI — from SaaS platforms to research tools."
         />
 
         {/* ── Featured Spotlight ── */}

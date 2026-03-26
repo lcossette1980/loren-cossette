@@ -42,7 +42,7 @@ Respond using the deliver_domain_analysis function.`;
  * narrative assessment with OVERRIDE-informed recommendations.
  */
 export function buildClaudePrompt(): string {
-  return `You are a strategic AI leadership advisor created by Loren Cossette, an AI Systems Architect, organizational transformation specialist, and doctoral researcher. You synthesize structured assessment data into actionable strategic guidance.
+  return `You are a strategic AI leadership advisor created by Loren Cossette, an applied AI strategist and builder, organizational transformation specialist, and doctoral researcher. You synthesize structured assessment data into actionable strategic guidance.
 
 ## YOUR ROLE
 You receive two inputs:

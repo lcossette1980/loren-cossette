@@ -29,11 +29,11 @@ export const metadata: Metadata = {
   metadataBase: new URL(siteUrl),
   title: {
     default:
-      "Loren Cossette | AI Systems Architect & Automation Consultant",
+      "Loren Cossette | Applied AI Strategist, Architect & Builder",
     template: "%s | Loren Cossette",
   },
   description:
-    "AI Systems Architect & Automation Consultant. I design and deploy production AI systems that automate operations, reduce cost, and scale decision-making for governments, enterprises, and startups.",
+    "Applied AI Strategist, Architect & Builder. I help organizations turn messy, high-stakes AI problems into working systems, operational change, and measurable outcomes.",
   keywords: [
     "AI consultant",
     "AI automation consultant",
@@ -51,9 +51,9 @@ export const metadata: Metadata = {
   authors: [{ name: "Loren Cossette" }],
   creator: "Loren Cossette",
   openGraph: {
-    title: "Loren Cossette | AI Systems Architect & Automation Consultant",
+    title: "Loren Cossette | Applied AI Strategist, Architect & Builder",
     description:
-      "I design and deploy production AI systems that automate operations, reduce cost, and scale decision-making. AI Strategy \u2192 Architecture \u2192 Production.",
+      "I help organizations turn AI ideas into working systems, products, and operational change. Strategy \u2192 Architecture \u2192 Production.",
     url: siteUrl,
     siteName: "Loren Cossette",
     locale: "en_US",
@@ -61,9 +61,9 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: "summary_large_image",
-    title: "Loren Cossette | AI Systems Architect & Automation Consultant",
+    title: "Loren Cossette | Applied AI Strategist, Architect & Builder",
     description:
-      "I design and deploy production AI systems that automate operations, reduce cost, and scale decision-making. AI Strategy \u2192 Architecture \u2192 Production.",
+      "I help organizations turn AI ideas into working systems, products, and operational change. Strategy \u2192 Architecture \u2192 Production.",
     creator: "@lorencossette",
   },
   robots: {
@@ -87,9 +87,9 @@ const personSchema = {
   name: "Loren Cossette",
   url: siteUrl,
   image: `${siteUrl}/images/headshot.png`,
-  jobTitle: "AI Systems Architect & Automation Consultant",
+  jobTitle: "Applied AI Strategist, Architect & Builder",
   description:
-    "AI Systems Architect designing and deploying production AI systems for governments, enterprises, and startups.",
+    "Applied AI strategist and builder helping organizations turn complex AI problems into working systems and operational change.",
   address: {
     "@type": "PostalAddress",
     addressLocality: "San Antonio",
@@ -140,10 +140,10 @@ const personSchema = {
 const websiteSchema = {
   "@context": "https://schema.org",
   "@type": "WebSite",
-  name: "Loren Cossette — AI Systems Architect",
+  name: "Loren Cossette — Applied AI Strategist & Builder",
   url: siteUrl,
   description:
-    "Portfolio and consulting site for Loren Cossette, AI Systems Architect & Automation Consultant.",
+    "Portfolio and consulting site for Loren Cossette, Applied AI Strategist, Architect & Builder.",
   author: { "@type": "Person", name: "Loren Cossette" },
 };
 

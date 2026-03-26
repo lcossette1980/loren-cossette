@@ -170,10 +170,10 @@ export default function DemoPage() {
       <div className="max-w-6xl mx-auto px-6 md:px-8">
         {/* ── Hero ── */}
         <SectionHeading
-          label="Interactive AI System Demo"
+          label="Live Assessment Demo"
           heading="How ready is your organization for AI?"
           accentWord="ready"
-          description="Describe your organization's AI situation and receive a structured leadership readiness assessment — powered by a multi-model pipeline using GPT-4o for structured analysis and Claude for strategic synthesis."
+          description="Describe your organization's AI situation and see how I structure ambiguous problems into actionable assessments — powered by a multi-model pipeline I built using GPT-4o and Claude."
         />
 
         <Reveal delay={0.3}>

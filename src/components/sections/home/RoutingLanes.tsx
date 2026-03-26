@@ -9,17 +9,17 @@ import { analytics } from "@/lib/analytics";
 const lanes = [
   {
     icon: Briefcase,
-    title: "Work With Me",
+    title: "Get Clarity on Your AI Path",
     description:
-      "Consulting, strategy, architecture, and AI transformation for governments and enterprises.",
+      "Strategy, architecture, and hands-on build — for organizations ready to move past pilots and slide decks.",
     href: "/consulting",
     key: "consulting",
   },
   {
     icon: FolderOpen,
-    title: "See What I\u2019ve Built",
+    title: "See Problems Turned Into Systems",
     description:
-      "Production case studies with real outcomes — compliance automation, RAG systems, agentic workflows.",
+      "Case studies in turning complex organizational problems into deployed AI systems with measurable outcomes.",
     href: "/projects",
     key: "projects",
   },
@@ -27,7 +27,7 @@ const lanes = [
     icon: User,
     title: "About Loren",
     description:
-      "Military leadership, doctoral research, academic teaching, and a decade of deploying AI systems.",
+      "The rare combination of strategic thinking and hands-on build — military leadership, doctoral research, and a decade of shipping AI systems.",
     href: "/about",
     key: "about",
   },
