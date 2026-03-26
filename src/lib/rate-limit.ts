@@ -4,12 +4,13 @@ interface RateLimitEntry {
 }
 
 const WINDOW_MS = 24 * 60 * 60 * 1000; // 24 hours
-const MAX_REQUESTS = 5;
+const MAX_REQUESTS = 10; // generous for promo traffic; corporate IPs share
 const CLEANUP_INTERVAL = 60 * 60 * 1000; // 1 hour
 
-// Burst protection: max 2 requests per minute per IP
+// Burst protection: max 4 requests per minute per IP
+// People retry on timeout/error — don't punish them for that
 const BURST_WINDOW_MS = 60 * 1000;
-const BURST_MAX = 2;
+const BURST_MAX = 4;
 
 const store = new Map<string, RateLimitEntry>();
 const burstStore = new Map<string, RateLimitEntry>();

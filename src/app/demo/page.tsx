@@ -75,11 +75,15 @@ export default function DemoPage() {
       });
 
       if (!response.ok) {
-        const err = await response.json();
+        const err = await response.json().catch(() => ({}));
+        const message =
+          response.status === 429
+            ? "You've reached the demo limit. Please try again later — or book a call to see the full system in action."
+            : err.error || "Something went wrong.";
         setState((prev) => ({
           ...prev,
           status: "error",
-          error: err.error || "Something went wrong.",
+          error: message,
         }));
         return;
       }
