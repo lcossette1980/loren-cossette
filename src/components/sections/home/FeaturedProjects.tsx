@@ -14,7 +14,7 @@ const iconMap: Record<string, React.ComponentType<{ size?: number; className?: s
 };
 
 /* The one hero project to spotlight */
-const spotlight = projects.find((p) => p.slug === "wcag-remediation")!;
+const spotlight = projects.find((p) => p.slug === "a11yready")!;
 const SpotlightIcon = iconMap[spotlight.icon] || Shield;
 
 export function FeaturedProjects() {

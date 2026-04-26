@@ -1,117 +1,199 @@
 import type { Project } from "@/types";
 
-/* ── WCAG Remediation Platform Screenshots ── */
-const wcagScreenshots = [
+/* ── A11yReady Screenshots ── */
+const a11yreadyScreenshots = [
   {
-    src: "/images/projects/wcag-remediation/wcag-screenshot-1.jpeg",
-    alt: "PDF Accessibility Conversion — Upload Interface",
+    src: "/images/projects/a11yready/a11yready-1-upload.png",
+    alt: "a11yReady — Upload Interface",
     caption:
-      "Drag-and-drop upload supporting PDFs and Excel files up to 50 MB with automatic document type detection",
+      "Branded upload landing with drag-and-drop support, document type auto-detection, and per-department logo selection",
   },
   {
-    src: "/images/projects/wcag-remediation/wcag-screenshot-3.jpeg",
-    alt: "System Dashboard — Real-Time Metrics",
+    src: "/images/projects/a11yready/a11yready-3-review.png",
+    alt: "Side-by-Side Human Review with Approve & Download",
     caption:
-      "Live dashboard tracking documents converted, success rate, average quality score, processing time, and estimated cost savings",
+      "Reviewer compares the original PDF and the accessible HTML side by side, then approves and exports as HTML+PDF, HTML only, or PDF only",
   },
   {
-    src: "/images/projects/wcag-remediation/wcag-screenshot-7.jpeg",
-    alt: "Conversion Results — Quality Scoring",
+    src: "/images/projects/a11yready/a11yready-5-suggestions.png",
+    alt: "AI-Powered Suggested Fixes",
     caption:
-      "Per-document quality breakdown: WCAG compliance, content confidence, structural accuracy — with validation checks and processing time",
+      "Quality gate surfaces specific structural issues — missing content, light text contrast, table count mismatches, semantic timeline items — with one-click fix workflow",
   },
   {
-    src: "/images/projects/wcag-remediation/wcag-screenshot-6.jpeg",
-    alt: "Side-by-Side Review Interface",
+    src: "/images/projects/a11yready/a11yready-4-fix.png",
+    alt: "Reviewer Fix Workflow",
     caption:
-      "Human review workflow: original PDF and accessible HTML displayed side by side with approve, flag, and request-fix actions",
+      "Reviewer types a plain-English fix instruction or clicks a suggestion; system regenerates the affected section without rerunning the whole pipeline",
   },
   {
-    src: "/images/projects/wcag-remediation/wcag-screenshot-4.jpeg",
-    alt: "Batch Processing Console",
+    src: "/images/projects/a11yready/a11yready-2-history.png",
+    alt: "Conversion History",
     caption:
-      "Bulk conversion mode scanning upload folders with automatic skip of already-processed files",
+      "Searchable conversion history with per-document quality score, review status, and full audit trail across all uploads",
+  },
+];
+
+/* ── Civic Sentinel Screenshots ── */
+const civicSentinelScreenshots = [
+  {
+    src: "/images/projects/civic-sentinel/civic-sentinel-1-executive.png",
+    alt: "Executive Summary — Digital Content Health",
+    caption:
+      "Director-level dashboard: 59,073 files tracked, 18,214 pages audited, 40 critical accessibility issues — total content footprint and live site-health gauges across File and Site Intelligence",
+  },
+  {
+    src: "/images/projects/civic-sentinel/civic-sentinel-2-site-health.png",
+    alt: "Site Health — Four-Gauge View",
+    caption:
+      "Overall, Accessibility, Content Quality, and Link Health gauges with 14-day trends, audit-coverage transparency, and severity-banded issue counts across 16 departments",
+  },
+  {
+    src: "/images/projects/civic-sentinel/civic-sentinel-3-accessibility.png",
+    alt: "Accessibility Report — Rule-by-Rule",
+    caption:
+      "WCAG 2.1 AA compliance breakdown: most common problems with severity, affected page counts, and ranked worst-scoring pages — drill-down ready for editorial action",
+  },
+  {
+    src: "/images/projects/civic-sentinel/civic-sentinel-4-file-detail.png",
+    alt: "File Detail — Drupal-Aware Inventory",
+    caption:
+      "Drupal-native file inventory: every asset linked back to its database node, uploader, department, and live page references — surfaces orphans, duplicates, and ownership gaps",
   },
 ];
 
 export const projects: Project[] = [
   {
-    slug: "wcag-triage",
-    title: "WCAG Compliance Engine",
-    subtitle: "Automated Triage & Scope Reduction",
-    tech: ["Python", "PyMySQL", "BeautifulSoup", "Web Crawling", "PDF Analysis"],
+    slug: "civic-sentinel",
+    title: "Civic Sentinel",
+    subtitle: "Drupal-Aware Site Intelligence Platform",
+    tech: [
+      "Python",
+      "FastAPI",
+      "React 19",
+      "Vertex AI",
+      "Claude Sonnet 4.5",
+      "Gemini 2.5 Flash",
+      "Playwright",
+      "axe-core",
+      "Pandas",
+      "Google Cloud Run",
+      "Drupal 10",
+    ],
     stats: [
-      { label: "Files Processed", value: "56,567" },
-      { label: "Scope Reduction", value: "90%" },
-      { label: "Hours Saved", value: "12,000" },
+      { label: "Files Tracked", value: "59K+" },
+      { label: "Pages Audited", value: "18K+" },
+      { label: "Departments", value: "60" },
     ],
     shortDescription:
-      "Six-stage automated triage pipeline replacing $150K\u2013$450K in manual classification with a 6-hour unattended process. Uncovered 4,265 \u2018false orphans\u2019 \u2014 live content invisible to the CMS.",
+      "Custom site-intelligence platform replacing Siteimprove for Multnomah County. Crawls 18K+ pages and 57K+ files nightly, audits accessibility, SEO, performance, links, content, PII, and spelling — Drupal-aware, AI-augmented, and editorial-workflow-ready.",
     fullDescription:
-      "Automated six-stage triage data pipeline replacing 4,000\u201312,000 hours of manual classification ($150K\u2013$450K equivalent) with a 6-hour unattended process for 56,567 government files. Web crawl validation uncovered 4,265 \u201Cfalse orphans\u201D live on site but invisible to CMS. Deduplication across 2,481 groups eliminated redundant remediation. Priority scoring by traffic, content type, and effort; lane routing into PDF fix, OCR, HTML conversion, or rebuild. 30-minute weekly delta updates replaced monthly re-audits.",
+      "An open-codebase replacement for a six-figure SaaS contract — built specifically for Multnomah County's Drupal 10 site (multco.gov) with 18,000+ pages, 57,000+ files, 60 departments, and 145+ uploaders. Off-the-shelf alternatives charge per page (which balloons at this scale), give scores without explanations, and don't understand Drupal. Civic Sentinel does both: it crawls the live site nightly, audits accessibility against WCAG 2.1 AA via axe-core, runs Lighthouse for performance, scans for broken links, PII patterns, and spelling, and classifies every page using Gemini for service intent. It then layers AI on top — an Ask Agent for plain-English investigation, AI-generated remediation proposals in an editor approval queue, and Citizen Journey simulations that walk real workflows like a resident would. Three deployable units share one repo: a nightly Cloud Build pipeline, a docs-explorer dashboard (4 GB), and a html-hub companion service. All running on Google Cloud Run with @multco.us OAuth, JWT auth, and shared security middleware. Surfaced 25,867 true orphan files (45% of inventory), 4,499 live-only files invisible to the database, and 1,158 duplicate clusters — findings nobody at the County had ever seen before.",
     keyFeatures: [
-      "Six-stage automated triage pipeline processing 56,567 files",
-      "Web crawl validation uncovering 4,265 false orphans invisible to CMS",
-      "Deduplication across 2,481 groups eliminating redundant remediation",
-      "Priority scoring by traffic, content type, and effort",
-      "Lane routing into PDF fix, OCR, HTML conversion, or rebuild",
-      "30-minute weekly delta updates replacing monthly re-audits",
-      "Enabled site averaging 400+ new files/month to stay current",
+      "10-module nightly pipeline: crawl, accessibility (axe-core), SEO, link health, Lighthouse, PII, spelling, unsafe domains, page duplicates, AI service classification",
+      "Drupal-native inventory — uploaders, departments, node references, orphan detection, DB-vs-live mismatches",
+      "Ask Agent (Claude Sonnet 4.5 on Vertex AI) — chat over the full inventory with read-only DataFrame tools and 8-iteration tool-calling loops",
+      "Citizen Journey simulator — AI personas walk live workflows, capture dead-ends, and produce structured reports",
+      "Service Scout (Gemini 2.5 Flash) — classifies every page into APPLY / TRANSACT / INFORM / CONTACT / FIND service patterns",
+      "AI-generated remediation proposals in an editorial approval queue with PENDING → APPROVED/REJECTED → APPLIED lifecycle",
+      "Custom policy engine — editors write rules in JSON, see plain English, edit/add/delete (e.g. \"no PDFs in /forms/\")",
+      "Square-root penalty curve scoring with audit-coverage transparency — replaces the inflated \"93.3% scored 100\" of v1",
+      "In-memory pandas data store — 57K rows × 80 cols, 200 MB RAM, no DB in the read path",
+      "Two access tiers via Google OAuth domain check (@multco.us) and JWT — Standard (any employee) and Advanced (named users)",
     ],
     icon: "Eye",
     featured: true,
     category: "compliance",
-    image: "/images/projects/project-wcag-triage.png",
-    dashboardImage: "/images/projects/project-wcag-triage-dashboard.png",
-    architectureImage: "/images/projects/project-wcag-triage-architecture.png",
+    image: "/images/projects/civic-sentinel/civic-sentinel-1-executive.png",
+    dashboardImage:
+      "/images/projects/civic-sentinel/civic-sentinel-2-site-health.png",
+    architectureImage:
+      "/images/projects/civic-sentinel/civic-sentinel-4-file-detail.png",
+    screenshots: civicSentinelScreenshots,
+    impactMetrics: [
+      {
+        label: "True Orphans Found",
+        value: "25,867",
+        detail: "45% of inventory — invisible to users, costing storage",
+      },
+      {
+        label: "Live-Only Files",
+        value: "4,499",
+        detail: "Found via crawl but missing from Drupal DB",
+      },
+      {
+        label: "Duplicate Clusters",
+        value: "1,158",
+        detail: "2,581 files — roughly 5% of storage",
+      },
+      {
+        label: "Pages Classified",
+        value: "18,214",
+        detail: "AI service-intent classification (APPLY, TRANSACT, INFORM…)",
+      },
+      {
+        label: "SaaS Contract Replaced",
+        value: "Six-figure",
+        detail: "Open codebase running on existing GCP infrastructure",
+      },
+      {
+        label: "Audit Cadence",
+        value: "Nightly",
+        detail: "Full re-crawl + 10 audit modules + AI classification",
+      },
+    ],
   },
   {
-    slug: "wcag-remediation",
-    title: "WCAG Remediation Platform",
-    subtitle: "AI-Powered Document Accessibility at Scale",
+    slug: "a11yready",
+    title: "A11yReady",
+    subtitle: "AI-Powered Document Accessibility Platform",
     tech: [
       "LangGraph",
       "Gemini 2.5",
-      "Claude",
-      "Document AI",
+      "Claude Sonnet 4.5",
       "Vertex AI",
+      "Document AI",
+      "Playwright",
       "axe-core",
-      "Google Cloud",
-      "Python",
+      "Python 3.11",
+      "Flask",
+      "Google Cloud Run",
     ],
     stats: [
       { label: "WCAG Compliance", value: "95%+" },
-      { label: "Avg Processing", value: "36s" },
-      { label: "Quality Score", value: "96" },
+      { label: "Document Clusters", value: "34" },
+      { label: "Time Saved", value: "95%" },
     ],
     shortDescription:
-      "Production platform converting government PDFs and Excel files to WCAG 2.1 AA-compliant HTML in 30\u201390 seconds. Five-layer validation pipeline with axe-core, numeric integrity checks, and human review — deployed for Multnomah County under federal ADA deadline.",
+      "Production multi-agent platform converting government PDFs to WCAG 2.1 AA-compliant HTML and tagged PDFs in 30–90 seconds. Three-agent polish gate, 34-cluster document classifier, and AI-powered reviewer fix workflow — deployed for Multnomah County at a11y-ready.multco.us.",
     fullDescription:
-      "End-to-end production platform making government documents accessible for residents who use screen readers and assistive technology. Converts PDFs to WCAG 2.1 AA-compliant HTML in 30\u201390 seconds (vs. 1\u20134 hours of manual specialist work). Excel budget exports process in under 1 second with perfect accuracy. Five-layer validation pipeline: axe-core accessibility checks (80+ WCAG rules), numeric integrity verification (every dollar amount and date cross-checked), completeness validation (every section and heading confirmed), quality scoring (0\u2013100, below 90 flagged), and mandatory human review with side-by-side comparison. All processing runs within county Google Cloud infrastructure \u2014 zero data leaves the environment. Deployed for Multnomah County to meet the April 2026 federal ADA compliance deadline across thousands of public documents.",
+      "End-to-end platform replacing 1–4 hours of manual Adobe Acrobat work with a 30–90 second AI pipeline. Documents flow through LangGraph orchestration: a 34-cluster triage classifier routes each PDF to its appropriate path (budget program offers, hearing agendas, election statistics, fillable forms, Zoom transcripts, and 29 more). Known clusters use deterministic Jinja2 templates for consistent output; unknown clusters fall back to LLM-based generation. A three-agent polish gate runs before review: (1) deterministic HTML fixes, (2) cluster-specific common-sense rule packs that enforce doc-type conventions, and (3) an optional Gemini 2.5 Pro Layout Verifier that compares rendered output against PDF page images for visual fidelity. Validation runs axe-core via Playwright on every document. Reviewers get a side-by-side compare interface with AI-powered fix suggestions — one-click to regenerate a section without rerunning the full pipeline. After 3+ approvals of similar documents, the system builds structural templates that deterministically correct heading hierarchies on future extractions — continuous learning across all 34 document types. All processing stays inside the County's GCP project; no data leaves the environment. ~63,000 lines across 95+ Python files.",
     keyFeatures: [
-      "30\u201390 second PDF conversion vs. 1\u20134 hours manual remediation",
-      "Five-layer validation: axe-core, numeric integrity, completeness, quality scoring, human review",
-      "80+ automated WCAG 2.1 AA checks via industry-standard axe-core engine",
-      "Side-by-side review interface: original PDF vs. accessible HTML with approve/reject/fix workflow",
-      "Batch processing mode for bulk document conversion with auto-skip of processed files",
-      "Real-time dashboard tracking documents converted, success rate, quality scores, and cost savings",
-      "Excel budget exports: deterministic conversion in seconds at near-zero cost",
-      "Reviewer feedback loop: approvals and corrections improve future conversions",
-      "Enterprise security: all data stays within county Google Cloud project, zero external sharing",
+      "30–90 second PDF conversion vs. 1–4 hours of manual Acrobat remediation",
+      "34-cluster triage classifier with centralized dispatch registry — adding a new doc type = one ClusterDispatch entry",
+      "Three-agent polish gate: deterministic HTML fixes + cluster rule packs + Gemini 2.5 Pro Layout Verifier with quorum merger",
+      "axe-core via Playwright running real automated WCAG 2.1 AA checks on every document",
+      "Side-by-side reviewer interface with AI-powered fix suggestions and one-click section regeneration",
+      "Continuous learning — 3+ reviewer approvals build structural templates that auto-correct heading hierarchies on future docs",
+      "Excel program-offer auto-approval — Questica 3-tab and multi-sheet exports converted at 100% accuracy in seconds",
+      "Regeneration mode for image-heavy slides — rebuilds the document semantically rather than tracing source layout",
+      "Google Drive Picker integration — single-file or whole-folder upload directly from Drive",
+      "Zero data leaves county cloud — all processing inside Multnomah County GCP project",
     ],
     icon: "Shield",
     featured: true,
     category: "compliance",
-    image: "/images/projects/wcag-remediation/wcag-screenshot-7.jpeg",
-    dashboardImage: "/images/projects/wcag-remediation/wcag-screenshot-3.jpeg",
-    architectureImage: "/images/projects/wcag-remediation/wcag-screenshot-6.jpeg",
-    screenshots: wcagScreenshots,
+    image: "/images/projects/a11yready/a11yready-3-review.png",
+    dashboardImage: "/images/projects/a11yready/a11yready-1-upload.png",
+    architectureImage:
+      "/images/projects/a11yready/a11yready-5-suggestions.png",
+    screenshots: a11yreadyScreenshots,
     validationPipeline: [
-      "Accessibility compliance \u2014 axe-core runs 80+ WCAG 2.1 AA checks (heading structure, color contrast, table markup, image descriptions, screen reader compatibility)",
-      "Numeric integrity \u2014 every number, dollar amount, percentage, and date cross-checked against the original document",
-      "Completeness \u2014 every section, heading, and content block verified to exist in the output",
-      "Quality scoring \u2014 overall score 0\u2013100 based on WCAG compliance, content integrity, and structural accuracy; below 90 gets flagged",
-      "Human review \u2014 reviewer compares original and output side by side, then approves or rejects; feedback improves future conversions",
+      "Triage classification — 34-cluster classifier routes the document to the appropriate extraction method, template renderer, and meeting type via a centralized ClusterDispatch registry",
+      "Vision + content extraction — Document AI Layout Parser runs first; for complex docs, Gemini vision provides full page analysis; Claude handles content extraction merged with PyMuPDF text for accurate heading detection",
+      "HTML generation + axe-core validation — Claude generates the accessible HTML; Playwright runs axe-core against it for WCAG 2.1 AA compliance with iterative refinement on failure",
+      "Three-agent polish gate — deterministic HTML fixes, cluster-specific common-sense rule packs (e.g. meeting section ordering, form groupings), and an optional Gemini 2.5 Pro Layout Verifier that compares rendered output against source PDF page images, with a quorum merger that boosts corroborated findings",
+      "Human review with AI assistance — reviewer sees original PDF and accessible HTML side by side, gets AI-generated fix suggestions, and can regenerate individual sections without rerunning the full pipeline; approvals feed structural templates back into future extractions",
     ],
     deliverables: [
       {
@@ -135,13 +217,13 @@ export const projects: Project[] = [
       {
         title: "Validation Pipeline Infographic",
         description:
-          "Visual walkthrough of the five-checkpoint validation pipeline for stakeholder presentations",
+          "Visual walkthrough of the polish gate and validation pipeline for stakeholder presentations",
         icon: "GitBranch",
       },
       {
         title: "Reviewer Onboarding Guide",
         description:
-          "Step-by-step onboarding for human reviewers covering the side-by-side review workflow and quality standards",
+          "Step-by-step onboarding for human reviewers covering the side-by-side workflow and AI fix-suggestion conventions",
         icon: "UserCheck",
       },
       {
@@ -154,33 +236,33 @@ export const projects: Project[] = [
     impactMetrics: [
       {
         label: "Processing Time",
-        value: "30\u201390s",
-        detail: "per PDF document vs. 1\u20134 hours manual",
+        value: "30–90s",
+        detail: "per PDF vs. 1–4 hours manual Acrobat work",
       },
       {
         label: "Cost per Document",
-        value: "$0.50\u2013$2",
-        detail: "PDF conversion; Excel at ~$0",
+        value: "$0.50–$2",
+        detail: "AI processing; Excel exports at near-zero",
       },
       {
-        label: "WCAG Compliance",
+        label: "First-Pass WCAG",
         value: "95%+",
-        detail: "automated compliance rate",
+        detail: "axe-core 2.1 AA compliance before human review",
       },
       {
-        label: "Validation Layers",
-        value: "5",
-        detail: "independent checks before human review",
+        label: "Document Clusters",
+        value: "34",
+        detail: "classified types with deterministic templates",
+      },
+      {
+        label: "Time Reduction",
+        value: "95%",
+        detail: "from 1–4 hours to 30–90 seconds per document",
       },
       {
         label: "Data Exposure",
         value: "Zero",
-        detail: "all processing within county cloud",
-      },
-      {
-        label: "Jobs Eliminated",
-        value: "Zero",
-        detail: "staff shift from tagging to quality review",
+        detail: "all processing within county Google Cloud project",
       },
     ],
   },

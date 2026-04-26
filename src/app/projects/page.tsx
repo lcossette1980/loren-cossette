@@ -39,8 +39,8 @@ const filters: { label: string; value: ProjectCategory | "all" }[] = [
   { label: "Compliance", value: "compliance" },
 ];
 
-/* ── Featured project: WCAG Remediation Platform ── */
-const featuredProject = projects.find((p) => p.slug === "wcag-remediation")!;
+/* ── Featured project: A11yReady ── */
+const featuredProject = projects.find((p) => p.slug === "a11yready")!;
 
 export default function ProjectsPage() {
   const [filter, setFilter] = useState<ProjectCategory | "all">("all");
@@ -128,9 +128,9 @@ export default function ProjectsPage() {
                   {/* Highlights */}
                   <div className="space-y-2 mb-6">
                     {[
-                      "5-layer validation pipeline with axe-core",
+                      "34-cluster classifier + 3-agent polish gate",
                       "30\u201390 sec processing vs. 1\u20134 hrs manual",
-                      "Zero data leaves county cloud",
+                      "AI-powered reviewer fix workflow",
                     ].map((h) => (
                       <div
                         key={h}
