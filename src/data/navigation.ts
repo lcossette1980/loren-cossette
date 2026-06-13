@@ -11,6 +11,7 @@ export const navItems: NavItem[] = [
 ];
 
 export const secondaryNavItems: NavItem[] = [
+  { label: "Activity", href: "/activity" },
   { label: "Override", href: "/override" },
   { label: "Apps", href: "/apps" },
   { label: "Methodology", href: "/methodology" },

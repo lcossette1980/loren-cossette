@@ -3,6 +3,7 @@ import { RoutingLanes } from "@/components/sections/home/RoutingLanes";
 import { ImpactMetrics } from "@/components/sections/home/ImpactMetrics";
 import { EngagementModes } from "@/components/sections/home/EngagementModes";
 import { FeaturedProjects } from "@/components/sections/home/FeaturedProjects";
+import { ActivityFeed } from "@/components/sections/home/ActivityFeed";
 import { AboutTeaser } from "@/components/sections/home/AboutTeaser";
 import { TechShowcase } from "@/components/sections/home/TechShowcase";
 import { Testimonials } from "@/components/sections/home/Testimonials";
@@ -14,6 +15,7 @@ export default function Home() {
       <HeroSection />
       <RoutingLanes />
       <FeaturedProjects />
+      <ActivityFeed limit={6} />
       <ImpactMetrics />
       <Testimonials />
       <EngagementModes />

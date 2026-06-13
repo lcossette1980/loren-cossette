@@ -142,47 +142,47 @@ const methodologyCTA = {
 
 const engagementModels = [
   {
-    type: "Engagement Model",
-    title: "Advisory Retainer",
-    price: "$3K–5K",
-    unit: "per month",
-    featured: false,
-    items: [
-      "4–6 hrs/mo strategy calls",
-      "Async architecture review",
-      "AI roadmap guidance",
-      "Vendor & tool advisory",
-      "Email/Slack access",
-    ],
-  },
-  {
-    type: "Engagement Model",
-    title: "Fractional CAIO",
-    price: "$15K–25K",
-    unit: "per month",
-    featured: true,
-    badge: "Highest Leverage",
-    items: [
-      "AI strategy ownership",
-      "Build oversight & architecture",
-      "Executive presence & board reporting",
-      "Change management programs",
-      "Team training & enablement",
-      "Governance framework design",
-    ],
-  },
-  {
-    type: "Engagement Model",
-    title: "Embedded Architect",
+    type: "Tier 01",
+    title: "Discovery Engagement",
     price: "$8K–15K",
-    unit: "per month",
+    unit: "fixed · 2–3 weeks",
     featured: false,
     items: [
-      "Active build oversight",
-      "Architecture reviews",
-      "Engineering team guidance",
-      "Code review & QA",
-      "Technical documentation",
+      "AI program assessment + opportunity map",
+      "Workflow + stakeholder interviews",
+      "Architecture sketch for the top 1–2 opportunities",
+      "Plain-language deliverables for executive review",
+      "Recommended roadmap + sizing for next-step engagement",
+    ],
+  },
+  {
+    type: "Tier 02",
+    title: "Embedded AI Program Lead",
+    price: "$25K–40K",
+    unit: "per month · 12–24 wk min",
+    featured: true,
+    badge: "Flagship",
+    items: [
+      "Own the AI program end-to-end — architecture, code, adoption",
+      "Ship features weekly with a dated public activity log",
+      "Capture institutional knowledge before SMEs retire",
+      "Stakeholder hub + executive briefings + ROI tracking",
+      "Train your internal team to run it without me",
+      "Same role I currently fill at Multnomah County",
+    ],
+  },
+  {
+    type: "Tier 03",
+    title: "Architecture & Build Sprint",
+    price: "$30K–80K",
+    unit: "fixed · 4–10 weeks",
+    featured: false,
+    items: [
+      "Specific system architected, built, deployed",
+      "Multi-agent pipelines, RAG, deterministic forms parsers",
+      "Production deployment + observability baseline",
+      "Hand-off documentation + train-the-trainer session",
+      "Optional retainer for ongoing maintenance",
     ],
   },
 ];
@@ -197,11 +197,12 @@ const hourlyRates = [
 ];
 
 const projectRates = [
-  { label: "AI Readiness Audit + Report", price: "$5K–$12K" },
-  { label: "RAG Pipeline (End-to-End)", price: "$25K–$60K" },
-  { label: "Agentic System Build", price: "$40K–$120K" },
-  { label: "AI Strategy Roadmap", price: "$8K–$20K" },
-  { label: "Executive Workshop (1 Day)", price: "$5K–$10K" },
+  { label: "AI Program Assessment + Roadmap", price: "$8K–$20K" },
+  { label: "Architecture & Design Sprint", price: "$15K–$40K" },
+  { label: "Targeted System Build (RAG / Forms / Pipeline)", price: "$25K–$80K" },
+  { label: "Multi-Agent System Build", price: "$60K–$150K" },
+  { label: "Knowledge Capture Engagement (SME → Specs)", price: "$30K–$80K" },
+  { label: "Executive AI Workshop (1 Day)", price: "$5K–$10K" },
   { label: "Full Training Curriculum", price: "$15K–$40K" },
 ];
 
@@ -504,10 +505,10 @@ export default function ConsultingPage() {
       <section className="py-32 lg:py-40">
         <div className="max-w-6xl mx-auto px-6 md:px-8">
           <SectionHeading
-            label="Investment"
-            heading="Transparent pricing"
-            accentWord="Transparent"
-            description="Priced to reflect what a team of specialists would cost — delivered by one senior architect who owns the whole thing."
+            label="Engagement Tiers"
+            heading="From discovery to embedded lead"
+            accentWord="embedded"
+            description="Three ways to bring me in, depending on how ready you are. Most engagements start with discovery — a short fixed-fee assessment that scopes the embedded engagement (or honestly tells you it isn't the right time)."
           />
 
           {/* Engagement model cards */}
