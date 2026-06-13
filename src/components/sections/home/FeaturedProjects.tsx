@@ -23,7 +23,7 @@ export function FeaturedProjects() {
       <div className="max-w-5xl mx-auto px-6 md:px-8">
         <Reveal>
           <p className="font-mono text-[11px] tracking-[2px] uppercase text-accent-warm font-medium mb-3 text-center">
-            Featured Project
+            From the Multnomah County AI Program
           </p>
         </Reveal>
 
@@ -103,7 +103,7 @@ export function FeaturedProjects() {
               href="/projects"
               className="inline-flex items-center gap-2 text-accent-cyan/80 hover:text-accent-cyan text-sm font-mono hover:gap-3 transition-all"
             >
-              View all projects <ArrowRight size={14} />
+              See all 5 program initiatives <ArrowRight size={14} />
             </Link>
           </div>
         </Reveal>

@@ -27,33 +27,36 @@ export function AboutTeaser() {
 
         <Reveal delay={0.1}>
           <p className="text-base md:text-lg text-text-secondary leading-relaxed">
-            As a{" "}
+            I&apos;m an{" "}
             <strong className="text-text-primary font-semibold">
-              full-lifecycle AI strategist and builder
+              embedded AI program architect
             </strong>
-            , I own every phase &mdash; problem discovery, stakeholder alignment,
-            architecture, code, deployment, and change management. Recent work
-            includes automated WCAG compliance replacing{" "}
+            . Currently the AI lead for{" "}
             <strong className="text-text-primary font-semibold">
-              $150K&ndash;$450K in manual labor
+              Multnomah County
+            </strong>
+            , running{" "}
+            <strong className="text-text-primary font-semibold">
+              5 production AI initiatives
             </strong>{" "}
-            and an enterprise AI &amp; Data strategy across a{" "}
-            <strong className="text-text-primary font-semibold">$126B portfolio</strong>
-            .
+            across accessibility, site intelligence, legacy modernization, and QA
+            automation &mdash; shipping features weekly with a dated public
+            activity feed.
           </p>
         </Reveal>
 
         <Reveal delay={0.2}>
           <p className="text-base md:text-lg text-text-secondary leading-relaxed mt-6">
-            I build production agentic systems, RAG pipelines, and serverless
-            infrastructure &mdash; while standing up governance frameworks,
-            training executives at{" "}
+            Multi-agent systems on Vertex AI (Claude, Gemini, GPT). LangGraph
+            pipelines. RAG with pgvector. Behavioral test capture from retiring
+            SMEs. Stakeholder hubs, ROI calculators, and validation against
+            independent audits &mdash; plus executive training at{" "}
             <strong className="text-text-primary font-semibold">UT Austin</strong>{" "}
             and{" "}
             <strong className="text-text-primary font-semibold">
               Johns Hopkins
-            </strong>
-            , and publishing peer-reviewed AI research.
+            </strong>{" "}
+            and peer-reviewed AI research on the side.
           </p>
         </Reveal>
 

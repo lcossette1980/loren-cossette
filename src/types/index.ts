@@ -59,6 +59,14 @@ export interface Project {
   deliverables?: ProjectDeliverable[];
   validationPipeline?: string[];
   impactMetrics?: { label: string; value: string; detail: string }[];
+  /** Marks a project as part of a named program (e.g. the Multnomah County AI Program) */
+  program?: "multco-ai";
+  /** Lifecycle stage shown in the project card chip */
+  programStatus?: "Discovery" | "Active Development" | "In Production · Scaling" | "Restricted";
+  /** Engaging stakeholder department / org unit */
+  department?: string;
+  /** External link to a live presentation hub for the project */
+  presentationUrl?: string;
 }
 
 export type ProjectCategory = "ai-agents" | "nlp" | "full-stack" | "compliance";

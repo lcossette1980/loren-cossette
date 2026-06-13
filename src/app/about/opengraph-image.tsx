@@ -2,7 +2,7 @@ import { ImageResponse } from "next/og";
 import { readFile } from "node:fs/promises";
 import { join } from "node:path";
 
-export const alt = "About Loren Cossette — Applied AI Strategist & Builder";
+export const alt = "About Loren Cossette — AI Program Architect";
 export const size = { width: 1200, height: 630 };
 export const contentType = "image/png";
 
@@ -131,7 +131,7 @@ export default async function OGImage() {
             letterSpacing: "1px",
           }}
         >
-          Applied AI Strategist, Architect & Builder
+          AI Program Architect
         </p>
 
         {/* Description */}
@@ -145,8 +145,8 @@ export default async function OGImage() {
             lineHeight: 1.5,
           }}
         >
-          Applied AI strategist and builder owning the full lifecycle —
-          strategy, architecture, code, deployment, and change management.
+          Embedded AI lead for Multnomah County. 5 production AI initiatives.
+          PhD candidate. Prosci-certified. 20-year military career (E-9).
         </p>
 
         {/* Bottom bar */}

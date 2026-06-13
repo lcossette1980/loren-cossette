@@ -29,31 +29,32 @@ export const metadata: Metadata = {
   metadataBase: new URL(siteUrl),
   title: {
     default:
-      "Loren Cossette | Applied AI Strategist, Architect & Builder",
+      "Loren Cossette | AI Program Architect",
     template: "%s | Loren Cossette",
   },
   description:
-    "Applied AI Strategist, Architect & Builder. I help organizations turn messy, high-stakes AI problems into working systems, operational change, and measurable outcomes.",
+    "AI Program Architect. Embedded AI leadership for organizations undergoing modernization. Currently the AI lead for Multnomah County, running 5 production AI initiatives across accessibility, site intelligence, legacy modernization, and QA automation.",
   keywords: [
-    "AI consultant",
-    "AI automation consultant",
+    "embedded AI lead",
+    "AI program architect",
+    "AI program leadership",
     "AI systems architect",
-    "enterprise AI architect",
-    "AI implementation consultant",
+    "fractional CAIO",
     "RAG systems development",
     "agentic AI systems",
+    "legacy modernization",
     "AI governance",
     "public sector AI",
-    "enterprise GenAI",
-    "AI strategy",
+    "knowledge capture",
+    "behavioral testing",
     "Loren Cossette",
   ],
   authors: [{ name: "Loren Cossette" }],
   creator: "Loren Cossette",
   openGraph: {
-    title: "Loren Cossette | Applied AI Strategist, Architect & Builder",
+    title: "Loren Cossette | AI Program Architect",
     description:
-      "I help organizations turn AI ideas into working systems, products, and operational change. Strategy \u2192 Architecture \u2192 Production.",
+      "Embedded AI leadership for organizations undergoing modernization. Currently the AI lead for Multnomah County, running 5 production AI initiatives.",
     url: siteUrl,
     siteName: "Loren Cossette",
     locale: "en_US",
@@ -61,9 +62,9 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: "summary_large_image",
-    title: "Loren Cossette | Applied AI Strategist, Architect & Builder",
+    title: "Loren Cossette | AI Program Architect",
     description:
-      "I help organizations turn AI ideas into working systems, products, and operational change. Strategy \u2192 Architecture \u2192 Production.",
+      "Embedded AI leadership for organizations undergoing modernization. 5 production AI initiatives running at Multnomah County. Shipping weekly.",
     creator: "@lorencossette",
   },
   robots: {
@@ -87,9 +88,9 @@ const personSchema = {
   name: "Loren Cossette",
   url: siteUrl,
   image: `${siteUrl}/images/headshot.png`,
-  jobTitle: "Applied AI Strategist, Architect & Builder",
+  jobTitle: "AI Program Architect",
   description:
-    "Applied AI strategist and builder helping organizations turn complex AI problems into working systems and operational change.",
+    "Embedded AI program architect and lead for organizations undergoing modernization. Currently running 5 production AI initiatives at Multnomah County.",
   address: {
     "@type": "PostalAddress",
     addressLocality: "San Antonio",
@@ -140,10 +141,10 @@ const personSchema = {
 const websiteSchema = {
   "@context": "https://schema.org",
   "@type": "WebSite",
-  name: "Loren Cossette — Applied AI Strategist & Builder",
+  name: "Loren Cossette — AI Program Architect",
   url: siteUrl,
   description:
-    "Portfolio and consulting site for Loren Cossette, Applied AI Strategist, Architect & Builder.",
+    "Portfolio and consulting site for Loren Cossette, AI Program Architect. Embedded AI leadership for organizations undergoing modernization.",
   author: { "@type": "Person", name: "Loren Cossette" },
 };
 

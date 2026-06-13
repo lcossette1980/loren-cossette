@@ -9,17 +9,17 @@ import { analytics } from "@/lib/analytics";
 const lanes = [
   {
     icon: Briefcase,
-    title: "Get Clarity on Your AI Path",
+    title: "Bring Me In",
     description:
-      "Strategy, architecture, and hands-on build — for organizations ready to move past pilots and slide decks.",
+      "Embedded AI program leadership for organizations modernizing legacy systems, scaling AI safely, or facing compliance deadlines.",
     href: "/consulting",
     key: "consulting",
   },
   {
     icon: FolderOpen,
-    title: "See Problems Turned Into Systems",
+    title: "See the Program",
     description:
-      "Case studies in turning complex organizational problems into deployed AI systems with measurable outcomes.",
+      "5 production AI initiatives running inside Multnomah County — plus other shipped systems with measurable outcomes.",
     href: "/projects",
     key: "projects",
   },
@@ -27,7 +27,7 @@ const lanes = [
     icon: User,
     title: "About Loren",
     description:
-      "The rare combination of strategic thinking and hands-on build — military leadership, doctoral research, and a decade of shipping AI systems.",
+      "20-year military leader (E-9, top 1%), PhD candidate, embedded AI architect — the rare combination of strategic depth and hands-on shipping.",
     href: "/about",
     key: "about",
   },

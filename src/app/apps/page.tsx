@@ -75,7 +75,7 @@ export default function AppsPage() {
           label="Products"
           heading="Apps & ventures I've built"
           accentWord="built"
-          description="Products I've built to prove and extend my approach to applied AI — from SaaS platforms to research tools."
+          description="Side products I build to stay sharp — the same architecture patterns and shipping discipline I bring to embedded program work. SaaS platforms, agentic systems, and research tools, all shipped solo."
         />
 
         {/* ── Featured Spotlight ── */}

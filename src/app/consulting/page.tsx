@@ -235,7 +235,8 @@ export default function ConsultingPage() {
           <Reveal delay={0.2}>
             <p className="text-lg md:text-xl text-text-secondary max-w-xl leading-relaxed mb-10">
               Most AI initiatives fail between vision and execution. I close
-              that gap — by doing all three myself.
+              that gap by becoming your embedded AI lead — architecting,
+              building, and shipping all three.
             </p>
           </Reveal>
 
@@ -293,18 +294,18 @@ export default function ConsultingPage() {
         <div className="max-w-6xl mx-auto px-6 md:px-8">
           <SectionHeading
             label="What I Do"
-            heading="Three pillars. One person."
-            accentWord="One"
-            description="The rarest combination in AI consulting: end-to-end technical execution, organizational transformation, and professional education — delivered without a team of 12."
+            heading="Three pillars. One embedded lead."
+            accentWord="embedded"
+            description="The rarest combination in AI consulting: end-to-end technical execution, organizational transformation, and professional education — delivered by one person embedded inside your organization, not a 12-person team flying in and out."
           />
 
           {/* Value statement */}
           <Reveal delay={0.2}>
             <div className="border-l-2 border-accent-cyan bg-accent-cyan/[0.04] px-8 py-6 mt-10 mb-14 max-w-3xl rounded-r-lg">
               <p className="text-text-primary text-lg md:text-xl italic leading-relaxed">
-                &ldquo;I define the AI strategy, then write the code — a rare
-                combination that closes the gap between GenAI&apos;s potential
-                and operational reality.&rdquo;
+                &ldquo;I become your AI lead. I architect the program, write
+                the code, capture institutional knowledge, and ship features
+                weekly — until the organization can run it without me.&rdquo;
               </p>
               <p className="font-mono text-[11px] tracking-[2px] uppercase text-accent-warm mt-4">
                 — Loren Cossette

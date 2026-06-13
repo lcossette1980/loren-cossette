@@ -118,7 +118,7 @@ export function Footer() {
 
         <div className="mt-12 pt-8 border-t border-border-default flex flex-col md:flex-row justify-between items-center gap-4">
           <p className="font-mono text-[10px] tracking-[2px] text-text-muted uppercase">
-            &copy; {new Date().getFullYear()} Loren Cossette &middot; Applied AI Strategist, Architect &amp; Builder
+            &copy; {new Date().getFullYear()} Loren Cossette &middot; AI Program Architect
           </p>
           <p className="font-mono text-[10px] tracking-[2px] text-text-muted uppercase">
             San Antonio, TX &middot; Available Worldwide

@@ -10,27 +10,27 @@ import { Bot, Search, ShieldCheck, Users } from "lucide-react";
 const modes = [
   {
     icon: Bot,
-    title: "Automate Complex, High-Stakes Workflows",
+    title: "Architect & Build Production AI Systems",
     description:
-      "Turn manual, error-prone processes into production AI systems that run reliably — multi-agent orchestration, tool-calling pipelines, and autonomous workflows.",
+      "Multi-agent orchestration, LangGraph pipelines, RAG, Vertex AI / Claude / GPT routing — the systems other people put on a roadmap, I put into production. A11yReady (95%+ WCAG, 30s/doc) and File Intelligence (56K files nightly) are live examples.",
   },
   {
     icon: Search,
-    title: "Turn Institutional Knowledge Into Searchable Systems",
+    title: "Capture Knowledge Before It Walks Out",
     description:
-      "Your organization's knowledge is trapped in documents, databases, and people's heads. I build retrieval systems that make it findable, trustworthy, and actionable.",
+      "Retiring SMEs take decades of tribal knowledge with them. I build typed knowledge corpora, SME-confirmation workflows, and behavioral test suites that turn institutional memory into executable specs. UCR Modernization captured 704 SME sessions and 208 behavioral Playwright tests.",
   },
   {
     icon: ShieldCheck,
-    title: "Make Compliance Manageable at Scale",
+    title: "Modernize Legacy Without Breaking It",
     description:
-      "Facing a WCAG, Section 508, or federal compliance deadline with thousands of files? I build automated pipelines that turn that backlog into structured, auditable output.",
+      "Multi-agent testing platforms that index legacy codebases, generate regression suites from captured knowledge, and watch for drift on every commit. Lets the modernized system prove behavioral parity before it ships — and gives leadership confidence to greenlight the rebuild.",
   },
   {
     icon: Users,
-    title: "Get Your AI Initiative Out of Pilot Purgatory",
+    title: "Run the Program, Not Just the Build",
     description:
-      "You've proven the concept but can't get to production. I build the strategy, governance, and change management that gets AI adopted — not just approved.",
+      "Stakeholder hubs, dated activity feeds, ROI calculators, validation against independent audits, SME approval queues. I close the loop between technical work and executive trust — so AI initiatives stop dying in pilot purgatory.",
   },
 ];
 
@@ -39,9 +39,9 @@ export function EngagementModes() {
     <section className="py-32 lg:py-40">
       <div className="max-w-6xl mx-auto px-6 md:px-8">
         <SectionHeading
-          label="Problems I Solve"
-          heading="Where I create impact"
-          accentWord="impact"
+          label="The Four Pillars"
+          heading="How I run an AI program"
+          accentWord="program"
           center
         />
 

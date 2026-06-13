@@ -3,18 +3,18 @@ import type { Metadata } from "next";
 export const metadata: Metadata = {
   title: "About",
   description:
-    "Loren Cossette — AI Automation Architect based in San Antonio, TX. Strategy to production: agentic systems, RAG pipelines, NLP, and full-stack engineering.",
+    "Loren Cossette — AI Program Architect based in San Antonio, TX. Currently the embedded AI lead for Multnomah County, running 5 production AI initiatives. PhD candidate, Prosci-certified, 20-year military career.",
   openGraph: {
-    title: "About Loren Cossette | Applied AI Strategist & Builder",
+    title: "About Loren Cossette | AI Program Architect",
     description:
-      "Applied AI strategist and builder owning the full lifecycle — strategy, architecture, code, deployment, and change management. PhD candidate, Prosci-certified, 20-year military career.",
+      "Embedded AI program architect currently leading 5 production AI initiatives at Multnomah County. PhD candidate, Prosci-certified, SHRM-SCP, 20-year military career (E-9).",
     type: "profile",
   },
   twitter: {
     card: "summary_large_image",
-    title: "About Loren Cossette | Applied AI Strategist & Builder",
+    title: "About Loren Cossette | AI Program Architect",
     description:
-      "Applied AI strategist and builder: strategy to production. PhD candidate, Prosci-certified, SHRM-SCP, 20-year military (E-9).",
+      "Embedded AI lead. 5 production initiatives at Multnomah County. PhD candidate, Prosci-certified, SHRM-SCP, 20-year military (E-9).",
     creator: "@lorencossette",
   },
 };

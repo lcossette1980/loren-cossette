@@ -2,7 +2,7 @@ import { ImageResponse } from "next/og";
 import { readFile } from "node:fs/promises";
 import { join } from "node:path";
 
-export const alt = "Loren Cossette — Applied AI Strategist, Architect & Builder";
+export const alt = "Loren Cossette — AI Program Architect";
 export const size = { width: 1200, height: 630 };
 export const contentType = "image/png";
 
@@ -130,7 +130,7 @@ export default async function OGImage() {
             letterSpacing: "1px",
           }}
         >
-          Applied AI Strategist, Architect & Builder
+          AI Program Architect
         </p>
 
         {/* Tagline */}
@@ -144,8 +144,8 @@ export default async function OGImage() {
             lineHeight: 1.5,
           }}
         >
-          I help organizations turn messy, high-stakes AI problems into
-          working systems and measurable outcomes.
+          Embedded AI leadership for organizations undergoing modernization.
+          Currently running 5 production AI initiatives at Multnomah County.
         </p>
 
         {/* Bottom bar with tech + logo */}

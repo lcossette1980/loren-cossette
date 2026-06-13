@@ -48,33 +48,50 @@ export default function AboutPage() {
 
             <Reveal delay={0.2}>
               <p className="text-text-secondary text-lg leading-relaxed mb-4">
-                As a{" "}
+                I&apos;m an{" "}
                 <strong className="text-text-primary font-semibold">
-                  applied AI strategist and builder,
+                  embedded AI program architect.
                 </strong>{" "}
-                I own the full lifecycle &mdash; problem
-                discovery, stakeholder alignment, architecture, code, deployment,
-                and change management.
+                Currently the AI lead for{" "}
+                <strong className="text-text-primary font-semibold">
+                  Multnomah County
+                </strong>
+                , running{" "}
+                <strong className="text-text-primary font-semibold">
+                  5 production AI initiatives
+                </strong>{" "}
+                simultaneously across accessibility, site intelligence, legacy
+                modernization, and QA automation &mdash; shipping features
+                weekly with a dated public activity feed anyone can verify.
               </p>
             </Reveal>
 
             <Reveal delay={0.3}>
               <p className="text-text-secondary text-lg leading-relaxed mb-4">
-                I build production agentic systems, RAG pipelines, and serverless
-                infrastructure &mdash; while also standing up governance frameworks,
-                training executives at{" "}
-                <strong className="text-text-primary font-semibold">UT Austin</strong>{" "}
-                and{" "}
-                <strong className="text-text-primary font-semibold">Johns Hopkins</strong>
-                , and publishing peer-reviewed AI research.
+                The program reaches from architecture to code: LangGraph
+                pipelines, multi-agent systems on Vertex AI (Claude Sonnet 4.6,
+                Gemini 2.5), RAG over pgvector, deterministic forms parsing,
+                behavioral test capture from retiring SMEs. The same program
+                handles stakeholder enablement: executive briefings, ROI
+                calculators, SME approval queues, and validation against
+                independent external audits.
               </p>
             </Reveal>
 
             <Reveal delay={0.4}>
               <p className="text-text-secondary text-lg leading-relaxed">
-                Deep expertise in NLP, deep learning, prompt engineering, and
-                end-to-end ML model evaluation. PhD candidate. Prosci-certified.
-                SHRM-SCP. 20-year military career culminating at E-9 (top 1%).
+                Outside the County: executive AI training at{" "}
+                <strong className="text-text-primary font-semibold">
+                  UT Austin
+                </strong>{" "}
+                and{" "}
+                <strong className="text-text-primary font-semibold">
+                  Johns Hopkins
+                </strong>
+                , peer-reviewed AI research, side products (DraftEngine,
+                GTM Teardown, Clearview Politics). PhD candidate.
+                Prosci-certified. SHRM-SCP. 20-year military career culminating
+                at E-9 (top 1%).
               </p>
             </Reveal>
           </div>

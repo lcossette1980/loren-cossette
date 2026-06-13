@@ -79,8 +79,8 @@ export function HeroSection() {
 
         <Reveal delay={0.25}>
           <p className="text-lg md:text-xl lg:text-2xl font-semibold text-text-primary max-w-xl leading-snug mb-4">
-            Your AI initiative is stuck between strategy and reality.{" "}
-            <span className="text-accent-cyan">I close that gap.</span>
+            Your organization doesn&apos;t need another AI vendor.{" "}
+            <span className="text-accent-cyan">It needs an AI lead.</span>
           </p>
         </Reveal>
 
@@ -97,7 +97,7 @@ export function HeroSection() {
               <MapPin size={12} className="text-accent-warm/60" /> {personal.location}
             </span>
             <span className="hidden sm:inline text-border-default">·</span>
-            <span>Public Sector · Mission-Driven Orgs · High-Stakes Workflows</span>
+            <span>5 Production AI Initiatives · Multnomah County · Shipping Weekly</span>
           </div>
         </Reveal>
 
@@ -114,9 +114,9 @@ export function HeroSection() {
             <Button
               variant="secondary"
               href="/projects"
-              onClick={() => analytics.ctaClick("Explore Case Studies", "hero")}
+              onClick={() => analytics.ctaClick("See the Program", "hero")}
             >
-              Explore Case Studies
+              See the Program
             </Button>
           </div>
         </Reveal>

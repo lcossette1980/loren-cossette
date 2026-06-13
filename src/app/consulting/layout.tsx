@@ -1,20 +1,20 @@
 import type { Metadata } from "next";
 
 export const metadata: Metadata = {
-  title: "AI Consulting Services",
+  title: "Embedded AI Program Leadership",
   description:
-    "AI strategy, production agentic systems, RAG pipelines, and organizational transformation — delivered by one senior architect. Fractional CAIO, embedded architect, and advisory retainer engagements.",
+    "Embedded AI program leadership for organizations modernizing legacy systems, scaling AI safely, or facing compliance deadlines. Currently the AI lead for Multnomah County, running 5 production AI initiatives.",
   openGraph: {
-    title: "AI Consulting Services | Loren Cossette",
+    title: "Embedded AI Program Leadership | Loren Cossette",
     description:
-      "Strategy. Build. Adoption. Most AI initiatives fail between vision and execution. I close that gap — by doing all three myself.",
+      "I become your embedded AI lead. Architect the program, write the code, ship features weekly — until the organization can run it without me.",
     type: "website",
   },
   twitter: {
     card: "summary_large_image",
-    title: "AI Consulting Services | Loren Cossette",
+    title: "Embedded AI Program Leadership | Loren Cossette",
     description:
-      "Strategy. Build. Adoption. Production AI systems, organizational transformation, and executive training — delivered by one senior architect.",
+      "Strategy. Build. Adoption. Embedded inside the organization, not flying in and out. Currently the AI lead for Multnomah County.",
   },
   keywords: [
     "AI consulting",
@@ -34,9 +34,9 @@ const siteUrl = "https://www.lorencossette.com";
 const serviceSchema = {
   "@context": "https://schema.org",
   "@type": "ProfessionalService",
-  name: "Loren Cossette AI Consulting",
+  name: "Loren Cossette — Embedded AI Program Leadership",
   description:
-    "AI strategy, system design and build, and organizational AI transformation for public sector, mission-driven organizations, and teams with high-stakes workflows.",
+    "Embedded AI program architect-builder for public sector and mission-driven organizations. Architecture, system build, knowledge capture, and organizational AI transformation — delivered by one embedded lead, not a flying-in-and-out consulting team.",
   url: `${siteUrl}/consulting`,
   provider: {
     "@type": "Person",

@@ -154,10 +154,10 @@ export default function MethodologyPage() {
     <div className="pt-32 pb-32">
       <div className="max-w-3xl mx-auto px-6 md:px-8">
         <SectionHeading
-          label="How I Work"
-          heading="How I take AI systems from idea to production"
-          accentWord="production"
-          description="Seven phases from problem discovery to production handoff. A codified methodology built from deploying AI systems in high-stakes environments."
+          label="How I Run the Program"
+          heading="How an AI program goes from discovery to scale"
+          accentWord="scale"
+          description="Seven phases I run inside organizations — from problem discovery and SME knowledge capture through architecture, build, deployment, stakeholder enablement, and handoff. The same playbook currently running 5 production initiatives at Multnomah County."
         />
 
         {/* Tab bar */}
@@ -191,7 +191,7 @@ export default function MethodologyPage() {
             <Reveal delay={0.3}>
               <Card className="mt-8 p-8 text-center">
                 <p className="text-sm text-text-secondary italic leading-relaxed max-w-lg mx-auto">
-                  &ldquo;The best applied AI builders aren&apos;t the
+                  &ldquo;The best AI program leads aren&apos;t the
                   ones who write the most code. They&apos;re the ones who make
                   the{" "}
                   <span className="text-accent-cyan font-semibold not-italic">

@@ -16,13 +16,14 @@ export function FooterCTA() {
           Work With Me
         </p>
         <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold mb-6 text-text-primary">
-          Ready to turn your AI ambition into a{" "}
-          <span className="text-accent-cyan">working system</span>?
+          Ready to bring in an{" "}
+          <span className="text-accent-cyan">embedded AI lead</span>?
         </h2>
         <p className="text-text-secondary max-w-lg mx-auto mb-10 text-base md:text-lg leading-relaxed">
-          Whether you need a strategy, a build, or both — I help organizations
-          close the gap between AI ambition and operational reality. Let&apos;s
-          talk about what you&apos;re trying to solve.
+          If your organization is modernizing legacy systems, scaling AI safely,
+          or staring down a compliance deadline — let&apos;s talk about whether
+          embedded AI program leadership is the right fit. Engagements start
+          with a 30-minute working session, not a sales pitch.
         </p>
         <div className="flex gap-4 justify-center flex-wrap">
           <Button

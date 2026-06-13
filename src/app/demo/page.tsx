@@ -173,7 +173,7 @@ export default function DemoPage() {
           label="Live Assessment Demo"
           heading="How ready is your organization for AI?"
           accentWord="ready"
-          description="Describe your organization's AI situation and see how I structure ambiguous problems into actionable assessments — powered by a multi-model pipeline I built using GPT-4o and Claude."
+          description="Describe your organization's AI situation and get a structured leadership readiness assessment in 30 seconds — a working example of how I structure program-level AI thinking. Multi-model pipeline (GPT-4o + Claude) built end-to-end as a small public glimpse of the engineering discipline I bring to embedded program work."
         />
 
         <Reveal delay={0.3}>
