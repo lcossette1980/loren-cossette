@@ -142,6 +142,11 @@ const procurement = [
   { label: "Entity Type", value: "Texas Domestic LLC (filed Dec 29, 2022)" },
   { label: "TX SOS File #", value: "0804858459" },
   { label: "TX Taxpayer #", value: "32087716570" },
+  { label: "Federal EIN", value: "92-1502035" },
+  {
+    label: "Texas Status",
+    value: "Right to Transact Business: ACTIVE · SOS Registration: ACTIVE",
+  },
   {
     label: "NAICS Codes",
     value:

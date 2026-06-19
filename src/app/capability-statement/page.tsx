@@ -311,7 +311,7 @@ export default function CapabilityStatementPage() {
                 ["Date Formed", "December 29, 2022"],
                 ["TX Secretary of State File #", "0804858459"],
                 ["TX Taxpayer ID", "32087716570"],
-                ["Federal EIN", "Available on request"],
+                ["Federal EIN", "92-1502035"],
                 [
                   "Registered Agent",
                   "Registered Agents Inc., 5900 Balcones Drive STE 100, Austin, TX 78731",
