@@ -28,10 +28,10 @@ export default function ActivityPage() {
       <div className="max-w-4xl mx-auto px-6 md:px-8">
         <Reveal>
           <SectionHeading
-            label="Activity Log"
-            heading="Everything I've shipped, dated"
+            label="Delivery Evidence"
+            heading="Complete record of shipped work, dated"
             accentWord="shipped"
-            description="Complete public log of features, fixes, and milestones across the program and other work. New entries usually appear within a day of shipping."
+            description="Production milestones, validation improvements, and shipped functionality across the Multnomah County AI Program and other work. Each entry is dated and links to the underlying case study — the same auditability standard the program maintains internally."
           />
         </Reveal>
 

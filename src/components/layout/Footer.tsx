@@ -118,10 +118,19 @@ export function Footer() {
 
         <div className="mt-12 pt-8 border-t border-border-default flex flex-col md:flex-row justify-between items-center gap-4">
           <p className="font-mono text-[10px] tracking-[2px] text-text-muted uppercase">
-            &copy; {new Date().getFullYear()} Loren Cossette &middot; AI Program Architect
+            &copy; {new Date().getFullYear()} Cossette Consulting LLC &middot; Texas LLC
           </p>
           <p className="font-mono text-[10px] tracking-[2px] text-text-muted uppercase">
             San Antonio, TX &middot; Available Worldwide
+          </p>
+        </div>
+
+        {/* Disclaimer band */}
+        <div className="mt-6 pt-6 border-t border-border-subtle">
+          <p className="font-mono text-[10px] text-text-muted leading-relaxed max-w-3xl mx-auto text-center">
+            Project descriptions reflect Loren Cossette&apos;s professional work and do not
+            imply endorsement by Multnomah County or any other public agency. All trademarks
+            and case-study material are referenced for portfolio purposes only.
           </p>
         </div>
       </div>

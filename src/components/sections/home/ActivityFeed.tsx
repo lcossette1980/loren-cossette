@@ -137,10 +137,10 @@ export function ActivityFeed({ limit = 6, embedded = false }: ActivityFeedProps)
       <div className="max-w-4xl mx-auto px-6 md:px-8">
         <Reveal>
           <SectionHeading
-            label="Recent Activity"
-            heading="What shipped lately"
+            label="Delivery Evidence"
+            heading="Dated record of what shipped"
             accentWord="shipped"
-            description="Dated log of features, fixes, and milestones across the program and other work. The same kind of build-in-public feed you can see in the Multnomah County hub — anyone can verify the velocity."
+            description="Production milestones, validation improvements, and shipped functionality across the Multnomah County AI Program and other work — dated and traceable to specific case studies. The same auditability standard the program maintains internally."
           />
         </Reveal>
 
@@ -152,7 +152,7 @@ export function ActivityFeed({ limit = 6, embedded = false }: ActivityFeedProps)
               href="/activity"
               className="inline-flex items-center gap-2 text-accent-cyan/80 hover:text-accent-cyan text-sm font-mono hover:gap-3 transition-all"
             >
-              See the full activity log <ArrowRight size={14} />
+              See the full delivery record <ArrowRight size={14} />
             </Link>
           </div>
         </Reveal>

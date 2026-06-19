@@ -1,20 +1,20 @@
 import type { Metadata } from "next";
 
 export const metadata: Metadata = {
-  title: "Engineering Methodology",
+  title: "How I Run the Program",
   description:
-    "A 7-phase engineering methodology for building production AI systems — from defining the end state through architecture, vertical slices, AI collaboration, and validation. Built from real-world experience deploying AI in resistant organizations.",
+    "Seven-phase methodology for running embedded AI programs inside organizations — from problem discovery and SME knowledge capture through architecture, build, deployment, stakeholder enablement, and documented handoff. The same playbook currently running 5 production initiatives at Multnomah County.",
   openGraph: {
-    title: "The AI Automation Engineer Workflow | Loren Cossette",
+    title: "How I Run an AI Program | Loren Cossette",
     description:
-      "Seven phases from idea to production. A codified methodology for building AI systems that survive contact with the real world.",
+      "Seven phases from discovery to scale. The codified methodology behind 5 production AI initiatives at Multnomah County.",
     type: "website",
   },
   twitter: {
     card: "summary_large_image",
-    title: "The AI Automation Engineer Workflow | Loren Cossette",
+    title: "How I Run an AI Program | Loren Cossette",
     description:
-      "7-phase engineering methodology — from problem discovery to production handoff. Built from real-world AI deployments.",
+      "Seven-phase methodology for embedded AI program leadership. Discovery → architecture → build → handoff.",
     creator: "@lorencossette",
   },
 };

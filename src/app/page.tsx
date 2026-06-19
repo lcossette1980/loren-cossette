@@ -6,7 +6,7 @@ import { FeaturedProjects } from "@/components/sections/home/FeaturedProjects";
 import { ActivityFeed } from "@/components/sections/home/ActivityFeed";
 import { AboutTeaser } from "@/components/sections/home/AboutTeaser";
 import { TechShowcase } from "@/components/sections/home/TechShowcase";
-import { Testimonials } from "@/components/sections/home/Testimonials";
+import { IndependentValidation } from "@/components/sections/home/IndependentValidation";
 import { FooterCTA } from "@/components/sections/home/FooterCTA";
 
 export default function Home() {
@@ -17,7 +17,7 @@ export default function Home() {
       <FeaturedProjects />
       <ActivityFeed limit={6} />
       <ImpactMetrics />
-      <Testimonials />
+      <IndependentValidation />
       <EngagementModes />
       <AboutTeaser />
       <TechShowcase />

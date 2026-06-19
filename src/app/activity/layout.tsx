@@ -1,20 +1,20 @@
 import type { Metadata } from "next";
 
 export const metadata: Metadata = {
-  title: "Activity Log",
+  title: "Delivery Evidence",
   description:
-    "Dated public log of everything I've shipped across the Multnomah County AI Program and other work — milestones, features, fixes. The build-in-public proof anyone can verify.",
+    "Complete dated record of production milestones, validation improvements, and shipped functionality across the Multnomah County AI Program and other engagements. Auditable proof of delivery.",
   openGraph: {
-    title: "Activity Log | Loren Cossette",
+    title: "Delivery Evidence | Loren Cossette",
     description:
-      "Dated public log of features, fixes, and milestones across the AI program and other work. Shipping weekly.",
+      "Dated record of production milestones across the Multnomah County AI Program and other work. Auditable proof of delivery.",
     type: "website",
   },
   twitter: {
     card: "summary_large_image",
-    title: "Activity Log | Loren Cossette",
+    title: "Delivery Evidence | Loren Cossette",
     description:
-      "Build-in-public dated log of everything I've shipped. Anyone can verify the velocity.",
+      "Dated record of shipped functionality across the AI program. Auditable proof of delivery.",
   },
 };
 

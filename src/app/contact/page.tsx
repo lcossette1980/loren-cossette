@@ -79,9 +79,10 @@ export default function ContactPage() {
                     ref={subjectRef}
                     className="w-full bg-bg-tertiary border border-border-default rounded-lg px-4 py-3 text-sm text-text-secondary focus:outline-none focus:border-accent-cyan/40 transition-all"
                   >
-                    <option>AI Engineering</option>
-                    <option>Consulting</option>
-                    <option>Speaking</option>
+                    <option>Public-Sector AI Modernization</option>
+                    <option>Embedded Program Engagement</option>
+                    <option>Discovery / Assessment</option>
+                    <option>Speaking & Training</option>
                     <option>Other</option>
                   </select>
                 </div>

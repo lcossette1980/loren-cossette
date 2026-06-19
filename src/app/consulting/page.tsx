@@ -559,6 +559,22 @@ export default function ConsultingPage() {
             ))}
           </StaggerContainer>
 
+          {/* Availability + COI disclosure */}
+          <Reveal delay={0.2}>
+            <div className="mt-10 mb-2 border-l-2 border-accent-warm/60 bg-accent-warm/[0.04] px-6 py-5 rounded-r-lg max-w-3xl">
+              <p className="font-mono text-[10px] tracking-[2px] uppercase text-accent-warm mb-2">
+                Availability
+              </p>
+              <p className="text-sm text-text-secondary leading-relaxed">
+                Currently embedded as the AI lead for Multnomah County. Available for
+                advisory, training, independent review, and scoped modernization
+                engagements with other agencies where there is no conflict with current
+                obligations. Conflict-of-interest review takes place during the
+                Discovery Engagement before any binding scope is agreed.
+              </p>
+            </div>
+          </Reveal>
+
           {/* Rate tables */}
           <div className="grid grid-cols-1 md:grid-cols-2 gap-5 mt-14">
             {/* Hourly rates */}
