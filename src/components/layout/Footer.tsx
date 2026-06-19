@@ -120,9 +120,29 @@ export function Footer() {
           <p className="font-mono text-[10px] tracking-[2px] text-text-muted uppercase">
             &copy; {new Date().getFullYear()} Cossette Consulting LLC &middot; Texas LLC
           </p>
-          <p className="font-mono text-[10px] tracking-[2px] text-text-muted uppercase">
-            San Antonio, TX &middot; Available Worldwide
-          </p>
+          <div className="flex flex-wrap gap-x-4 gap-y-2 justify-center font-mono text-[10px] tracking-[2px] uppercase">
+            <Link
+              href="/accessibility"
+              className="text-text-muted hover:text-accent-cyan transition-colors"
+            >
+              Accessibility
+            </Link>
+            <Link
+              href="/security"
+              className="text-text-muted hover:text-accent-cyan transition-colors"
+            >
+              Security
+            </Link>
+            <Link
+              href="/capability-statement"
+              className="text-text-muted hover:text-accent-cyan transition-colors"
+            >
+              Capability
+            </Link>
+            <span className="text-text-muted">
+              San Antonio, TX
+            </span>
+          </div>
         </div>
 
         {/* Disclaimer band */}

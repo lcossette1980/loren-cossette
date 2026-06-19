@@ -74,6 +74,9 @@ export function FloatingContact() {
 
             {/* Panel */}
             <motion.div
+              role="dialog"
+              aria-modal="true"
+              aria-labelledby="floating-contact-title"
               initial={{ opacity: 0, y: 20, scale: 0.95 }}
               animate={{ opacity: 1, y: 0, scale: 1 }}
               exit={{ opacity: 0, y: 20, scale: 0.95 }}
@@ -83,7 +86,10 @@ export function FloatingContact() {
               {/* Header */}
               <div className="flex items-center justify-between px-6 pt-5 pb-4 border-b border-border-default">
                 <div>
-                  <h3 className="font-semibold text-text-primary text-sm">
+                  <h3
+                    id="floating-contact-title"
+                    className="font-semibold text-text-primary text-sm"
+                  >
                     Send a message
                   </h3>
                   <p className="text-[11px] text-text-muted font-mono mt-0.5">
@@ -91,57 +97,81 @@ export function FloatingContact() {
                   </p>
                 </div>
                 <button
+                  type="button"
                   onClick={() => setOpen(false)}
-                  className="w-8 h-8 rounded-lg flex items-center justify-center text-text-muted hover:text-text-primary hover:bg-bg-tertiary transition-all"
-                  aria-label="Close"
+                  className="w-8 h-8 rounded-lg flex items-center justify-center text-text-secondary hover:text-text-primary hover:bg-bg-tertiary transition-all"
+                  aria-label="Close contact form"
                 >
-                  <X size={16} />
+                  <X size={16} aria-hidden="true" />
                 </button>
               </div>
 
               {/* Form */}
               <form onSubmit={handleSubmit} className="p-6 space-y-4">
                 <div>
-                  <label className="block text-[10px] text-text-muted font-mono mb-1.5 uppercase tracking-wider">
-                    Name
+                  <label
+                    htmlFor="fc-name"
+                    className="block text-[10px] text-text-secondary font-mono mb-1.5 uppercase tracking-wider"
+                  >
+                    Name <span aria-hidden="true">*</span>
+                    <span className="sr-only">required</span>
                   </label>
                   <input
                     ref={nameRef}
+                    id="fc-name"
+                    name="name"
                     type="text"
                     required
+                    aria-required="true"
                     placeholder="Your name"
-                    className="w-full bg-bg-tertiary border border-border-default rounded-lg px-3.5 py-2.5 text-sm text-text-primary placeholder:text-text-muted/50 focus:outline-none focus:border-accent-cyan/40 focus:shadow-[0_0_12px_rgba(0,255,255,0.06)] transition-all"
+                    autoComplete="name"
+                    className="w-full bg-bg-tertiary border border-border-default rounded-lg px-3.5 py-2.5 text-sm text-text-primary placeholder:text-text-muted focus:outline-none focus:border-accent-cyan focus:shadow-[0_0_12px_rgba(0,255,255,0.12)] transition-all"
                   />
                 </div>
                 <div>
-                  <label className="block text-[10px] text-text-muted font-mono mb-1.5 uppercase tracking-wider">
-                    Email
+                  <label
+                    htmlFor="fc-email"
+                    className="block text-[10px] text-text-secondary font-mono mb-1.5 uppercase tracking-wider"
+                  >
+                    Email <span aria-hidden="true">*</span>
+                    <span className="sr-only">required</span>
                   </label>
                   <input
                     ref={emailRef}
+                    id="fc-email"
+                    name="email"
                     type="email"
                     required
+                    aria-required="true"
                     placeholder="your@email.com"
-                    className="w-full bg-bg-tertiary border border-border-default rounded-lg px-3.5 py-2.5 text-sm text-text-primary placeholder:text-text-muted/50 focus:outline-none focus:border-accent-cyan/40 focus:shadow-[0_0_12px_rgba(0,255,255,0.06)] transition-all"
+                    autoComplete="email"
+                    className="w-full bg-bg-tertiary border border-border-default rounded-lg px-3.5 py-2.5 text-sm text-text-primary placeholder:text-text-muted focus:outline-none focus:border-accent-cyan focus:shadow-[0_0_12px_rgba(0,255,255,0.12)] transition-all"
                   />
                 </div>
                 <div>
-                  <label className="block text-[10px] text-text-muted font-mono mb-1.5 uppercase tracking-wider">
-                    Message
+                  <label
+                    htmlFor="fc-message"
+                    className="block text-[10px] text-text-secondary font-mono mb-1.5 uppercase tracking-wider"
+                  >
+                    Message <span aria-hidden="true">*</span>
+                    <span className="sr-only">required</span>
                   </label>
                   <textarea
                     ref={messageRef}
+                    id="fc-message"
+                    name="message"
                     rows={3}
                     required
+                    aria-required="true"
                     placeholder="Tell me about your project..."
-                    className="w-full bg-bg-tertiary border border-border-default rounded-lg px-3.5 py-2.5 text-sm text-text-primary placeholder:text-text-muted/50 focus:outline-none focus:border-accent-cyan/40 focus:shadow-[0_0_12px_rgba(0,255,255,0.06)] transition-all resize-none"
+                    className="w-full bg-bg-tertiary border border-border-default rounded-lg px-3.5 py-2.5 text-sm text-text-primary placeholder:text-text-muted focus:outline-none focus:border-accent-cyan focus:shadow-[0_0_12px_rgba(0,255,255,0.12)] transition-all resize-none"
                   />
                 </div>
                 <button
                   type="submit"
                   className="w-full inline-flex items-center justify-center gap-2 px-4 py-3 bg-accent-cyan text-[#0a0a0f] font-semibold text-sm rounded-lg hover:shadow-[0_0_30px_rgba(0,255,255,0.3)] transition-all duration-300"
                 >
-                  <Send size={14} /> Send Message
+                  <Send size={14} aria-hidden="true" /> Send Message
                 </button>
               </form>
             </motion.div>

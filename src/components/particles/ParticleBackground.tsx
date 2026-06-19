@@ -68,13 +68,25 @@ const options: ISourceOptions = {
 
 export function ParticleBackground() {
   const [init, setInit] = useState(false);
+  const [reducedMotion, setReducedMotion] = useState(false);
 
   useEffect(() => {
+    const mq = window.matchMedia("(prefers-reduced-motion: reduce)");
+    setReducedMotion(mq.matches);
+    const handler = (e: MediaQueryListEvent) => setReducedMotion(e.matches);
+    mq.addEventListener("change", handler);
+    return () => mq.removeEventListener("change", handler);
+  }, []);
+
+  useEffect(() => {
+    if (reducedMotion) return;
     initParticlesEngine(async (engine) => {
       await loadSlim(engine);
     }).then(() => setInit(true));
-  }, []);
+  }, [reducedMotion]);
 
+  // Respect WCAG 2.3.3 — skip decorative motion entirely
+  if (reducedMotion) return null;
   if (!init) return null;
 
   return (

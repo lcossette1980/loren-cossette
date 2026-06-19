@@ -46,38 +46,50 @@ export default function ContactPage() {
               <h3 className="font-mono text-[11px] tracking-[2px] uppercase text-accent-warm mb-6">
                 Send a Message
               </h3>
-              <form className="space-y-5" onSubmit={handleSubmit}>
+              <form className="space-y-5" onSubmit={handleSubmit} noValidate>
                 <div>
-                  <label className="block text-xs text-text-muted font-mono mb-2">
-                    Name
+                  <label htmlFor="contact-name" className="block text-xs text-text-secondary font-mono mb-2">
+                    Name <span aria-hidden="true">*</span>
+                    <span className="sr-only">required</span>
                   </label>
                   <input
                     ref={nameRef}
+                    id="contact-name"
+                    name="name"
                     type="text"
                     required
+                    aria-required="true"
                     placeholder="Your name"
-                    className="w-full bg-bg-tertiary border border-border-default rounded-lg px-4 py-3 text-sm text-text-primary placeholder:text-text-muted focus:outline-none focus:border-accent-cyan/40 focus:shadow-[0_0_12px_rgba(0,255,255,0.08)] transition-all"
+                    autoComplete="name"
+                    className="w-full bg-bg-tertiary border border-border-default rounded-lg px-4 py-3 text-sm text-text-primary placeholder:text-text-muted focus:outline-none focus:border-accent-cyan focus:shadow-[0_0_12px_rgba(0,255,255,0.12)] transition-all"
                   />
                 </div>
                 <div>
-                  <label className="block text-xs text-text-muted font-mono mb-2">
-                    Email
+                  <label htmlFor="contact-email" className="block text-xs text-text-secondary font-mono mb-2">
+                    Email <span aria-hidden="true">*</span>
+                    <span className="sr-only">required</span>
                   </label>
                   <input
                     ref={emailRef}
+                    id="contact-email"
+                    name="email"
                     type="email"
                     required
+                    aria-required="true"
                     placeholder="your@email.com"
-                    className="w-full bg-bg-tertiary border border-border-default rounded-lg px-4 py-3 text-sm text-text-primary placeholder:text-text-muted focus:outline-none focus:border-accent-cyan/40 focus:shadow-[0_0_12px_rgba(0,255,255,0.08)] transition-all"
+                    autoComplete="email"
+                    className="w-full bg-bg-tertiary border border-border-default rounded-lg px-4 py-3 text-sm text-text-primary placeholder:text-text-muted focus:outline-none focus:border-accent-cyan focus:shadow-[0_0_12px_rgba(0,255,255,0.12)] transition-all"
                   />
                 </div>
                 <div>
-                  <label className="block text-xs text-text-muted font-mono mb-2">
+                  <label htmlFor="contact-subject" className="block text-xs text-text-secondary font-mono mb-2">
                     Subject
                   </label>
                   <select
                     ref={subjectRef}
-                    className="w-full bg-bg-tertiary border border-border-default rounded-lg px-4 py-3 text-sm text-text-secondary focus:outline-none focus:border-accent-cyan/40 transition-all"
+                    id="contact-subject"
+                    name="subject"
+                    className="w-full bg-bg-tertiary border border-border-default rounded-lg px-4 py-3 text-sm text-text-primary focus:outline-none focus:border-accent-cyan transition-all"
                   >
                     <option>Public-Sector AI Modernization</option>
                     <option>Embedded Program Engagement</option>
@@ -87,15 +99,19 @@ export default function ContactPage() {
                   </select>
                 </div>
                 <div>
-                  <label className="block text-xs text-text-muted font-mono mb-2">
-                    Message
+                  <label htmlFor="contact-message" className="block text-xs text-text-secondary font-mono mb-2">
+                    Message <span aria-hidden="true">*</span>
+                    <span className="sr-only">required</span>
                   </label>
                   <textarea
                     ref={messageRef}
+                    id="contact-message"
+                    name="message"
                     rows={4}
                     required
+                    aria-required="true"
                     placeholder="Tell me about your project..."
-                    className="w-full bg-bg-tertiary border border-border-default rounded-lg px-4 py-3 text-sm text-text-primary placeholder:text-text-muted focus:outline-none focus:border-accent-cyan/40 focus:shadow-[0_0_12px_rgba(0,255,255,0.08)] transition-all resize-none"
+                    className="w-full bg-bg-tertiary border border-border-default rounded-lg px-4 py-3 text-sm text-text-primary placeholder:text-text-muted focus:outline-none focus:border-accent-cyan focus:shadow-[0_0_12px_rgba(0,255,255,0.12)] transition-all resize-none"
                   />
                 </div>
                 <Button className="w-full">

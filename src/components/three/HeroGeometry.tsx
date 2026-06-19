@@ -1,6 +1,6 @@
 "use client";
 
-import { useRef } from "react";
+import { useEffect, useRef, useState } from "react";
 import { Canvas, useFrame } from "@react-three/fiber";
 import { Float, MeshDistortMaterial } from "@react-three/drei";
 import type { Mesh } from "three";
@@ -43,8 +43,20 @@ function DistortedSphere() {
 }
 
 export function HeroGeometry() {
+  const [reducedMotion, setReducedMotion] = useState(false);
+  useEffect(() => {
+    const mq = window.matchMedia("(prefers-reduced-motion: reduce)");
+    setReducedMotion(mq.matches);
+    const handler = (e: MediaQueryListEvent) => setReducedMotion(e.matches);
+    mq.addEventListener("change", handler);
+    return () => mq.removeEventListener("change", handler);
+  }, []);
+
+  // Respect WCAG 2.3.3 — skip decorative 3D motion entirely
+  if (reducedMotion) return null;
+
   return (
-    <div className="absolute inset-0 z-[1] pointer-events-none opacity-60">
+    <div className="absolute inset-0 z-[1] pointer-events-none opacity-60" aria-hidden="true">
       <Canvas
         camera={{ position: [0, 0, 5], fov: 45 }}
         gl={{ antialias: true, alpha: true }}

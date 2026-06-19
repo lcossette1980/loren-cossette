@@ -12,7 +12,8 @@
   --accent-warm: #e2b854;
   --text-primary: #e6edf3;
   --text-secondary: #9ca3af;
-  --text-muted: #748090;
+  /* Brightened from #748090 (4.17:1 on bg-tertiary, AA fail) to #8b95a4 (5.50:1 on bg-tertiary, passes AA) */
+  --text-muted: #8b95a4;
   --border-default: rgba(255, 255, 255, 0.12);
   --border-subtle: rgba(255, 255, 255, 0.08);
   --border-strong: rgba(255, 255, 255, 0.18);
@@ -100,10 +101,58 @@ body {
   font-variant-numeric: tabular-nums;
 }
 
-/* Keep neon as a micro-accent for accessibility focus states */
-:where(a, button, input, select, textarea):focus-visible {
-  outline: 2px solid var(--color-border-accent);
+/* Screen-reader-only utility (WCAG: provide non-visual labels for icon-only controls) */
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}
+
+/* Visible focus indicator — WCAG 2.4.7 AA + 1.4.11 non-text contrast.
+   Full-opacity cyan against the dark background gives ~12.9:1 contrast. */
+:where(a, button, input, select, textarea, [tabindex]):focus-visible {
+  outline: 2px solid var(--color-accent-cyan);
   outline-offset: 2px;
+  border-radius: 4px;
+}
+
+/* Skip link — only visible when focused */
+.skip-link {
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%) translateY(-150%);
+  top: 0.5rem;
+  z-index: 100;
+  background: var(--color-accent-cyan);
+  color: #0a0a0f;
+  padding: 0.75rem 1.25rem;
+  border-radius: 0.5rem;
+  font-weight: 600;
+  font-size: 0.875rem;
+  text-decoration: none;
+  transition: transform 0.18s ease-out;
+}
+.skip-link:focus {
+  transform: translateX(-50%) translateY(0);
+}
+
+/* Respect prefers-reduced-motion (WCAG 2.3.3) — disable
+   non-essential animation but preserve essential cues. */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.001ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.001ms !important;
+    scroll-behavior: auto !important;
+  }
 }
 
 /* Shared page container to enforce centering and breathing room */

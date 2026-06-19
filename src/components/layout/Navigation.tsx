@@ -52,6 +52,7 @@ export function Navigation() {
   return (
     <>
       <motion.nav
+        aria-label="Primary"
         className={cn(
           "fixed top-0 left-0 right-0 z-50 transition-all duration-500",
           scrolled
@@ -65,9 +66,10 @@ export function Navigation() {
         <div className="site-container h-16 flex items-center justify-between pl-[env(safe-area-inset-left)] pr-[env(safe-area-inset-right)]">
           <Link
             href="/"
+            aria-label="Loren Cossette — Home"
             className="font-mono text-sm tracking-[3px] text-accent-cyan font-medium hover:text-white transition-colors"
           >
-            LC
+            <span aria-hidden="true">LC</span>
           </Link>
 
           {/* Desktop nav */}
@@ -118,7 +120,11 @@ export function Navigation() {
               {/* More dropdown */}
               <div ref={moreRef} className="relative">
                 <button
+                  type="button"
                   onClick={() => setMoreOpen(!moreOpen)}
+                  aria-expanded={moreOpen}
+                  aria-haspopup="menu"
+                  aria-controls="more-menu"
                   className={cn(
                     "relative px-4 py-2 font-mono text-[11px] tracking-[1px] uppercase transition-colors duration-300 flex items-center gap-1",
                     isSecondaryActive
@@ -146,6 +152,8 @@ export function Navigation() {
                 <AnimatePresence>
                   {moreOpen && (
                     <motion.div
+                      id="more-menu"
+                      role="menu"
                       initial={{ opacity: 0, y: 8, scale: 0.96 }}
                       animate={{ opacity: 1, y: 0, scale: 1 }}
                       exit={{ opacity: 0, y: 8, scale: 0.96 }}
@@ -182,11 +190,14 @@ export function Navigation() {
 
           {/* Mobile toggle */}
           <button
-            className="md:hidden text-text-secondary hover:text-accent-cyan transition-colors"
+            type="button"
+            className="md:hidden text-text-secondary hover:text-accent-cyan transition-colors p-2"
             onClick={() => setMobileOpen(!mobileOpen)}
-            aria-label="Toggle menu"
+            aria-label={mobileOpen ? "Close menu" : "Open menu"}
+            aria-expanded={mobileOpen}
+            aria-controls="mobile-menu"
           >
-            {mobileOpen ? <X size={20} /> : <Menu size={20} />}
+            {mobileOpen ? <X size={20} aria-hidden="true" /> : <Menu size={20} aria-hidden="true" />}
           </button>
         </div>
       </motion.nav>
@@ -195,6 +206,10 @@ export function Navigation() {
       <AnimatePresence>
         {mobileOpen && (
           <motion.div
+            id="mobile-menu"
+            role="dialog"
+            aria-modal="true"
+            aria-label="Site navigation"
             className="fixed inset-0 z-40 bg-[rgba(10,10,15,0.98)] backdrop-blur-2xl flex flex-col items-center justify-center gap-6"
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
