@@ -254,6 +254,9 @@ export default function PublicSectorPage() {
               <Button href="/capability-statement" size="lg" variant="ghost">
                 <Download size={16} /> Capability Statement
               </Button>
+              <Button href="/intro" size="lg" variant="ghost">
+                <Download size={16} /> One-Pager
+              </Button>
             </div>
           </Reveal>
 
