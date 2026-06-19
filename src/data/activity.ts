@@ -1,29 +1,163 @@
-/* ── Activity Feed ──
- *  Dated record of what shipped, when. Mirrors the multco-presentations
- *  hub feed but lives on the personal site for buyer credibility.
+/* ── Activity Feed / Delivery Evidence ──
  *
- *  Add new entries at the TOP of the array. Use ISO date strings.
- *  Keep summaries terse and specific — names, numbers, what changed.
- *  Avoid marketing language; this feed only works if it reads like a
- *  changelog, not a press release.
+ *  Single source of truth: the Multnomah County AI Program hub at
+ *  multco-presentations.web.app. The personal site fetches a public
+ *  activity.json from that hub at build time (ISR, revalidate every hour).
+ *
+ *  This file holds two things:
+ *   1. The fallback Multco entries (used only if the live fetch fails)
+ *   2. The non-Multco entries (Clearview Politics launch, GTM Teardown
+ *      launch, etc.) which are always appended to whatever Multco feed
+ *      we end up with.
+ *
+ *  EXPECTED JSON SHAPE at https://multco-presentations.web.app/activity.json:
+ *
+ *    [
+ *      {
+ *        "date": "2026-06-19",                                // ISO YYYY-MM-DD
+ *        "type": "MILESTONE",                                 // MILESTONE | FEATURE | FIX | RESEARCH
+ *        "project": "AI Testing Platform",                    // project name (mapped to local slug)
+ *        "summary": "knowledge_v2 baseline + ADR 0015 ...",   // one-line description
+ *        "href": "https://multco-presentations.web.app/projects/testing/"
+ *      },
+ *      ...
+ *    ]
+ *
+ *  CORS: the personal site fetches server-side via Next.js ISR, so
+ *  cross-origin isn't an issue. No special headers needed on the hub.
  */
 
 export type ActivityType = "MILESTONE" | "FEATURE" | "FIX" | "RESEARCH";
 
 export interface ActivityEntry {
-  /** ISO date string, e.g. "2026-06-12" */
+  /** ISO date string, e.g. "2026-06-19" */
   date: string;
   type: ActivityType;
-  /** Short project label that maps to a known program/project */
+  /** Project label — display name from Multco hub */
   project: string;
-  /** Optional href — links to the project detail page or external URL */
+  /** Link to a detail page (relative path on this site or external URL) */
   href?: string;
   /** One-line description of what shipped */
   summary: string;
 }
 
-export const activity: ActivityEntry[] = [
-  /* ── Multco AI Program — June 2026 ── */
+/* ── Multco hub URL ── */
+const MULTCO_FEED_URL = "https://multco-presentations.web.app/activity.json";
+
+/* ── Project name → local slug map ──
+ * The Multco hub may use slightly different project naming. When an
+ * entry comes in from the live feed, we rewrite the href to point at
+ * the local case study so users stay on the personal site. */
+const PROJECT_SLUG_MAP: Record<string, string> = {
+  "A11yReady": "a11yready",
+  "a11yReady": "a11yready",
+  "File Intelligence Platform": "file-intel",
+  "File Intel": "file-intel",
+  "AI Testing Platform": "ai-testing-platform",
+  "AI-Powered Testing Platform": "ai-testing-platform",
+  "Testing Platform": "ai-testing-platform",
+  "UCR Modernization": "ucr-modernization",
+  UCR: "ucr-modernization",
+};
+
+function localHrefForProject(project: string): string | undefined {
+  const slug = PROJECT_SLUG_MAP[project] || PROJECT_SLUG_MAP[project.trim()];
+  return slug ? `/projects/${slug}` : undefined;
+}
+
+/* ── Non-Multco entries — always rendered alongside the County feed ── */
+const otherProjectsActivity: ActivityEntry[] = [
+  {
+    date: "2026-05-11",
+    type: "MILESTONE",
+    project: "Clearview Politics",
+    href: "https://clearviewpolitics.com",
+    summary:
+      "Production launch — AI-native political news platform with 7 autonomous agents, 17 cron jobs, multi-source synthesis with bias auditing, and fully automated cross-platform social posting.",
+  },
+  {
+    date: "2026-04-03",
+    type: "MILESTONE",
+    project: "GTM Teardown",
+    href: "https://gtmteardown.com",
+    summary:
+      "Production launch — 9-agent LangGraph SaaS platform producing complete go-to-market playbooks in under 10 minutes. Quick scan at ~3 min, full report at ~10 min.",
+  },
+];
+
+/* ── Multco fallback ──
+ * Used only if the live feed at multco-presentations.web.app is
+ * unreachable (e.g. during initial deploy before the hub exposes JSON,
+ * or if the hub is down). Always rendered in order, most recent first.
+ * Updated by hand any time the live feed is broken for an extended period. */
+const multcoStaticFallback: ActivityEntry[] = [
+  /* ── June 19, 2026 ── */
+  {
+    date: "2026-06-19",
+    type: "MILESTONE",
+    project: "AI Testing Platform",
+    href: "/projects/ai-testing-platform",
+    summary:
+      "knowledge_v2 baseline + ADR 0015 (MEDIC) build gate opens. First end-to-end GUARDIAN baseline against the new knowledge_v2 corpus: 10 workflow subdirs, 17 tests. Failures categorized cleanly for MEDIC v0 scoping — selector-hallucinations as the primary bullseye. ADR 0015 build gate now open after capturing ≥10 PageObject-using failures.",
+  },
+  {
+    date: "2026-06-19",
+    type: "MILESTONE",
+    project: "AI Testing Platform",
+    href: "/projects/ai-testing-platform",
+    summary:
+      "First GUARDIAN-auto-surfaced legacy bug. While diagnosing the OPI Classic In-Home Approval workflow, the platform surfaced a real runtime exception in UCR's ContractDeliverables endpoint. Plain-language brief written for Mounika with URL, run_id, 3 hypotheses, ELMAH pointer. The platform working as designed — automated tests catching real production bugs faster than humans would have flagged.",
+  },
+  {
+    date: "2026-06-19",
+    type: "MILESTONE",
+    project: "AI Testing Platform",
+    href: "/projects/ai-testing-platform",
+    summary:
+      "4 knowledge_v2 prompt lessons encoded and verified stuck on first regen. L1 (exact menu→sub-item match), L2 (scope assertions to one element type), L3 (no page.goto('/')), L4 (test.skip on missing seed env). Regen smoke on Care Transitions session confirmed L1-L3 stuck on the very next generation — no hand-holding. Manual analog of MEDIC: read failure → categorize → update prompt → regen → verify.",
+  },
+  /* ── June 17, 2026 ── */
+  {
+    date: "2026-06-17",
+    type: "MILESTONE",
+    project: "AI Testing Platform",
+    href: "/projects/ai-testing-platform",
+    summary:
+      "Confidence scoring fix — knowledge_v2 drafts can now bucket HIGH. Every draft was scoring LOW despite coming from SME-confirmed sessions because the band function couldn't distinguish NOT_RUN from FAILED. Refactored to take CompileStatus enum directly + added SME-confirmed boost path. One-shot re-bucket on 13 drafts: 6 → HIGH, 7 → MEDIUM. Unblocks auto-confirm policy from picking up knowledge_v2 drafts.",
+  },
+  {
+    date: "2026-06-17",
+    type: "MILESTONE",
+    project: "AI Testing Platform",
+    href: "/projects/ai-testing-platform",
+    summary:
+      "4 follow-on fixes from real-data SME ingest session. (1) nginx 1 MB upload limit removed — training docs reach the backend. (2) POOL_FETCH_LIMIT 50 → 500 — fresh knowledge_v2 drafts no longer buried behind old high-confidence ones. (3) PHI override path with explicit SME attestation logging. (4) Cloud Run cpu-throttling=false — knowledge_v2 trigger runs in seconds, not minutes.",
+  },
+  {
+    date: "2026-06-17",
+    type: "MILESTONE",
+    project: "AI Testing Platform",
+    href: "/projects/ai-testing-platform",
+    summary:
+      "TESTGEN preview/expand UX fixes. NeedsYouLane was burying fresh knowledge_v2 drafts behind older high-confidence ones — fixed with client-side sort on generated_at DESC, 'newest N first' subtitle. 'See all drafts' button was opening a single-draft drawer due to copy-paste bug — replaced with inline expand/collapse toggle.",
+  },
+  {
+    date: "2026-06-17",
+    type: "MILESTONE",
+    project: "AI Testing Platform",
+    href: "/projects/ai-testing-platform",
+    summary:
+      "KNOWLEDGE → TESTGEN loop closed end-to-end. New knowledge_v2 generator + on-confirm BackgroundTasks hook: SME confirms a KNOWLEDGE session → TESTGEN auto-fires and generates one Playwright draft per workflow. First proof: Margretta's Medical Alert PDF → 2 drafts with correct PageObject imports and env-var defaults pulled from extracted key_facts. The platform's marketing flow now actually works: SME walks through a workflow → tests appear in the inbox.",
+  },
+  {
+    date: "2026-06-17",
+    type: "MILESTONE",
+    project: "AI Testing Platform",
+    href: "/projects/ai-testing-platform",
+    summary:
+      "KNOWLEDGE ingestion accepts files, not just paste-in text. Drag-drop or click-to-browse for .docx, .pdf, .xlsx, .csv, .md, .txt (50 MB limit). Pipeline: tmpfile → convert → STAGE 1 heuristic PHI triage → env-gated STAGE 2 LLM PHI classification → extract → persist. Unblocks ingestion of UCR training documents Margretta's team is sharing.",
+  },
+  /* ── June 12, 2026 ── */
   {
     date: "2026-06-12",
     type: "MILESTONE",
@@ -72,13 +206,14 @@ export const activity: ActivityEntry[] = [
     summary:
       "Full non-admin GUARDIAN suite ran against UCR QAT: 148 specs, 144 passed, 4 failed, 22 minutes. TESTGEN v1 prototype (KNOWLEDGE workflow → Playwright spec) shipped as pattern doc + working sample spec for the next-iteration generator.",
   },
+  /* ── June 10–11, 2026 ── */
   {
     date: "2026-06-11",
     type: "MILESTONE",
     project: "AI Testing Platform",
     href: "/projects/ai-testing-platform",
     summary:
-      "GUARDIAN v0 shipped per ADR 0009 — Playwright runner + per-test persist + flake detection + actor-inbox UI. 4 of 5 agents now operationally closed-loop (was 3). 17/17 tests pass. Captured the admin-perms-gap failure from yesterday's v2 admin spec stress-test as the first real artifact in the inbox.",
+      "GUARDIAN v0 shipped per ADR 0009 — Playwright runner + per-test persist + flake detection + actor-inbox UI. 4 of 5 agents now operationally closed-loop. Captured the admin-perms-gap failure from yesterday's v2 admin spec stress-test as the first real artifact in the inbox.",
   },
   {
     date: "2026-06-11",
@@ -102,7 +237,7 @@ export const activity: ActivityEntry[] = [
     project: "AI Testing Platform",
     href: "/projects/ai-testing-platform",
     summary:
-      "TESTGEN qa_items_v2 prompt iteration after live QAT runs surfaced 2 structural issues (per-step test() blocks lost state; hover-menu nav assumed direct links). v2 rewrote: one sequential test() per sheet + UCR hover-menu nav discipline. Full 208-draft regen at 98.1% compile clean in 42 min.",
+      "TESTGEN qa_items_v2 prompt iteration after live QAT runs surfaced 2 structural issues. v2 rewrote: one sequential test() per sheet + UCR hover-menu nav discipline. Full 208-draft regen at 98.1% compile clean in 42 min.",
   },
   {
     date: "2026-06-10",
@@ -112,6 +247,7 @@ export const activity: ActivityEntry[] = [
     summary:
       "Vertex narrative parser now tolerates markdown code fences; dictionary extended 120 → 181 entries — both effective on tomorrow's nightly run.",
   },
+  /* ── June 8–9, 2026 ── */
   {
     date: "2026-06-09",
     type: "FEATURE",
@@ -168,6 +304,7 @@ export const activity: ActivityEntry[] = [
     summary:
       "Historical UCR documentation absorbed: 835-file corpus ingested into the knowledge platform; 703 sessions live with full provenance and PHI safety checks.",
   },
+  /* ── May 2026 + earlier ── */
   {
     date: "2026-06-05",
     type: "FEATURE",
@@ -225,22 +362,6 @@ export const activity: ActivityEntry[] = [
       "Xingwu validation reaches 92.3% agreement on 33,738 UUIDs — independent PHP audit cross-check confirms the platform's classification accuracy.",
   },
   {
-    date: "2026-05-11",
-    type: "MILESTONE",
-    project: "Clearview Politics",
-    href: "https://clearviewpolitics.com",
-    summary:
-      "Production launch — AI-native political news platform with 7 autonomous agents, 17 cron jobs, multi-source synthesis with bias auditing, and fully automated cross-platform social posting.",
-  },
-  {
-    date: "2026-04-03",
-    type: "MILESTONE",
-    project: "GTM Teardown",
-    href: "https://gtmteardown.com",
-    summary:
-      "Production launch — 9-agent LangGraph SaaS platform producing complete go-to-market playbooks in under 10 minutes. Quick scan at ~3 min, full report at ~10 min.",
-  },
-  {
     date: "2026-03-20",
     type: "MILESTONE",
     project: "A11yReady",
@@ -249,3 +370,76 @@ export const activity: ActivityEntry[] = [
       "Production deployment serving Multnomah County agencies — first public document conversions begin running through the deployed pipeline.",
   },
 ];
+
+/* ── Live fetch with ISR + graceful fallback ── */
+
+interface RawMultcoEntry {
+  date?: string;
+  type?: string;
+  project?: string;
+  summary?: string;
+  href?: string;
+}
+
+function isValidType(t: unknown): t is ActivityType {
+  return t === "MILESTONE" || t === "FEATURE" || t === "FIX" || t === "RESEARCH";
+}
+
+function normalizeMultcoEntry(raw: RawMultcoEntry): ActivityEntry | null {
+  if (
+    typeof raw.date !== "string" ||
+    typeof raw.project !== "string" ||
+    typeof raw.summary !== "string"
+  ) {
+    return null;
+  }
+  const type = isValidType(raw.type) ? raw.type : "MILESTONE";
+  // Prefer local case study link over the external Multco URL so users
+  // stay on the personal site. Falls back to whatever the hub provided.
+  const href = localHrefForProject(raw.project) ?? raw.href;
+  return {
+    date: raw.date,
+    type,
+    project: raw.project,
+    summary: raw.summary,
+    href,
+  };
+}
+
+/**
+ * Fetch the Multco activity feed, merge with non-Multco entries, sort by date.
+ * Uses ISR — Vercel re-fetches every hour. Graceful fallback to the
+ * hand-maintained array if the live endpoint is unavailable.
+ */
+export async function getActivity(): Promise<ActivityEntry[]> {
+  let multco: ActivityEntry[] = multcoStaticFallback;
+
+  try {
+    const res = await fetch(MULTCO_FEED_URL, {
+      next: { revalidate: 3600 }, // 1 hour
+    });
+    if (res.ok) {
+      const data: unknown = await res.json();
+      if (Array.isArray(data)) {
+        const parsed = data
+          .map((raw) => normalizeMultcoEntry(raw as RawMultcoEntry))
+          .filter((e): e is ActivityEntry => e !== null);
+        if (parsed.length > 0) multco = parsed;
+      }
+    }
+  } catch {
+    // Network or parse error — use fallback array silently. The page
+    // still renders cleanly; only the Multco section may be stale.
+  }
+
+  return [...multco, ...otherProjectsActivity].sort((a, b) =>
+    b.date.localeCompare(a.date)
+  );
+}
+
+/* Legacy synchronous export — kept for any consumer that imports the
+ * static array directly. New code should call getActivity(). */
+export const activity: ActivityEntry[] = [
+  ...multcoStaticFallback,
+  ...otherProjectsActivity,
+].sort((a, b) => b.date.localeCompare(a.date));

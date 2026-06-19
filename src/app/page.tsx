@@ -8,14 +8,20 @@ import { AboutTeaser } from "@/components/sections/home/AboutTeaser";
 import { TechShowcase } from "@/components/sections/home/TechShowcase";
 import { IndependentValidation } from "@/components/sections/home/IndependentValidation";
 import { FooterCTA } from "@/components/sections/home/FooterCTA";
+import { getActivity } from "@/data/activity";
 
-export default function Home() {
+// Re-fetch the Multco activity feed every hour
+export const revalidate = 3600;
+
+export default async function Home() {
+  const activityEntries = await getActivity();
+
   return (
     <>
       <HeroSection />
       <RoutingLanes />
       <FeaturedProjects />
-      <ActivityFeed limit={6} />
+      <ActivityFeed entries={activityEntries} limit={6} />
       <ImpactMetrics />
       <IndependentValidation />
       <EngagementModes />

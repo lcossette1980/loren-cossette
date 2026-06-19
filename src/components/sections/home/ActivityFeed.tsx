@@ -4,7 +4,7 @@ import Link from "next/link";
 import { motion } from "framer-motion";
 import { Reveal } from "@/components/animations/Reveal";
 import { SectionHeading } from "@/components/ui/SectionHeading";
-import { activity, type ActivityType } from "@/data/activity";
+import type { ActivityEntry, ActivityType } from "@/data/activity";
 import { ArrowRight, ExternalLink } from "lucide-react";
 
 const typeStyle: Record<ActivityType, string> = {
@@ -34,14 +34,16 @@ function formatDate(iso: string): string {
 }
 
 interface ActivityFeedProps {
+  /** Activity entries to render — fetched server-side via getActivity() */
+  entries: ActivityEntry[];
   /** How many recent entries to show. Defaults to 6. */
   limit?: number;
   /** When true, renders without the surrounding section wrapper — for the dedicated /activity page. */
   embedded?: boolean;
 }
 
-export function ActivityFeed({ limit = 6, embedded = false }: ActivityFeedProps) {
-  const entries = activity.slice(0, limit);
+export function ActivityFeed({ entries: allEntries, limit = 6, embedded = false }: ActivityFeedProps) {
+  const entries = allEntries.slice(0, limit);
 
   const list = (
     <div className="space-y-0">
