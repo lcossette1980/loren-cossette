@@ -386,6 +386,20 @@ function isValidType(t: unknown): t is ActivityType {
   return t === "MILESTONE" || t === "FEATURE" || t === "FIX" || t === "RESEARCH";
 }
 
+/**
+ * Strip leading decorative emojis from a summary string. The Multco hub
+ * uses emoji prefixes (🎯 🛡️ 🎓 etc.) for visual scanning; on the personal
+ * site we replace that hierarchy with a typed icon on the chip, so the
+ * summary text should read clean and professional.
+ *
+ * Matches Extended_Pictographic codepoints plus variation selector and
+ * zero-width joiner, followed by whitespace. Inline pictographs (✓ ✗ ↷)
+ * that convey real meaning are preserved.
+ */
+function stripLeadingEmoji(text: string): string {
+  return text.replace(/^[\p{Extended_Pictographic}️‍\s]+/u, "").trim();
+}
+
 function normalizeMultcoEntry(raw: RawMultcoEntry): ActivityEntry | null {
   if (
     typeof raw.date !== "string" ||
@@ -402,7 +416,7 @@ function normalizeMultcoEntry(raw: RawMultcoEntry): ActivityEntry | null {
     date: raw.date,
     type,
     project: raw.project,
-    summary: raw.summary,
+    summary: stripLeadingEmoji(raw.summary),
     href,
   };
 }

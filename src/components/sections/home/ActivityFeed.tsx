@@ -5,13 +5,30 @@ import { motion } from "framer-motion";
 import { Reveal } from "@/components/animations/Reveal";
 import { SectionHeading } from "@/components/ui/SectionHeading";
 import type { ActivityEntry, ActivityType } from "@/data/activity";
-import { ArrowRight, ExternalLink } from "lucide-react";
+import {
+  ArrowRight,
+  ExternalLink,
+  Flag,
+  Sparkles,
+  Wrench,
+  Lightbulb,
+} from "lucide-react";
 
 const typeStyle: Record<ActivityType, string> = {
   MILESTONE: "bg-accent-cyan/10 border-accent-cyan/30 text-accent-cyan",
   FEATURE: "bg-accent-warm/10 border-accent-warm/30 text-accent-warm",
   FIX: "bg-green-500/10 border-green-500/30 text-green-400",
   RESEARCH: "bg-purple-500/10 border-purple-500/30 text-purple-400",
+};
+
+const typeIcon: Record<
+  ActivityType,
+  React.ComponentType<{ size?: number; className?: string }>
+> = {
+  MILESTONE: Flag,
+  FEATURE: Sparkles,
+  FIX: Wrench,
+  RESEARCH: Lightbulb,
 };
 
 function formatDate(iso: string): string {
@@ -91,8 +108,12 @@ export function ActivityFeed({ entries: allEntries, limit = 6, embedded = false 
                 {/* Type chip — desktop only */}
                 <div className="hidden md:block">
                   <span
-                    className={`inline-flex items-center px-2 py-1 rounded-full font-mono text-[9px] tracking-widest uppercase border ${typeStyle[e.type]}`}
+                    className={`inline-flex items-center gap-1.5 px-2 py-1 rounded-full font-mono text-[9px] tracking-widest uppercase border ${typeStyle[e.type]}`}
                   >
+                    {(() => {
+                      const Icon = typeIcon[e.type];
+                      return <Icon size={10} aria-hidden className="shrink-0" />;
+                    })()}
                     {e.type}
                   </span>
                 </div>
@@ -101,8 +122,12 @@ export function ActivityFeed({ entries: allEntries, limit = 6, embedded = false 
                 <div className="min-w-0">
                   {/* Mobile chip */}
                   <span
-                    className={`md:hidden inline-flex items-center px-2 py-0.5 rounded-full font-mono text-[9px] tracking-widest uppercase border ${typeStyle[e.type]} mb-2`}
+                    className={`md:hidden inline-flex items-center gap-1.5 px-2 py-0.5 rounded-full font-mono text-[9px] tracking-widest uppercase border ${typeStyle[e.type]} mb-2`}
                   >
+                    {(() => {
+                      const Icon = typeIcon[e.type];
+                      return <Icon size={10} aria-hidden className="shrink-0" />;
+                    })()}
                     {e.type}
                   </span>
 
