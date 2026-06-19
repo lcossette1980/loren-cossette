@@ -41,7 +41,7 @@ export function HeroSection() {
   };
 
   return (
-    <section className="relative min-h-screen pt-24 md:pt-28 flex flex-col items-center justify-center overflow-hidden">
+    <section className="relative min-h-screen pt-32 md:pt-36 flex flex-col items-center justify-center overflow-hidden">
       {/* Particle Background */}
       {mounted && (
         <Suspense fallback={null}>

@@ -3,6 +3,7 @@ import { Inter, JetBrains_Mono, EB_Garamond } from "next/font/google";
 import "./globals.css";
 import { Analytics } from "@vercel/analytics/react";
 import { ConditionalLayout } from "@/components/layout/ConditionalLayout";
+import { ShippingTicker } from "@/components/layout/ShippingTicker";
 
 const inter = Inter({
   variable: "--font-inter",
@@ -166,7 +167,7 @@ export default function RootLayout({
       <body
         className={`${inter.variable} ${jetbrainsMono.variable} ${ebGaramond.variable} antialiased bg-background text-foreground`}
       >
-        <ConditionalLayout>
+        <ConditionalLayout ticker={<ShippingTicker />}>
           {children}
         </ConditionalLayout>
         <Analytics />

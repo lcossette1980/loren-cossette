@@ -96,6 +96,23 @@ body {
   50% { transform: translateY(-8px); }
 }
 
+/* Shipping ticker — horizontal marquee.
+   The track contains items duplicated; translateX(-50%) lands the
+   start of the second copy exactly where the first one started,
+   giving a seamless loop. */
+@keyframes ticker-scroll {
+  from { transform: translateX(0); }
+  to { transform: translateX(-50%); }
+}
+.ticker-track {
+  animation: ticker-scroll 90s linear infinite;
+}
+/* Pause on hover OR keyboard focus so users can read individual items */
+.ticker-container:hover .ticker-track,
+.ticker-container:focus-within .ticker-track {
+  animation-play-state: paused;
+}
+
 /* Numeric alignment */
 .tabular-nums {
   font-variant-numeric: tabular-nums;
