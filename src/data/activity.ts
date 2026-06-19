@@ -52,6 +52,7 @@ const PROJECT_SLUG_MAP: Record<string, string> = {
   "A11yReady": "a11yready",
   "a11yReady": "a11yready",
   "File Intelligence Platform": "file-intel",
+  "File Intelligence": "file-intel",
   "File Intel": "file-intel",
   "AI Testing Platform": "ai-testing-platform",
   "AI-Powered Testing Platform": "ai-testing-platform",
