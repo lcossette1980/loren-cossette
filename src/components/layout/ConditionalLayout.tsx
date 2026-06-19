@@ -14,12 +14,14 @@ interface Props {
 export function ConditionalLayout({ children, ticker }: Props) {
   const pathname = usePathname();
   const isAdmin = pathname.startsWith("/admin");
-  // Don't show the ticker on the dedicated /activity page (redundant)
-  // or on print-styled pages where it would clutter the leave-behind.
+  // Don't show the ticker on the dedicated /activity page (redundant),
+  // print-styled leave-behind pages, or the OVERRIDE book section
+  // (separate visual brand, would clash).
   const hideTicker =
     pathname.startsWith("/activity") ||
     pathname.startsWith("/capability-statement") ||
-    pathname.startsWith("/intro");
+    pathname.startsWith("/intro") ||
+    pathname.startsWith("/override");
 
   if (isAdmin) {
     return <>{children}</>;

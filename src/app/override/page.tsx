@@ -181,10 +181,28 @@ export default function OverrideLandingPage() {
 
             {/* Copy */}
             <div>
+              {/* Bridge to current AI Program work */}
+              <Reveal delay={0.05}>
+                <Link
+                  href="/public-sector"
+                  className="inline-flex items-start gap-3 mb-7 px-4 py-3 rounded-lg border border-[#C4993B]/25 bg-[#C4993B]/[0.04] hover:bg-[#C4993B]/[0.08] hover:border-[#C4993B]/40 transition-colors group max-w-md"
+                >
+                  <span className="w-1.5 h-1.5 rounded-full bg-[#C4993B] mt-1.5 shrink-0 animate-pulse" aria-hidden="true" />
+                  <span className="font-sans text-[12px] leading-relaxed text-[#ddd]">
+                    Loren is currently the embedded AI lead for{" "}
+                    <strong className="text-[#C4993B] font-semibold">Multnomah County</strong>
+                    , running 5 production AI initiatives. OVERRIDE is the playbook behind that work.{" "}
+                    <span className="text-[#C4993B] font-mono text-[11px] tracking-wide whitespace-nowrap group-hover:underline">
+                      See the program →
+                    </span>
+                  </span>
+                </Link>
+              </Reveal>
+
               <Reveal delay={0.1}>
                 <div className="flex items-center gap-3 mb-6">
                   <div className="h-px flex-1 max-w-[40px] bg-gradient-to-r from-[#C4993B] to-transparent" />
-                  <span className="font-sans text-[10px] tracking-[4px] uppercase text-[#C4993B]/60 font-medium">
+                  <span className="font-sans text-[10px] tracking-[4px] uppercase text-[#C4993B]/80 font-medium">
                     Now Available
                   </span>
                 </div>
@@ -203,13 +221,13 @@ export default function OverrideLandingPage() {
                 </p>
               </Reveal>
               <Reveal delay={0.27}>
-                <p className="font-sans text-sm text-[#888]/60 leading-relaxed mb-8">
+                <p className="font-sans text-sm text-[#bbb] leading-relaxed mb-8">
                   {bookInfo.searchSubtitle}
                 </p>
               </Reveal>
               <Reveal delay={0.3}>
-                <p className="font-sans text-xs tracking-[3px] uppercase text-[#C4993B]/70 mb-10 flex items-center gap-3">
-                  <Swords size={14} className="text-[#C4993B]/50" />
+                <p className="font-sans text-xs tracking-[3px] uppercase text-[#C4993B] mb-10 flex items-center gap-3">
+                  <Swords size={14} className="text-[#C4993B]/80" aria-hidden="true" />
                   {bookInfo.traditions}
                 </p>
               </Reveal>
@@ -279,7 +297,7 @@ export default function OverrideLandingPage() {
                       {stat.label}
                     </p>
                     {stat.source && (
-                      <p className="font-sans text-[10px] text-[#555] mt-2">{stat.source}</p>
+                      <p className="font-sans text-[10px] text-[#a0a0a0] mt-2">{stat.source}</p>
                     )}
                   </div>
                 </motion.div>

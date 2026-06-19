@@ -91,9 +91,9 @@ export default function OverrideAboutPage() {
                 <h1 className="font-sans text-4xl md:text-5xl font-black text-white mb-3 tracking-[-1px]">
                   Loren T. Cossette
                 </h1>
-                <p className="font-sans text-sm text-[#888] mb-8 flex items-center gap-2">
-                  <span className="w-1.5 h-1.5 rounded-full bg-[#C4993B]" />
-                  PhD Candidate &middot; AI Strategist &middot; Change Architect
+                <p className="font-sans text-sm text-[#bbb] mb-8 flex items-center gap-2">
+                  <span className="w-1.5 h-1.5 rounded-full bg-[#C4993B]" aria-hidden="true" />
+                  PhD Candidate &middot; AI Program Architect &middot; Author of OVERRIDE
                 </p>
               </Reveal>
 
