@@ -32,33 +32,45 @@ const a11yreadyScreenshots = [
     caption:
       "Searchable conversion history with per-document quality score, review status, and full audit trail across all uploads",
   },
+  {
+    src: "/images/projects/a11yready/a11yready-metrics.png",
+    alt: "Admin Metrics Dashboard — Outcomes & Cost Savings",
+    caption:
+      "Admin view: documents converted, success rate, avg quality score, avg extraction time, estimated time saved, estimated cost saved (manual labor vs. AI compute), and quality-trend chart over the last 30 days",
+  },
 ];
 
 /* ── File Intelligence Platform Screenshots ── */
 const fileIntelScreenshots = [
   {
-    src: "/images/projects/file-intel/file-intel-1-executive.png",
-    alt: "Executive Summary — Digital Content Health",
+    src: "/images/projects/file-intel/file-explorer-home.png",
+    alt: "Platform Home — Daily Briefing",
     caption:
-      "Director-level dashboard: 56.5K files classified, 9.9K pages crawled, six-bucket File_Status classification, with per-department health gauges",
+      "Operator-friendly home: 56,961 files tracked, 9,844 pages audited, 94 Site Health, 0 in remediation queue — plus a daily AI-generated executive briefing on the most critical findings (in this case, 35,270 duplicate copies of generic.png consuming 2.2 GB)",
   },
   {
-    src: "/images/projects/file-intel/file-intel-2-site-health.png",
-    alt: "Site Health — Four-Gauge View",
+    src: "/images/projects/file-intel/file-explorer-files.png",
+    alt: "Files Inventory — Drupal-Aware",
     caption:
-      "Overall, Accessibility, Content Quality, and Link Health gauges with 14-day trends, audit-coverage transparency, and severity-banded issue counts across 30 departments",
+      "Every file linked back to its Drupal node, uploader, department, and live page references — surfaces orphans, duplicates, and ownership gaps the County had never seen before",
   },
   {
-    src: "/images/projects/file-intel/file-intel-3-accessibility.png",
-    alt: "Accessibility Report — Rule-by-Rule",
+    src: "/images/projects/file-intel/file-explorer-services.png",
+    alt: "Services View — Intent-Classified Pages",
     caption:
-      "WCAG 2.1 AA compliance breakdown: most common problems with severity, affected page counts, and ranked worst-scoring pages — drill-down ready for editorial action",
+      "Pages grouped by what citizens actually do on them — apply, transact, inform, contact, find — classified by Gemini 2.5 Flash from page content and URL patterns",
   },
   {
-    src: "/images/projects/file-intel/file-intel-4-file-detail.png",
-    alt: "File Detail — Drupal-Aware Inventory",
+    src: "/images/projects/file-intel/file-explorer-service-map.png",
+    alt: "Service Map — 12 Service Intents Across 9,845 Pages",
     caption:
-      "Drupal-native file inventory: every asset linked back to its database node, uploader, department, and live page references — surfaces orphans, duplicates, and ownership gaps",
+      "2,143 service pages identified across the site, grouped into 12 service intents (Apply for Something, Request Something, Submit Something, Book/Reserve, Check Eligibility, etc.) — the structural map of how the site actually serves residents",
+  },
+  {
+    src: "/images/projects/file-intel/file-explorer-policies.png",
+    alt: "Policies Engine — Custom Editorial Rules",
+    caption:
+      "Editor-facing policies engine: rules stored in JSON, rendered in plain English, editable per department — example: \"no PDFs in /forms/\" — the platform's custom-rule layer that off-the-shelf SaaS tools don't have",
   },
 ];
 
@@ -195,11 +207,11 @@ export const projects: Project[] = [
     icon: "Eye",
     featured: true,
     category: "compliance",
-    image: "/images/projects/file-intel/file-intel-1-executive.png",
+    image: "/images/projects/file-intel/file-explorer-home.png",
     dashboardImage:
-      "/images/projects/file-intel/file-intel-2-site-health.png",
+      "/images/projects/file-intel/file-explorer-home.png",
     architectureImage:
-      "/images/projects/file-intel/file-intel-4-file-detail.png",
+      "/images/projects/file-intel/file-explorer-service-map.png",
     screenshots: fileIntelScreenshots,
     impactMetrics: [
       {
@@ -278,11 +290,37 @@ export const projects: Project[] = [
     icon: "Bot",
     featured: true,
     category: "ai-agents",
-    image: "/images/projects/ai-testing-platform/ai-testing-platform-1-cover.png",
+    image: "/images/projects/ai-testing-platform/testing-home.png",
     dashboardImage:
-      "/images/projects/ai-testing-platform/ai-testing-platform-1-cover.png",
+      "/images/projects/ai-testing-platform/testing-home.png",
     architectureImage:
-      "/images/projects/ai-testing-platform/ai-testing-platform-1-cover.png",
+      "/images/projects/ai-testing-platform/testing-sme.png",
+    screenshots: [
+      {
+        src: "/images/projects/ai-testing-platform/testing-home.png",
+        alt: "Platform Home — Operator Dashboard",
+        caption:
+          "Operator's chief-of-staff dashboard: 1 active tenant, 4 of 5 agents closed-loop, 223 items needing review, plus the OPERATOR agent's daily briefing on top findings and what to triage first",
+      },
+      {
+        src: "/images/projects/ai-testing-platform/testing-sme.png",
+        alt: "SME Review Queue — Knowledge Confirm",
+        caption:
+          "SME confirmation queue: 'Confirm what we extracted from SME conversations' — 45 confirmed sessions in pool, audit sample with per-session SME attribution (Rikki, Margretta) and confidence-banded promotion path",
+      },
+      {
+        src: "/images/projects/ai-testing-platform/testing-review.png",
+        alt: "Knowledge Session Detail — UCR Medical Alert Workflow",
+        caption:
+          "Confirmed SME knowledge session expanded: full workflow context (UCR Medical Alert Service Request lifecycle), attendees (Rikki Thunstrom as primary SME, Loren as AI lead), and 13 extracted key facts that downstream TESTGEN will turn into Playwright specs",
+      },
+      {
+        src: "/images/projects/ai-testing-platform/testing-ucr-legacy.png",
+        alt: "UCR Legacy Tenant — Tenant-Scoped View",
+        caption:
+          "Per-tenant scoping: UCR Legacy view with Overview, Workflows, Work items, Knowledge, SME review, CODEX explorer, Code drift, Open questions, TESTGEN, and GUARDIAN — every agent surfaces its tenant-relevant state in one place",
+      },
+    ],
     impactMetrics: [
       {
         label: "Agents Closed-Loop",
