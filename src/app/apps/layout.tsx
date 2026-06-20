@@ -3,18 +3,18 @@ import type { Metadata } from "next";
 export const metadata: Metadata = {
   title: "Apps & Ventures",
   description:
-    "AI-powered apps and SaaS products built by Loren Cossette — from bias detection and academic research tools to AI news platforms and personality assessments.",
+    "Multi-agent AI products I've built and shipped solo — GTM Teardown, DissertationAI, Clearview Politics, and DraftEngine. Production SaaS, not demos.",
   openGraph: {
     title: "AI Apps & Ventures | Loren Cossette",
     description:
-      "Full-stack AI products from concept to production — multi-agent academic analysis, bias detection, AI news aggregation, and personality assessment platforms.",
+      "Production multi-agent AI products: GTM Teardown (9-agent LangGraph SaaS), DissertationAI (11 concurrent agents), Clearview Politics (7-agent autonomous news platform), DraftEngine.",
     type: "website",
   },
   twitter: {
     card: "summary_large_image",
     title: "AI Apps & Ventures | Loren Cossette",
     description:
-      "AI-powered SaaS products: DissertationAI, EquitableAI, AI Newsroom, PersonaLens, and more. Built and shipped solo.",
+      "Production multi-agent AI products built and shipped solo. GTM Teardown, DissertationAI, Clearview Politics, DraftEngine.",
     creator: "@lorencossette",
   },
 };

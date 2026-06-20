@@ -3,18 +3,18 @@ import type { Metadata } from "next";
 export const metadata: Metadata = {
   title: "Projects",
   description:
-    "Production AI systems and automation projects — WCAG compliance pipelines, multilingual content platforms, and enterprise RAG implementations.",
+    "Five production AI initiatives I currently run at Multnomah County — accessibility automation, site intelligence, legacy modernization, QA automation — plus earlier client work. Case studies with verifiable metrics.",
   openGraph: {
-    title: "AI Projects & Case Studies | Loren Cossette",
+    title: "Production AI Projects | Loren Cossette",
     description:
-      "Production AI systems: WCAG compliance automation ($2.7M saved), enterprise RAG pipelines (26x speed), and multilingual content platforms. Real results, not demos.",
+      "5 production AI initiatives at Multnomah County: A11yReady (95%+ WCAG, 34 doc clusters), File Intelligence Platform (56K files nightly), AI-Powered Testing Platform (6-agent system), UCR Modernization, plus earlier client work.",
     type: "website",
   },
   twitter: {
     card: "summary_large_image",
-    title: "AI Projects & Case Studies | Loren Cossette",
+    title: "Production AI Projects | Loren Cossette",
     description:
-      "Production AI systems: $2.7M+ cost saved, 26x speed increase, 90% scope reduction. WCAG automation, RAG pipelines, agentic systems.",
+      "5 production AI initiatives running inside Multnomah County. Verifiable case studies, not demos.",
     creator: "@lorencossette",
   },
 };

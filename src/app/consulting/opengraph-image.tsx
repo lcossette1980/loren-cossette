@@ -2,7 +2,7 @@ import { ImageResponse } from "next/og";
 import { readFile } from "node:fs/promises";
 import { join } from "node:path";
 
-export const alt = "AI Consulting Services | Loren Cossette";
+export const alt = "Embedded AI Program Leadership | Loren Cossette";
 export const size = { width: 1200, height: 630 };
 export const contentType = "image/png";
 
@@ -117,7 +117,7 @@ export default async function OGImage() {
             letterSpacing: "-1px",
           }}
         >
-          AI Consulting Services
+          Embedded AI Program Leadership
         </h1>
 
         {/* Subtitle */}
@@ -131,7 +131,7 @@ export default async function OGImage() {
             letterSpacing: "1px",
           }}
         >
-          Strategy → Build → Adoption
+          Embedded AI Lead · Discovery → Build → Handoff
         </p>
 
         {/* Description */}
@@ -145,8 +145,8 @@ export default async function OGImage() {
             lineHeight: 1.5,
           }}
         >
-          Production agentic systems, RAG pipelines, and organizational
-          transformation — delivered by one senior architect.
+          Become your agency&apos;s embedded AI lead — architect the systems,
+          write the code, capture knowledge, ship features weekly.
         </p>
 
         {/* Stats row */}
@@ -158,9 +158,9 @@ export default async function OGImage() {
           }}
         >
           {[
-            { value: "$2.7M+", label: "Cost Saved" },
-            { value: "26×", label: "Speed Increase" },
-            { value: "90%", label: "Scope Reduction" },
+            { value: "5", label: "Production Initiatives" },
+            { value: "56K+", label: "Files / Nightly" },
+            { value: "Weekly", label: "Shipping Cadence" },
           ].map((stat) => (
             <div
               key={stat.label}
@@ -209,9 +209,9 @@ export default async function OGImage() {
         >
           <div style={{ display: "flex", gap: "16px" }}>
             {[
-              "Fractional CAIO",
-              "Embedded Architect",
-              "Advisory Retainer",
+              "Discovery Engagement",
+              "Embedded AI Program Lead",
+              "Architecture & Build Sprint",
             ].map((eng) => (
               <span
                 key={eng}

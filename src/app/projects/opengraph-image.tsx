@@ -131,7 +131,7 @@ export default async function OGImage() {
             letterSpacing: "1px",
           }}
         >
-          Enterprise · Government · Academic
+          Multnomah County AI Program · Production
         </p>
 
         {/* Description */}
@@ -145,8 +145,8 @@ export default async function OGImage() {
             lineHeight: 1.5,
           }}
         >
-          WCAG compliance automation, multilingual content platforms,
-          and enterprise AI systems deployed in production.
+          Five production AI initiatives running inside Multnomah County —
+          accessibility, site intelligence, legacy modernization, QA automation.
         </p>
 
         {/* Stats row */}
@@ -158,9 +158,9 @@ export default async function OGImage() {
           }}
         >
           {[
-            { value: "$2.7M+", label: "Cost Saved" },
-            { value: "26×", label: "Speed Increase" },
-            { value: "90%", label: "Scope Reduction" },
+            { value: "5", label: "Production Initiatives" },
+            { value: "56.5K", label: "Files / Nightly" },
+            { value: "92.3%", label: "Independent Audit" },
           ].map((stat) => (
             <div
               key={stat.label}
@@ -208,7 +208,7 @@ export default async function OGImage() {
           }}
         >
           <div style={{ display: "flex", gap: "16px" }}>
-            {["WCAG Automation", "RAG Pipelines", "Agentic Systems"].map(
+            {["A11yReady", "File Intelligence", "Testing Platform"].map(
               (tag) => (
                 <span
                   key={tag}

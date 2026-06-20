@@ -131,7 +131,7 @@ export default async function OGImage() {
             letterSpacing: "1px",
           }}
         >
-          SaaS · Research Tools · AI Platforms
+          Multi-Agent SaaS · Built & Shipped Solo
         </p>
 
         {/* Description */}
@@ -145,8 +145,8 @@ export default async function OGImage() {
             lineHeight: 1.5,
           }}
         >
-          Full-stack AI products from concept to production — multi-agent
-          platforms, bias detection, and academic research tools.
+          Production multi-agent AI products from concept to revenue —
+          GTM Teardown, DissertationAI, Clearview Politics, DraftEngine.
         </p>
 
         {/* Bottom bar */}
@@ -163,10 +163,10 @@ export default async function OGImage() {
         >
           <div style={{ display: "flex", gap: "16px" }}>
             {[
+              "GTM Teardown",
               "DissertationAI",
-              "EquitableAI",
-              "AI Newsroom",
-              "PersonaLens",
+              "Clearview Politics",
+              "DraftEngine",
             ].map((app) => (
               <span
                 key={app}

@@ -3,18 +3,18 @@ import type { Metadata } from "next";
 export const metadata: Metadata = {
   title: "Contact",
   description:
-    "Get in touch with Loren Cossette for AI consulting, automation projects, speaking engagements, or collaboration opportunities.",
+    "Reach out about embedded AI program leadership, public-sector AI modernization, accessibility automation, legacy-system modernization, executive advisory, or training engagements.",
   openGraph: {
-    title: "Contact Loren Cossette | AI Consulting",
+    title: "Contact Loren Cossette",
     description:
-      "Start a conversation about AI strategy, production systems, or organizational transformation. 30-minute discovery calls. No obligation.",
+      "Bring me in as your embedded AI lead, or start with a 30-minute Discovery working session. Public-sector AI modernization, accessibility, legacy modernization, executive advisory.",
     type: "website",
   },
   twitter: {
     card: "summary_large_image",
-    title: "Contact Loren Cossette | AI Consulting",
+    title: "Contact Loren Cossette",
     description:
-      "AI consulting, strategy, and production engineering. Tell me what you're trying to build, fix, or transform.",
+      "Embedded AI program leadership for state, county, and city agencies. 30-min Discovery working session — no sales pitch.",
     creator: "@lorencossette",
   },
 };
