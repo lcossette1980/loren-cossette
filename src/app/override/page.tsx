@@ -153,6 +153,23 @@ export default function OverrideLandingPage() {
         {/* Subtle grid */}
         <div className="absolute inset-0 opacity-[0.03]" style={{ backgroundImage: "linear-gradient(rgba(196,153,59,0.3) 1px, transparent 1px), linear-gradient(90deg, rgba(196,153,59,0.3) 1px, transparent 1px)", backgroundSize: "60px 60px" }} />
 
+        {/* Author brand mark — small lockup top-right (publisher seal) */}
+        <div className="absolute top-8 right-8 z-20 hidden md:flex items-center gap-2.5 opacity-60 hover:opacity-100 transition-opacity">
+          <span className="font-sans text-[9px] tracking-[3px] uppercase text-[#C4993B]/60">
+            From the Author
+          </span>
+          <Link href="/" aria-label="Loren Cossette — Home" className="block">
+            <Image
+              src="/images/logo.png"
+              alt=""
+              width={150}
+              height={88}
+              className="rounded-sm"
+              aria-hidden="true"
+            />
+          </Link>
+        </div>
+
         <motion.div className="site-container relative z-10 py-20" style={{ opacity: heroOpacity, y: heroY }}>
           <div className="grid grid-cols-1 md:grid-cols-2 gap-12 lg:gap-20 items-center">
             {/* Book cover */}

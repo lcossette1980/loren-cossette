@@ -19,6 +19,21 @@ export default function AboutPage() {
   return (
     <div className="pt-32 pb-32">
       <div className="max-w-3xl mx-auto px-6 md:px-8">
+        {/* Brand mark */}
+        <Reveal>
+          <div className="flex justify-center mb-12">
+            <Image
+              src="/images/logo.png"
+              alt=""
+              width={300}
+              height={177}
+              priority
+              className="rounded-md opacity-95"
+              aria-hidden="true"
+            />
+          </div>
+        </Reveal>
+
         {/* Hero / Bio */}
         <div className="grid grid-cols-1 md:grid-cols-[300px_1fr] gap-12 mb-20">
           <Reveal>

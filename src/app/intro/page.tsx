@@ -1,6 +1,7 @@
 "use client";
 
 import Link from "next/link";
+import Image from "next/image";
 import { Reveal } from "@/components/animations/Reveal";
 import { Button } from "@/components/ui/Button";
 import {
@@ -47,17 +48,27 @@ export default function IntroOnePagerPage() {
         {/* Header */}
         <header className="border-b-[3px] border-[#0a3a5c] pb-4 mb-6 print:break-inside-avoid">
           <div className="flex items-start justify-between gap-6 flex-wrap">
-            <div>
-              <h1 className="text-2xl font-bold text-[#0a0a0f] tracking-tight mb-1">
-                Loren Cossette
-              </h1>
-              <p className="text-sm text-[#0a3a5c] font-semibold">
-                AI Program Architect · Embedded AI Lead for Public-Sector
-                Modernization
-              </p>
-              <p className="text-xs text-[#4a5063] font-mono mt-1">
-                Cossette Consulting LLC · Texas LLC · San Antonio, TX
-              </p>
+            <div className="flex items-start gap-4">
+              <Image
+                src="/images/logo-mark.png"
+                alt=""
+                width={56}
+                height={56}
+                className="rounded-md shrink-0"
+                aria-hidden="true"
+              />
+              <div>
+                <h1 className="text-2xl font-bold text-[#0a0a0f] tracking-tight mb-1">
+                  Loren Cossette
+                </h1>
+                <p className="text-sm text-[#0a3a5c] font-semibold">
+                  AI Program Architect · Embedded AI Lead for Public-Sector
+                  Modernization
+                </p>
+                <p className="text-xs text-[#4a5063] font-mono mt-1">
+                  Cossette Consulting LLC · Texas LLC · San Antonio, TX
+                </p>
+              </div>
             </div>
             <div className="text-right text-xs text-[#4a5063] font-mono">
               <p>lorencossette.com</p>
