@@ -6,8 +6,10 @@ export const size = { width: 180, height: 180 };
 export const contentType = "image/png";
 
 export default async function AppleIcon() {
+  // Use the square LC monogram (not the full lockup) for the apple
+  // touch icon — needs to read clearly at 180x180 home-screen size.
   const logoBuffer = await readFile(
-    join(process.cwd(), "public/images/logo.png")
+    join(process.cwd(), "public/images/logo-mark.png")
   );
   const logoSrc = `data:image/png;base64,${logoBuffer.toString("base64")}`;
 
@@ -24,10 +26,15 @@ export default async function AppleIcon() {
           borderRadius: "40px",
         }}
       >
+        {/* eslint-disable-next-line @next/next/no-img-element */}
         <img
           src={logoSrc}
           alt="LC"
-          style={{ width: "160px", height: "160px" }}
+          style={{
+            width: "150px",
+            height: "150px",
+            objectFit: "contain",
+          }}
         />
       </div>
     ),

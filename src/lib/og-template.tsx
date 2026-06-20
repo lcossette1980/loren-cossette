@@ -29,9 +29,10 @@ export interface OgTemplateProps {
   tags?: string[];
 }
 
+/** Loads the square LC monogram for use as the small OG corner badge. */
 export async function loadLogo(): Promise<string> {
   const logoBuffer = await readFile(
-    join(process.cwd(), "public/images/logo.png")
+    join(process.cwd(), "public/images/logo-mark.png")
   );
   return `data:image/png;base64,${logoBuffer.toString("base64")}`;
 }

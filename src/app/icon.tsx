@@ -6,8 +6,10 @@ export const size = { width: 32, height: 32 };
 export const contentType = "image/png";
 
 export default async function Icon() {
+  // Use the square LC monogram (not the full LOREN COSSETTE lockup) so
+  // the favicon stays legible at 32x32 and on browser tabs.
   const logoBuffer = await readFile(
-    join(process.cwd(), "public/images/logo.png")
+    join(process.cwd(), "public/images/logo-mark.png")
   );
   const logoSrc = `data:image/png;base64,${logoBuffer.toString("base64")}`;
 
@@ -23,7 +25,16 @@ export default async function Icon() {
           background: "#0a0a0f",
         }}
       >
-        <img src={logoSrc} alt="LC" style={{ width: "32px", height: "32px" }} />
+        {/* eslint-disable-next-line @next/next/no-img-element */}
+        <img
+          src={logoSrc}
+          alt="LC"
+          style={{
+            width: "32px",
+            height: "32px",
+            objectFit: "contain",
+          }}
+        />
       </div>
     ),
     { ...size }

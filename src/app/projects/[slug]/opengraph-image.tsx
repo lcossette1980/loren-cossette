@@ -21,7 +21,7 @@ export default async function OGImage({
   if (!project) return new Response("Not found", { status: 404 });
 
   const logoBuffer = await readFile(
-    join(process.cwd(), "public/images/logo.png")
+    join(process.cwd(), "public/images/logo-mark.png")
   );
   const logoSrc = `data:image/png;base64,${logoBuffer.toString("base64")}`;
 

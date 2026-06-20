@@ -1,17 +1,18 @@
 import Link from "next/link";
+import Image from "next/image";
 import { personal } from "@/data/personal";
 import { navItems, secondaryNavItems } from "@/data/navigation";
 import { Github, Linkedin, Mail, ExternalLink } from "lucide-react";
 
 const seoKeywords = [
-  { label: "AI Consulting", href: "/consulting" },
-  { label: "AI Strategy", href: "/consulting" },
-  { label: "AI Systems Design & Build", href: "/projects" },
-  { label: "RAG Systems", href: "/projects/ai-commander" },
+  { label: "Embedded AI Program Lead", href: "/consulting" },
+  { label: "Public-Sector AI", href: "/public-sector" },
+  { label: "AI Modernization", href: "/public-sector" },
+  { label: "WCAG Document Automation", href: "/projects/a11yready" },
+  { label: "Drupal-Aware Site Intelligence", href: "/projects/file-intel" },
+  { label: "Multi-Agent Testing Platform", href: "/projects/ai-testing-platform" },
+  { label: "Behavioral Knowledge Capture", href: "/projects/ucr-modernization" },
   { label: "Agentic AI", href: "/projects/ai-commander" },
-  { label: "AI Automation", href: "/projects/wcag-remediation" },
-  { label: "AI Governance", href: "/consulting" },
-  { label: "WCAG Compliance", href: "/projects/wcag-triage" },
 ];
 
 export function Footer() {
@@ -21,9 +22,16 @@ export function Footer() {
         <div className="grid grid-cols-1 md:grid-cols-5 gap-12">
           {/* Brand */}
           <div>
-            <p className="font-mono text-sm tracking-[3px] text-accent-warm font-medium mb-4">
-              LC
-            </p>
+            <Link href="/" aria-label="Loren Cossette — Home" className="block mb-5 group">
+              <Image
+                src="/images/logo.png"
+                alt=""
+                width={220}
+                height={130}
+                className="rounded-md group-hover:opacity-95 transition-opacity"
+                aria-hidden="true"
+              />
+            </Link>
             <p className="text-text-secondary text-sm leading-relaxed max-w-xs">
               {personal.tagline}
             </p>

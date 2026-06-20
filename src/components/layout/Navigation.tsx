@@ -2,6 +2,7 @@
 
 import { useState, useEffect, useRef } from "react";
 import Link from "next/link";
+import Image from "next/image";
 import { usePathname } from "next/navigation";
 import { motion, AnimatePresence, LayoutGroup } from "framer-motion";
 import { Menu, X, ChevronDown, Sparkles } from "lucide-react";
@@ -67,9 +68,17 @@ export function Navigation() {
           <Link
             href="/"
             aria-label="Loren Cossette — Home"
-            className="font-mono text-sm tracking-[3px] text-accent-cyan font-medium hover:text-white transition-colors"
+            className="flex items-center gap-2 group"
           >
-            <span aria-hidden="true">LC</span>
+            <Image
+              src="/images/logo-mark.png"
+              alt=""
+              width={36}
+              height={36}
+              priority
+              className="rounded-sm group-hover:opacity-90 transition-opacity"
+              aria-hidden="true"
+            />
           </Link>
 
           {/* Desktop nav */}
